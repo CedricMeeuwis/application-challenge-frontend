@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ApplicationChallenge"
+    }
+  },
+  "defaultProject": "ApplicationChallenge",
+  "cli": {
+    "analytics": "17fcf12f-2b7e-44e6-8c9d-a65d7541fb9f"
+  }
 }
