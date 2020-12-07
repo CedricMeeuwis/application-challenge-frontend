@@ -12,7 +12,7 @@ import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./gebruikers.component.scss']
 })
 export class GebruikersComponent implements OnInit {
-  model: NgbDateStruct;
+  geboortedatum : NgbDateStruct
   gebruikers : User[];
   ploegen : Ploeg[];
   gebruiker : User;
@@ -31,7 +31,6 @@ export class GebruikersComponent implements OnInit {
   //modals
   open(content, userID?) {
     this.gebruiker = new User("","",new Date(),"","", false);
-    //this.gekozenPloeg = 0;
     if(userID){
       this.gebruiker = {...this.gebruikers.find(u => u.userID == userID)}
       if(!this.gebruiker.ploegID){

@@ -40,6 +40,9 @@
     </div>
 </div>
 
+    <div class="input-group">
+
+    </div>  
 <!-- modals voor CRUD -->
 <ng-template #content let-modal>
     <div class="modal-header pb-0">
@@ -57,11 +60,17 @@
             <p> Email: 
                 <input class="form-control" required placeholder="email" type="text" [(ngModel)]="gebruiker.email" name="email"/>
             </p>
-            <p> Geboortedatum: 
-                <input class="form-control" required placeholder="Geboortedatum" type="text" [(ngModel)]="gebruiker.geboortedatum" name="Geboortedatum"/>
-            </p>
+            <div> Geboortedatum: 
+                <div class="input-group">
+                    <input class="form-control" placeholder="werkt niet"
+                           name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">Open</button>
+                    </div>
+                </div>
+            </div>
             <p> Wachtwoord:
-                <input class="form-control" required placeholder="passwoord" type="password" [(ngModel)]="gebruiker.passwoord" name="passwoord"/>
+                <input class="form-control" placeholder="passwoord" type="password" [(ngModel)]="gebruiker.passwoord" name="passwoord"/>
             </p>
             <div>
                 <p>Foto: 
