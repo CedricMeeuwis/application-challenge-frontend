@@ -7,10 +7,11 @@ export class Tafel {
         public bedrijfsnaam: string, 
         public adres: string,
         public foto: string,
-
-        public contactpersoonID: number,
+        public contactNaam: string,
+        public contactTelefoon: string,
+        public contactEmail: string,
         //Optioneel voor nieuw gemaakte objecten
-        public tafelID: number, 
+        public tafelID?: number, 
         public contactpersoon?: User,
     ){}
 }

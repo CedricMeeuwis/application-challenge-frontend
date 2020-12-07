@@ -8,9 +8,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [],
   imports: [
     CommonModule,
-    HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
+
   ],
   exports: [
     FormsModule,
