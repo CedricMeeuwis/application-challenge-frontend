@@ -19,11 +19,11 @@ export class AdministratorService {
     return this.http.get<User[]>("https://localhost:44348/api/User/");
   }
   //post User voor admin
-  postUser(user : User)<User>{
+  postUser(user : User){
     return this.http.post<User>("https://localhost:44348/api/User/",user);
   }
   //update User voor admin
-  updateUser(userID : number, user : User)<User>{
+  updateUser(userID : number, user : User){
     return this.http.put<User>("https://localhost:44348/api/User/"+userID, user);
   }
   //delete User voor admin
@@ -33,18 +33,18 @@ export class AdministratorService {
   //get ploegen
   getPloegen() : Observable<Ploeg[]>{
     return this.http.get<Ploeg[]>("https://localhost:44348/api/Ploeg/");
+  }
 
   getAllTournoois(): Observable<Tournooi[]>{
-    return this._httpClient.get<Tournooi[]>(this.tournooiUrl);
+    return this.http.get<Tournooi[]>(this.tournooiUrl);
   }
   newTournooi(tournooi): Observable<Tournooi>{
-    return this._httpClient.post<Tournooi>(this.tournooiUrl, tournooi);
+    return this.http.post<Tournooi>(this.tournooiUrl, tournooi);
   }
   updateTournooi(tournooi): Observable<Tournooi>{
-    return this._httpClient.put<Tournooi>(this.tournooiUrl + "/" + tournooi.tournooiID, tournooi);
+    return this.http.put<Tournooi>(this.tournooiUrl + "/" + tournooi.tournooiID, tournooi);
   }
   deleteTournooi(id): Observable<Tournooi>{
-    return this._httpClient.delete<Tournooi>(this.tournooiUrl + "/" + id);
-
+    return this.http.delete<Tournooi>(this.tournooiUrl + "/" + id);
   }
 }
