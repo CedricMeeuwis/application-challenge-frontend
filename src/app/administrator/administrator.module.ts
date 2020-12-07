@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdministratorService } from './administrator.service'
+import { AdministratorService } from './administrator.service';
+import { TafelsLijstComponent } from './tafels-lijst/tafels-lijst.component'
+import { SharedModule } from '../shared/shared.module';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [TafelsLijstComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   providers: [AdministratorService]
 })
