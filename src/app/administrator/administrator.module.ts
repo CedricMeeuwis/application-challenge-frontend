@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdministratorService } from './administrator.service'
+import { SharedModule } from '../shared/shared.module';
+import { AdministratorService } from './administrator.service';
+import { TournooiBeheerComponent } from './tournooi-beheer/tournooi-beheer.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [TournooiBeheerComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule,
   ],
   providers: [AdministratorService]
 })

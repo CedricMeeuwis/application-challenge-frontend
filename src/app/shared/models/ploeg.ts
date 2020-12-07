@@ -10,7 +10,7 @@ export class Ploeg {
 
         public kapiteinID: number,
         //Optioneel voor nieuw gemaakte objecten
-        public ploegID: number, 
+        public ploegID?: number, 
         public kapitein?: User,
     ){}
 }
