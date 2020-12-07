@@ -1,5 +1,9 @@
 <nav>
   <ul>
-  <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+  <li>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/beheer-tournooi" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Tournooi beheer</a>
+  </li>
   </ul>
 </nav>
+<router-outlet></router-outlet>
