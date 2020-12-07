@@ -13,22 +13,22 @@ export class AdministratorService {
 
   //get Users voor admin
   getUsers() : Observable<User[]>{
-    return this.http.get<User[]>("https://localhost:44348/api/User");
+    return this.http.get<User[]>("https://localhost:44348/api/User/");
   }
   //post User voor admin
   postUser(user : User){
-    return this.http.post<User>("https://localhost:44348/api/User",user);
+    return this.http.post<User>("https://localhost:44348/api/User/",user);
   }
   //update User voor admin
   updateUser(userID : number, user : User){
-    return this.http.post<User>("https://localhost:44348/api/User"+userID, user);
+    return this.http.put<User>("https://localhost:44348/api/User/"+userID, user);
   }
   //delete User voor admin
-  deleteUser(userID){
-    return this.http.delete<User>("https://localhost:44348/api/User"+userID);
+  deleteUser(userID : number){
+    return this.http.delete<User>("https://localhost:44348/api/User/"+userID);
   }
   //get ploegen
   getPloegen() : Observable<Ploeg[]>{
-    return this.http.get<Ploeg[]>("https://localhost:44348/api/Ploeg");
+    return this.http.get<Ploeg[]>("https://localhost:44348/api/Ploeg/");
   }
 }

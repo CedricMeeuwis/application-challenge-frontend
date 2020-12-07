@@ -5,7 +5,6 @@ import { GebruikersComponent } from './gebruikers/gebruikers.component'
 import { FormsModule } from '@angular/forms';
 
 
-
 @NgModule({
   declarations: [GebruikersComponent],
   imports: [

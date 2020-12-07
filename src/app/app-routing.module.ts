@@ -4,7 +4,7 @@ import { GebruikersComponent } from './administrator/gebruikers/gebruikers.compo
 
 
 const routes: Routes = [
-  {path: 'gebruikers', component: GebruikersComponent},
+  {path: 'admin/gebruikers', component: GebruikersComponent},
 ];
 
 @NgModule({

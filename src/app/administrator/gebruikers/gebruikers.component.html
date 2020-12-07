@@ -40,8 +40,6 @@
     </div>
 </div>
 
-
-
 <!-- modals voor CRUD -->
 <ng-template #content let-modal>
     <div class="modal-header pb-0">
@@ -60,19 +58,20 @@
                 <input class="form-control" required placeholder="email" type="text" [(ngModel)]="gebruiker.email" name="email"/>
             </p>
             <p> Geboortedatum: 
-                <input class="form-control" required placeholder="geboortedatum" type="text" [(ngModel)]="gebruiker.geboortedatum" name="geboortedatum"/>
+                <input class="form-control" required placeholder="Geboortedatum" type="text" [(ngModel)]="gebruiker.geboortedatum" name="Geboortedatum"/>
             </p>
             <p> Wachtwoord:
-                <input class="form-control" required placeholder="passwoord" type="text" [(ngModel)]="gebruiker.passwoord" name="passwoord"/>
+                <input class="form-control" required placeholder="passwoord" type="password" [(ngModel)]="gebruiker.passwoord" name="passwoord"/>
             </p>
             <div>
-                <p> Foto: 
-                    <input class="form-control" placeholder="link foto (nog te veranderen)" type="password" [(ngModel)]="gebruiker.password" name="password"/>
+                <p>Foto: 
+                    <input type="file" id="img" name="img" accept="image/*">
                 </p>
             </div>
             <div>
                 <p>Ploeg: 
-                    <select [(ngModel)]="gekozenPloeg" class="form-control" name="ploeg">
+                    <select [(ngModel)]="gebruiker.ploegID" class="form-control" name="ploeg">
+                        <option value="0">Geen</option>
                         <option *ngFor="let ploeg of ploegen" [ngValue]="ploeg.ploegID">{{ploeg.naam}}</option>
                     </select>
                 </p>

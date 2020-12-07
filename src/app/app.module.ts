@@ -30,11 +30,11 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     FormsModule
   ],
-  // providers: [{
-  //   provide: HTTP_INTERCEPTORS,
-  //   useClass: SecurityInterceptor,
-  //   multi: true
-  // }],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: SecurityInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
