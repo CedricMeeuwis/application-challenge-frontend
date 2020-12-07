@@ -3,14 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SecurityInterceptor } from './security/security.interceptor';
 import { SharedModule } from './shared/shared.module';
 import { SecurityModule } from './security/security.module';
 
 import { AdministratorModule } from './administrator/administrator.module'
 import { GebruikerModule } from './gebruiker/gebruiker.module'
-import { KapiteinModule } from './kapitein/kapitein.module'
+import { KapiteinModule } from './kapitein/kapitein.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,13 +25,16 @@ import { KapiteinModule } from './kapitein/kapitein.module'
     SecurityModule,
     AdministratorModule,
     GebruikerModule,
-    KapiteinModule
+    KapiteinModule,
+    HttpClientModule,
+    NgbModule,
+    FormsModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: SecurityInterceptor,
-    multi: true
-  }],
+  // providers: [{
+  //   provide: HTTP_INTERCEPTORS,
+  //   useClass: SecurityInterceptor,
+  //   multi: true
+  // }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
