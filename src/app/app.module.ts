@@ -10,11 +10,13 @@ import { SecurityModule } from './security/security.module';
 
 import { AdministratorModule } from './administrator/administrator.module'
 import { GebruikerModule } from './gebruiker/gebruiker.module'
-import { KapiteinModule } from './kapitein/kapitein.module'
+import { KapiteinModule } from './kapitein/kapitein.module';
+import { HeaderComponent } from './header/header/header.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
