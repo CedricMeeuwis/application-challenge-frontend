@@ -12,11 +12,13 @@ import { AdministratorModule } from './administrator/administrator.module'
 import { GebruikerModule } from './gebruiker/gebruiker.module'
 import { KapiteinModule } from './kapitein/kapitein.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
-import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header/header.component'
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -27,8 +29,7 @@ import { FormsModule } from '@angular/forms';
     GebruikerModule,
     KapiteinModule,
     HttpClientModule,
-    NgbModule,
-    FormsModule
+    NgbModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
