@@ -8,8 +8,9 @@ export class User {
         public geboortedatum: Date,
         public foto: string,
         public passwoord: string,
+        public isAdmin : boolean,
         
-        public ploegID: number,
+        public ploegID?: number,
         //Optioneel voor nieuw gemaakte objecten
         public userID?: number, 
         public token?: string,
