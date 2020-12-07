@@ -29,8 +29,6 @@ import { HeaderComponent } from './header/header/header.component'
     AdministratorModule,
     GebruikerModule,
     KapiteinModule,
-    SharedModule
-    HttpClientModule,
     NgbModule
   ],
   providers: [{
