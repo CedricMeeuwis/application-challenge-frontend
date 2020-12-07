@@ -3,10 +3,15 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
+<app-header></app-header>
+
 <nav>
   <ul>
-  <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
-  <li><a routerLink="/tafels-lijst" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Tafels</a></li>
+  <li>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/beheer-tournooi" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Tournooi beheer</a>
+    <a routerLink="/tafels-lijst" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Tafels</a>
+  </li>
   </ul>
 </nav>
 

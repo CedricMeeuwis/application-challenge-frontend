@@ -1,0 +1,112 @@
+<div class="container">
+    <div class="row justify-content-center my-3">
+        <h1>Lijst Gebruikers</h1>
+    </div>
+    <div class="row pb-1 justify-content-between">
+        <div class="col-auto">
+            <button type="button" class="btn btn-success btn-sm mb-1" (click)="open(content)">Nieuwe Gebruiker</button>
+        </div>
+    </div>
+
+    <div class="row justify-content-center table-responsive">
+        <table class="table text-center">
+            <thead>
+            <tr>
+                <th scope="d-none d-md-block">Id</th>
+                <th scope="">Naam</th>
+                <th scope="d-none d-md-block">Email</th>
+                <th scope="">Ploeg</th>
+                <th>Admin</th>
+                <th scope="">Bewerk</th>
+                <th scope="">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let gebruiker of gebruikers">
+                <th>{{gebruiker.userID}}</th>
+                <td>{{gebruiker.naam}}</td>
+                <td>{{gebruiker.email}}</td>
+                <td><div *ngIf="gebruiker.ploegID != null">{{gebruiker.ploeg.naam}}
+                </div></td>
+                <td>
+                    <div *ngIf="gebruiker.isAdmin == true; else elseBlock">Ja</div>
+                    <ng-template #elseBlock>Nee</ng-template>
+                </td>
+                <td><button class="btn btn-outline-primary btn-sm" (click)="open(content, gebruiker.userID)"><span class="d-none d-md-inline">Edit</span></button></td>
+                <td><button class="btn btn-outline-danger btn-sm" (click)="open(deleteModal, gebruiker.userID)"><span class="d-none d-md-inline">Delete</span></button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- modals voor CRUD -->
+<ng-template #content let-modal>
+    <div class="modal-header pb-0">
+      <h4 *ngIf="gebruiker.userID == 0" class="modal-title" id="modal-basic-title">Maak Gebruiker Aan</h4>
+      <h4 *ngIf="gebruiker.userID != 0" class="modal-title" id="modal-basic-title">Bewerk Gebruiker</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form #registerForm="ngForm" (ngSubmit)="sendUser()">
+            <p> Naam: 
+                <input class="form-control" required ngbAutofocus placeholder="volledige naam" type="text" [(ngModel)]="gebruiker.naam" name="naam" minlength="2"/>
+            </p>
+            <p> Email: 
+                <input class="form-control" required placeholder="email" type="text" [(ngModel)]="gebruiker.email" name="email"/>
+            </p>
+            <p> Geboortedatum: 
+                <input class="form-control" required placeholder="Geboortedatum" type="text" [(ngModel)]="gebruiker.geboortedatum" name="Geboortedatum"/>
+            </p>
+            <p> Wachtwoord:
+                <input class="form-control" required placeholder="passwoord" type="password" [(ngModel)]="gebruiker.passwoord" name="passwoord"/>
+            </p>
+            <div>
+                <p>Foto: 
+                    <input type="file" id="img" name="img" accept="image/*">
+                </p>
+            </div>
+            <div>
+                <p>Ploeg: 
+                    <select [(ngModel)]="gebruiker.ploegID" class="form-control" name="ploeg">
+                        <option value="0">Geen</option>
+                        <option *ngFor="let ploeg of ploegen" [ngValue]="ploeg.ploegID">{{ploeg.naam}}</option>
+                    </select>
+                </p>
+            </div>
+            <div>
+                <p>Administrator: 
+                    <select [(ngModel)]="gebruiker.isAdmin" class="form-control" name="ploeg">
+                        <option selected value="false">Nee</option>
+                        <option value="true">Ja</option>
+                    </select>
+                </p>
+            </div>
+            <div class="modal-footer pb-0">
+                <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">annuleer</button>
+                <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')" [disabled]="!registerForm.form.valid" >Save</button>
+              </div>
+        </form>
+    </div>
+</ng-template>
+  
+<ng-template #deleteModal let-modal>
+    <div class="modal-header pb-0">
+        <h4 class="modal-title" id="modal-title">Delete Gebruiker</h4>
+        <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>ben je zeker dat je <span class="text-primary">{{gebruiker.naam}}</span> wilt verwijderen?</strong></p>
+        <p class="text-danger">Dit kan niet ongedaan worden.</p>
+      </div>
+      <div class="modal-footer pb-1">
+        <button type="button" ngbAutofocus class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">annuleer</button>
+        <form #deleteForm="ngForm" (ngSubmit)="deleteUser(gebruiker.userID)">
+            <button type="submit" class="btn btn-danger" (click)="modal.close('Ok click')">Delete</button>
+        </form>
+      </div>
+</ng-template>
