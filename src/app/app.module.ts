@@ -8,6 +8,10 @@ import { SecurityInterceptor } from './security/security.interceptor';
 import { SharedModule } from './shared/shared.module';
 import { SecurityModule } from './security/security.module';
 
+import { AdministratorModule } from './administrator/administrator.module'
+import { GebruikerModule } from './gebruiker/gebruiker.module'
+import { KapiteinModule } from './kapitein/kapitein.module'
+
 @NgModule({
   declarations: [
     AppComponent
@@ -16,13 +20,16 @@ import { SecurityModule } from './security/security.module';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    SecurityModule
+    SecurityModule,
+    AdministratorModule,
+    GebruikerModule,
+    KapiteinModule
   ],
   providers: [{
-      provide: HTTP_INTERCEPTORS,
-      useClass: SecurityInterceptor,
-      multi: true
-    }],
+    provide: HTTP_INTERCEPTORS,
+    useClass: SecurityInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
