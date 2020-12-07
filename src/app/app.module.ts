@@ -23,11 +23,13 @@ import { HeaderComponent } from './header/header/header.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     SharedModule,
     SecurityModule,
     AdministratorModule,
     GebruikerModule,
     KapiteinModule,
+    SharedModule
     HttpClientModule,
     NgbModule
   ],

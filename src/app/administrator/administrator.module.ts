@@ -2,18 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdministratorService } from './administrator.service';
 import { GebruikersComponent } from './gebruikers/gebruikers.component'
-import { FormsModule } from '@angular/forms';
-import { SharedModule } from '../shared/shared.module';
+import { TafelsLijstComponent } from './tafels-lijst/tafels-lijst.component'
 import { TournooiBeheerComponent } from './tournooi-beheer/tournooi-beheer.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [GebruikersComponent,
                 TournooiBeheerComponent,
-                ],
+                TafelsLijstComponent],
   imports: [
     CommonModule,
-    FormsModule,
     SharedModule,
+
   ],
   providers: [AdministratorService]
 })

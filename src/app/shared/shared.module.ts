@@ -7,11 +7,11 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [],
   imports: [
     CommonModule,
-    HttpClientModule,
     FormsModule,
+    HttpClientModule
   ],
   exports: [
-    FormsModule,
+    FormsModule
     HttpClientModule,
   ]
 })
