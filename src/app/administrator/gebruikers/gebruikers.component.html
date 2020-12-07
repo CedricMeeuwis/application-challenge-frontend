@@ -70,7 +70,7 @@
                 </div>
             </div>
             <p> Wachtwoord:
-                <input class="form-control" placeholder="passwoord" type="password" [(ngModel)]="gebruiker.passwoord" name="passwoord"/>
+                <input [required]="!gebruiker.userID"  class="form-control" placeholder="passwoord" type="password" [(ngModel)]="gebruiker.passwoord" name="passwoord"/>
             </p>
             <div>
                 <p>Foto: 
