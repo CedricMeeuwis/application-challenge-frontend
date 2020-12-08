@@ -63,7 +63,7 @@
             <div> Geboortedatum: 
                 <div class="input-group">
                     <input class="form-control" placeholder="werkt niet"
-                           name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
+                           name="dp" [(ngModel)]="datum" ngbDatepicker #d="ngbDatepicker">
                     <div class="input-group-append">
                       <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">Open</button>
                     </div>
@@ -73,9 +73,9 @@
                 <input [required]="!gebruiker.userID"  class="form-control" placeholder="passwoord" type="password" [(ngModel)]="gebruiker.passwoord" name="passwoord"/>
             </p>
             <div>
-                <p>Foto: 
-                    <input type="file" id="img" name="img" accept="image/*">
-                </p>
+                <label for="foto">Kies een afbeelding</label>
+                <input type="file" [(ngModel)]="gebruiker.foto" name="foto" class="form-control " (change)="onChange($event)" required/>
+                <img [src]="this.gebruiker.foto" class="foto" alt="">  
             </div>
             <div>
                 <p>Ploeg: 
