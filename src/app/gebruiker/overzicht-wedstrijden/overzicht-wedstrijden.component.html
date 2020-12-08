@@ -19,6 +19,7 @@
                 <th>Score</th>
                 <th>Tegenstander</th>
                 <th>Tafelsituering</th>
+                <th>Tournooi</th>
                 <th>Info</th>
             </tr>
             </thead>
@@ -41,6 +42,14 @@
                     </ng-template>  
                 </td>
                 <td>{{match.wedstrijd.tafel.bedrijfsnaam}}</td>
+                <td>
+                    <div *ngIf="match.tournooi; else elseDiv3">
+                        <td>{{match.tournooi.naam}}</td>
+                    </div>
+                    <ng-template #elseDiv3>
+                        /
+                    </ng-template>  
+                </td>
                 <td>
                     <button (click)="open(content, match.matchContextID)">Info</button>
                 </td>
@@ -101,6 +110,11 @@
                 </div>
             </ng-template>
 
+        </div>
+        <div *ngIf="wedstrijd.wedstrijd.tournooi">
+            <hr>
+            <p>Tournooi: {{wedstrijd.wedstrijd.tournooi.naam}}</p>
+            <p>Niveau: {{wedstrijd.wedstrijd.tournooiNiveau}}</p>
         </div>
         <hr>
         <p>Tafel: {{wedstrijd.wedstrijd.tafel.naam}}</p>
