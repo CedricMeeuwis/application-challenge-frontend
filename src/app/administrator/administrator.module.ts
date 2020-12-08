@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdministratorService } from './administrator.service'
-
-
+import { AdministratorService } from './administrator.service';
+import { PloegenBeherenComponent } from './ploegen-beheren/ploegen-beheren.component'
+import { HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [],
+  declarations: [PloegenBeherenComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
-  providers: [AdministratorService]
+  providers: [AdministratorService],
+  exports: [PloegenBeherenComponent]
 })
 export class AdministratorModule { }
