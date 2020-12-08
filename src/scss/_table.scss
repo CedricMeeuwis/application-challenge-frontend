@@ -1,0 +1,120 @@
+@import "./variabelen";
+
+.table-wrapper {
+	background: #fff;
+	border-radius: 3px;
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+
+.table-title {        
+	background: $buttonColor;
+	color: $wit;
+  padding: 16px 30px;
+  
+	min-width: 100%;
+	border-radius: 3px 3px 0 0;
+}
+
+
+.table-title h4 {
+	margin: 5px 0 0;
+	font-size: 24px !important;
+}
+.table-title .btn-group {
+	float: right;
+}
+.table-title .btn {
+	color: $wit;
+	float: right;
+	font-size: 13px;
+	border: none;
+	min-width: 50px;
+	border-radius: 2px;
+	border: none;
+	outline: none !important;
+	margin-left: 10px;
+}
+.table-title .btn i {
+	float: left;
+	font-size: 21px;
+	margin-right: 5px;
+}
+.table-title .btn span {
+	float: left;
+	margin-top: 2px;
+}
+table.table tr th, table.table tr td {
+	border-color: $platinumColor;
+	padding: 12px 15px;
+	vertical-align: middle;
+}
+th{
+	color: $titleColor;
+}
+
+table.table tr th:last-child {
+	width: 100px;
+}
+table.table-striped tbody tr:nth-of-type(odd) {
+	background-color: $cream;
+}
+table.table-striped.table-hover tbody tr:hover {
+	background: $creamHover;
+}
+table.table th i {
+	font-size: 13px;
+	margin: 0 5px;
+	cursor: pointer;
+}	
+table.table td:last-child i {
+	opacity: 0.9;
+	font-size: 22px;
+	margin: 0 5px;
+}
+table.table td a {
+	font-weight: bold;
+	color: #566787;
+	display: inline-block;
+	text-decoration: none;
+	outline: none !important;
+}
+table.table td a:hover {
+	color: #2196F3;
+}
+table.table td a.edit {
+	color: $editColor;
+}
+table.table td a.edit:hover {
+    color: $editHover;
+    cursor: pointer;
+}
+table.table td a.delete {
+	color: $deleteColor;
+}
+table.table td a.delete:hover {
+    color: $deleteHover;
+    cursor: pointer;
+}
+table.table td a.review {
+	color: $review;
+}
+table.table td a.review:hover {
+    color: $reviewHover;
+    cursor: pointer;
+}
+table.table td a.publish {
+	color: $info;
+}
+table.table td a.publish:hover {
+    color: $infoHover;
+    cursor: pointer;
+}
+table.table td i {
+	font-size: 19px;
+}
+table.table .avatar {
+	border-radius: 50%;
+	vertical-align: middle;
+	margin-right: 10px;
+}
