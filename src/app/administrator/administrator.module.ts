@@ -1,20 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdministratorService } from './administrator.service';
+import { HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { GebruikersComponent } from './gebruikers/gebruikers.component'
 import { TafelsLijstComponent } from './tafels-lijst/tafels-lijst.component'
 import { TournooiBeheerComponent } from './tournooi-beheer/tournooi-beheer.component';
+import { PloegenBeherenComponent } from './ploegen-beheren/ploegen-beheren.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [GebruikersComponent,
                 TournooiBeheerComponent,
-                TafelsLijstComponent],
+                TafelsLijstComponent,
+                PloegenBeherenComponent],
   imports: [
     CommonModule,
     SharedModule,
-
   ],
-  providers: [AdministratorService]
+  providers: [AdministratorService],
+  exports: [PloegenBeherenComponent]
 })
 export class AdministratorModule { }
