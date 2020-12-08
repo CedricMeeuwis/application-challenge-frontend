@@ -11,7 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    NgbModule,
+    NgbModule
   ],
   exports: [
     FormsModule,
