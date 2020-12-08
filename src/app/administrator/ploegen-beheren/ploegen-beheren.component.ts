@@ -19,7 +19,7 @@ export class PloegenBeherenComponent implements OnInit {
   users?: User[];
   nieuweKapitein: User;
   huidigeKapitein: User;
-  kapiteinid: number
+  kapiteinid: number = 0
 
   constructor(private _administratorService: AdministratorService, private modalService: NgbModal) {
     this.resetPloegen()
@@ -87,9 +87,6 @@ export class PloegenBeherenComponent implements OnInit {
 
   sendPloeg() {
     if (this.gekozenPloeg.ploegID != 0) {
-
-      console.log(this.kapiteinid)
-      console.log(this.huidigeKapitein)
       this._administratorService.getUser(this.kapiteinid).subscribe(nieuwekapitein => {
         this.nieuweKapitein = nieuwekapitein
         this.nieuweKapitein.isKapitein = true
@@ -104,18 +101,23 @@ export class PloegenBeherenComponent implements OnInit {
       );
     } else {
 
-      this._administratorService.newPloeg(this.gekozenPloeg).subscribe(ploeg => {
-        this.resetPloegen()
-        this._administratorService.getUser(this.kapiteinid).subscribe(nieuwekapitein => {
-          this.nieuweKapitein = nieuwekapitein
-          this.nieuweKapitein.isKapitein = true
-          this.nieuweKapitein.ploegID = ploeg.ploegID
-          alert(this.nieuweKapitein.ploegID)
-          this._administratorService.updateUser(this.nieuweKapitein.userID, this.nieuweKapitein).subscribe()
+      if (this.kapiteinid == 0) {
+        alert("geef kapitein op aub. Als er geen gebruikers zijn, maak deze dan eerst aan.")
+      }
+      else {
+        this._administratorService.newPloeg(this.gekozenPloeg).subscribe(ploeg => {
+          this.resetPloegen()
+          this._administratorService.getUser(this.kapiteinid).subscribe(nieuwekapitein => {
+            this.nieuweKapitein = nieuwekapitein
+            this.nieuweKapitein.isKapitein = true
+            this.nieuweKapitein.ploegID = ploeg.ploegID
+            this._administratorService.updateUser(this.nieuweKapitein.userID, this.nieuweKapitein).subscribe()
+
+          }
+          )
         }
         )
       }
-      )
     }
   }
 
