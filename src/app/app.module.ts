@@ -1,10 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SecurityInterceptor } from './security/security.interceptor';
 
 import { AdministratorModule } from './administrator/administrator.module'
@@ -14,15 +12,19 @@ import { SharedModule } from './shared/shared.module';
 import { SecurityModule } from './security/security.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule } from "@angular/forms"
+import { KapiteinModule } from './kapitein/kapitein.module';
+import { HeaderComponent } from './header/header/header.component'
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     SharedModule,
     SecurityModule,
     AdministratorModule,
@@ -30,6 +32,7 @@ import {FormsModule } from "@angular/forms"
     KapiteinModule,
     NgbModule,
     FormsModule
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
