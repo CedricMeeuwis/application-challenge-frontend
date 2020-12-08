@@ -24,7 +24,6 @@ export class SecurityComponent implements OnInit {
         result.ploegID =0
       }
       localStorage.setItem("ploegID", result.ploegID.toString())
-      alert(result.isKapitein)
     });
   }
 }

@@ -77,9 +77,16 @@
                     </p>
                     <p>
                         <label for="foto">Kies een afbeelding</label>
-                        <input type="file" [(ngModel)]="gekozenPloeg.ploegFoto" name="foto" class="form-control " (change)="onChange($event)" required/>
+                        <input type="file" [(ngModel)]="gekozenPloeg.ploegFoto" name="foto" class="form-control " (change)="onChange($event)"/>
                         <img [src]="this.gekozenPloeg.ploegFoto" class="foto" alt="">  
                     </p>
+                    <div>
+                        <p>Kapitein: 
+                            <select [(ngModel)]="kapiteinid" class="form-control" name="user">
+                                <option *ngFor="let user of users" [ngValue]="user.userID">{{user.naam}}</option>
+                            </select>
+                        </p>
+                    </div>
 
                     <div class="modal-footer pb-0">
                         <button type="button" class="btn btn-outline-secondary"
