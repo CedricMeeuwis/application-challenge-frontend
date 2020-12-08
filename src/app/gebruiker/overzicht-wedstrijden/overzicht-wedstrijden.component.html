@@ -44,7 +44,7 @@
                 <td>{{match.wedstrijd.tafel.bedrijfsnaam}}</td>
                 <td>
                     <div *ngIf="match.tournooi; else elseDiv3">
-                        <td>{{match.tournooi.naam}}</td>
+                        {{match.tournooi.naam}}
                     </div>
                     <ng-template #elseDiv3>
                         /
@@ -111,10 +111,11 @@
             </ng-template>
 
         </div>
-        <div *ngIf="wedstrijd.wedstrijd.tournooi">
+        <div *ngIf="wedstrijd.tournooi">
             <hr>
-            <p>Tournooi: {{wedstrijd.wedstrijd.tournooi.naam}}</p>
-            <p>Niveau: {{wedstrijd.wedstrijd.tournooiNiveau}}</p>
+            <p>Tournooi: {{wedstrijd.tournooi.naam}}</p>
+            <p>Niveau: {{wedstrijd.tournooiNiveau}}</p>
+            <p>Rangschikking: {{wedstrijd.tournooiRangschikking}}</p>
         </div>
         <hr>
         <p>Tafel: {{wedstrijd.wedstrijd.tafel.naam}}</p>
