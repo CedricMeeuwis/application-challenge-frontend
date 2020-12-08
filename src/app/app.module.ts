@@ -11,7 +11,6 @@ import { SecurityModule } from './security/security.module';
 import { AdministratorModule } from './administrator/administrator.module'
 import { GebruikerModule } from './gebruiker/gebruiker.module'
 import { KapiteinModule } from './kapitein/kapitein.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { HeaderComponent } from './header/header/header.component'
 
 
@@ -29,7 +28,6 @@ import { HeaderComponent } from './header/header/header.component'
     AdministratorModule,
     GebruikerModule,
     KapiteinModule,
-    NgbModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
