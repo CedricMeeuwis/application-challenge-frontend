@@ -22,27 +22,30 @@
                     <table class="table text-center">
                         <thead>
                             <tr>
-                                <th scope="d-none d-md-block">Id</th>
-                                <th scope="">Naam</th>
-                                <th scope="d-none d-md-block">Bedrijfsnaam</th>
-                                <th scope="">Locatie</th>
+                                <th>Id</th>
+                                <th>Naam</th>
+                                <th>Bedrijfsnaam</th>
+                                <th>Locatie</th>
 
-                                <th scope="">Bewerk</th>
-                                <th scope="">Delete</th>
+                                <th>Bewerk</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let ploeg of (ploegen| async)">
-                                <th>{{ploeg.ploegID}}</th>
+                                <td>{{ploeg.ploegID}}</td>
                                 <td>{{ploeg.naam}}</td>
                                 <td>{{ploeg.bedrijfsnaam}}</td>
                                 <td>{{ploeg.locatie}}</td>
 
-                                <td><button class="btn btn-outline-primary btn-sm" (click)="open(content, ploeg)"><span
-                                            class="d-none d-md-inline">Edit</span></button></td>
-                                <td><button class="btn btn-outline-danger btn-sm"
-                                        (click)="open(deleteModal, ploeg)"><span
-                                            class="d-none d-md-inline">Delete</span></button></td>
+                                <td>
+
+									<a (click)="open(content, ploeg)" class="edit" data-toggle="modal"><i
+											class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+
+									<a (click)="open(deleteModal, ploeg)" class="delete"
+										data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
+											title="Delete">&#xE872;</i></a>
+								</td>
                             </tr>
                         </tbody>
                     </table>
@@ -92,7 +95,7 @@
             </div>
             <div class="modal-body">
                 <p>Bent u zeker dat u {{gekozenPloeg.naam}} wilt verwijderen?</p>
-                <button class="btn btn-outline-primary btn-sm" (click)="deletegroep(ploegID.ploegID)"><span
+                <button class="btn btn-outline-primary btn-sm" (click)="deletegroep(ploeg.ploegID)"><span
                         class="d-none d-md-inline">Verwijder</span></button>
             </div>
         </ng-template>

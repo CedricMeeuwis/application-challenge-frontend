@@ -1,10 +1,52 @@
-<form #registerForm="ngForm" (ngSubmit)="onSubmit()">
-    <p>
-            <input placeholder="email" type="text" required [(ngModel)]="userLogin.email" name="email" />
-    </p>
-    <p>
-            <input placeholder="password" type="text" required [(ngModel)]="userLogin.passwoord" name="passwoord" />
-    </p>
-    <p><button color="primary" type="submit"
-            [disabled]="!registerForm.form.valid">Submit</button></p>
-</form>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+                <div class="user_card">
+                        <div class="d-flex justify-content-center">
+                                <div class="brand_logo_container">
+                                        <img src="../../../assets/img/Logo.png" class="brand_logo" alt="Logo">
+                                </div>
+                        </div>
+                        <div class="d-flex justify-content-center form_container">
+                                <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+                                        <div class="input-group mb-3">
+                                                <div class="input-group-append">
+                                                        <span class="input-group-text"><i
+                                                                        class="fas fa-user"></i></span>
+                                                </div>
+                                                <input placeholder="email" type="text" required
+                                                        [(ngModel)]="userLogin.email" name="email"
+                                                        placeholder=" Email" />
+                                        </div>
+                                        <div class="input-group mb-2">
+                                                <div class="input-group-append">
+                                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                                </div>
+                                                <input placeholder="password" type="text" required
+                                                        [(ngModel)]="userLogin.passwoord" name="passwoord"
+                                                        placeholder="Wachtwoord" />
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-3 login_container">
+                                                <button color="submit" type="submit"
+                                                        [disabled]="!registerForm.form.valid">Login</button>
+                                        </div>
+                                </form>
+                        </div>
+
+                        <div class="mt-4">
+                                <div class="d-flex justify-content-center links">
+                                        Nog geen account? <a href="/sign-up" class="ml-2"> Account aanmaken!</a>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
