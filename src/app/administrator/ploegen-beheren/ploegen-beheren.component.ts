@@ -37,10 +37,13 @@ export class PloegenBeherenComponent implements OnInit {
   }
 
   sendPloeg() {
-    if(this.gekozenPloeg.ploegID != null){
-      this._administratorService.updatePloeg(this.gekozenPloeg).subscribe();
+    if(this.gekozenPloeg.ploegID != 0){
+      this._administratorService.updatePloeg(this.gekozenPloeg).subscribe(() =>
+      this.resetPloegen()
+      );
     }else{
-      this._administratorService.newPloeg(this.gekozenPloeg).subscribe();
+      this._administratorService.newPloeg(this.gekozenPloeg).subscribe(() =>
+      this.resetPloegen());
     }
   }
 
