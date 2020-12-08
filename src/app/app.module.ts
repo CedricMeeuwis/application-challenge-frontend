@@ -12,7 +12,6 @@ import { SharedModule } from './shared/shared.module';
 import { SecurityModule } from './security/security.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule } from "@angular/forms"
-import { KapiteinModule } from './kapitein/kapitein.module';
 import { HeaderComponent } from './header/header/header.component'
 
 
