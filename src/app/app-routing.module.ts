@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { GebruikersComponent } from './administrator/gebruikers/gebruikers.component';
 import { TournooiBeheerComponent } from './administrator/tournooi-beheer/tournooi-beheer.component';
 import { TafelsLijstComponent } from './administrator/tafels-lijst/tafels-lijst.component';
+import { SecurityComponent } from './security/security/security.component';
 
 const routes: Routes = [
   { path: '', component: AppComponent},
   { path: 'ploegenBeheren', component: PloegenBeherenComponent},
   {path: 'admin/gebruikers', component: GebruikersComponent},
   {path: 'beheer-tournooi', component: TournooiBeheerComponent},
-  {path: 'tafels-lijst', component: TafelsLijstComponent}
+  {path: 'tafels-lijst', component: TafelsLijstComponent},
+  {path: 'login', component: SecurityComponent}
 ];
 
 @NgModule({

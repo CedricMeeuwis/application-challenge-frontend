@@ -1,1 +1,10 @@
-<p>security works!</p>
+<form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+    <p>
+            <input placeholder="email" type="text" required [(ngModel)]="userLogin.email" name="email" />
+    </p>
+    <p>
+            <input placeholder="password" type="text" required [(ngModel)]="userLogin.passwoord" name="passwoord" />
+    </p>
+    <p><button color="primary" type="submit"
+            [disabled]="!registerForm.form.valid">Submit</button></p>
+</form>

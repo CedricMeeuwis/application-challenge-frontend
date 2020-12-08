@@ -9,7 +9,7 @@ export class User {
         public foto: string,
         public passwoord: string,
         public isAdmin : boolean,
-        
+        public isKapitein : boolean,
         public ploegID?: number,
         //Optioneel voor nieuw gemaakte objecten
         public userID?: number, 
