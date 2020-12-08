@@ -1,0 +1,33 @@
+<p>ploeg-aanmaken works!</p>
+<form #registerForm="ngForm" (ngSubmit)="onSubmit()" multiple>
+    <p> Naam: 
+        <input class="form-control" required ngbAutofocus placeholder="volledige naam" type="text" [(ngModel)]="ploeg.naam" name="naam" minlength="2"/>
+    </p>
+    <p> Bedrijfsnaam: 
+        <input class="form-control" required placeholder="email" type="text" [(ngModel)]="ploeg.bedrijfsnaam" name="email"/>
+    </p>
+    <p> Locatie:
+        <input required class="form-control" placeholder="locatie" type="text" [(ngModel)]="ploeg.locatie" name="locatie"/>
+    </p>
+    <div>
+        <p> Ploeg foto: 
+            <input type="file" id="img" name="img" accept="image/*">
+        </p>
+    </div>
+    <div>
+        Filter: 
+        <input type="text" [(ngModel)]="filterTekst" name="filterTekst" id="filterTekst"><button (click)="filter()">Filter</button>
+    </div>
+    <div> Voeg gebruikers toe: 
+        <ul class="list-group">
+            <li *ngFor="let user of filterLijst" class="list-group-item">
+                <input class="form-check-input" (change)="check(user)" type="checkbox" id="{{user.userID}}" name="{{user.userID}}" value="{{user.userID}}">
+                <label for="{{user.userID}}">{{user.naam}}</label>
+            </li>
+        </ul>
+    </div>
+    <p>{{ gekozenUsers | json }}</p>
+    <div class="modal-footer pb-0">
+        <button type="submit" class="btn btn-outline-success" [disabled]="!registerForm.form.valid">Save</button>
+    </div>
+</form>
