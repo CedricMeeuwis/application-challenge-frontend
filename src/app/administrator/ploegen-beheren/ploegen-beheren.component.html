@@ -75,9 +75,10 @@
                         <input class="form-control" required ngbAutofocus placeholder="locatie" type="text"
                             [(ngModel)]="gekozenPloeg.locatie" name="locatie" minlength="2" />
                     </p>
-                    <p> PloegFoto:
-                        <input class="form-control" ngbAutofocus placeholder="ploegFoto" type="text"
-                            [(ngModel)]="gekozenPloeg.ploegFoto" name="ploegFoto" />
+                    <p>
+                        <label for="foto">Kies een afbeelding</label>
+                        <input type="file" [(ngModel)]="gekozenPloeg.ploegFoto" name="foto" class="form-control " (change)="onChange($event)" required/>
+                        <img [src]="this.gekozenPloeg.ploegFoto" class="foto" alt="">  
                     </p>
 
                     <div class="modal-footer pb-0">
