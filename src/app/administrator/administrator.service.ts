@@ -35,10 +35,6 @@ export class AdministratorService {
     return this.http.get<Ploeg[]>("https://localhost:44348/api/Ploeg/");
   }
 
-  getPloegen(): Observable<Ploeg[]>{
-    return this.http.get<Ploeg[]>("https://localhost:44348/api/ploeg");
-  }
-
   deleteArticle(ploegID: number)
   {
     return this.http.delete<Ploeg>("https://localhost:44348/api/ploeg/" + ploegID);
