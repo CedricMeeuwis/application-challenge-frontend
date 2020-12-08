@@ -5,6 +5,7 @@ import { User } from 'src/app/shared/models/user';
 import { AdministratorService } from '../administrator.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { Observable, Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-gebruikers',
@@ -12,10 +13,11 @@ import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./gebruikers.component.scss']
 })
 export class GebruikersComponent implements OnInit {
-  geboortedatum : NgbDateStruct
+  model: NgbDateStruct;
   gebruikers : User[];
   ploegen : Ploeg[];
   gebruiker : User;
+  datum;
   //gekozenPloeg : number;
   constructor(private _route: ActivatedRoute, private _adminService: AdministratorService, private _router : Router, private modalService: NgbModal) { }
 
@@ -28,9 +30,46 @@ export class GebruikersComponent implements OnInit {
     })
   }
 
+  onChange($event: Event) {
+    const file = ($event.target as HTMLInputElement).files[0];
+    this.convertToBase64(file);
+
+  }
+
+  convertToBase64(file: File) {
+    const observable = new Observable((subscriber: Subscriber<any>) => {
+
+      this.readFile(file, subscriber);
+    });
+    observable.subscribe((d) => {
+      this.gebruiker.foto = d;
+    })
+  }
+
+  readFile(file: File, subscriber: Subscriber<any>) {
+    const filereader = new FileReader();
+
+    filereader.readAsDataURL(file)
+
+    filereader.onload = () => {
+
+      subscriber.next(filereader.result);
+      subscriber.complete();
+    };
+
+    filereader.onerror = (error) => {
+      subscriber.error(error);
+      subscriber.complete();
+    }
+  }
+
+
   //modals
   open(content, userID?) {
+
     this.gebruiker = new User("","",new Date(),"","", false, false);
+    //this.gekozenPloeg = 0;
+    
     if(userID){
       this.gebruiker = {...this.gebruikers.find(u => u.userID == userID)}
       if(!this.gebruiker.ploegID){
@@ -54,6 +93,8 @@ export class GebruikersComponent implements OnInit {
     }else{
       this._adminService.postUser(this.gebruiker).subscribe(result => {
         result.ploeg = this.ploegen.find(x => x.ploegID === this.gebruiker.ploegID)
+        console.log(this.datum)
+        debugger;
         this.gebruikers.push(result)
       })
     }
