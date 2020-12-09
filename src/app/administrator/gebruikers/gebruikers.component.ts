@@ -30,7 +30,7 @@ export class GebruikersComponent implements OnInit {
 
   //modals
   open(content, userID?) {
-    this.gebruiker = new User("","",new Date(),"","", false);
+    this.gebruiker = new User("","", new Date(), "", false, false, "");
     if(userID){
       this.gebruiker = {...this.gebruikers.find(u => u.userID == userID)}
       if(!this.gebruiker.ploegID){

@@ -29,7 +29,7 @@ export class PloegenBeherenComponent implements OnInit {
   }
 
   open(content, ploeg?) {
-    this.gekozenPloeg = new Ploeg("", "", "", "", 0, 0);
+    this.gekozenPloeg = new Ploeg("", "", "", "");
     if (ploeg) {
       this.gekozenPloeg = ploeg;
     }

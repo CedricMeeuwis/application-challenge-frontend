@@ -7,10 +7,7 @@ export class Ploeg {
         public bedrijfsnaam: string, 
         public locatie: string,
         public ploegFoto: string,
-
-        public kapiteinID: number,
         //Optioneel voor nieuw gemaakte objecten
         public ploegID?: number, 
-        public kapitein?: User,
     ){}
 }
