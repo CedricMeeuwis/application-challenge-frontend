@@ -1,32 +1,24 @@
-<section id="manage-gebruikers">
-    <div class="container">
-
-        <div class="section-title" data-aos="fade-left">
-            <h2>Gebruikers beheren</h2>
+<div class="container">
+    <div class="row justify-content-center my-3">
+        <h1>Lijst Gebruikers</h1>
+    </div>
+    <div class="row pb-1 justify-content-between">
+        <div class="col-auto">
+            <button type="button" class="btn btn-success btn-sm mb-1" (click)="open(content)">Nieuwe Gebruiker</button>
         </div>
-        <div class="table-responsive">
-            <div class="table-wrapper">
-                <div class="table-title">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h4>Gebruikers</h4>
-                        </div>
-                        <div class="col-sm-6">
-                            <button class="modal-title" (click)="open(content)" class="btn btn-success"
-                                data-toggle="modal"><i
-                                    class="material-icons">&#xE147;</i><span>Toevoegen</span></button>
-                        </div>
-                    </div>
-                </div>
-                <table class="table table-striped table-hover">
+    </div>
+
+    <div class="row justify-content-center table-responsive">
+        <table class="table text-center">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Naam</th>
-                <th>Email</th>
-                <th>Ploeg</th>
+                <th scope="d-none d-md-block">Id</th>
+                <th scope="">Naam</th>
+                <th scope="d-none d-md-block">Email</th>
+                <th scope="">Ploeg</th>
                 <th>Admin</th>
-                <th>Bewerk</th>
+                <th scope="">Bewerk</th>
+                <th scope="">Delete</th>
             </tr>
             </thead>
             <tbody>
@@ -40,15 +32,8 @@
                     <div *ngIf="gebruiker.isAdmin == true; else elseBlock">Ja</div>
                     <ng-template #elseBlock>Nee</ng-template>
                 </td>
-
-                <td>
-                    <a (click)="open(content, gebruiker.userID)" class="edit" data-toggle="modal"><i
-                            class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-
-                    <a (click)="open(deleteModal, gebruiker.userID)" class="delete"
-                        data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
-                            title="Delete">&#xE872;</i></a>
-                </td>
+                <td><button class="btn btn-outline-primary btn-sm" (click)="open(content, gebruiker.userID)"><span class="d-none d-md-inline">Edit</span></button></td>
+                <td><button class="btn btn-outline-danger btn-sm" (click)="open(deleteModal, gebruiker.userID)"><span class="d-none d-md-inline">Delete</span></button></td>
             </tr>
             </tbody>
         </table>
@@ -78,7 +63,7 @@
             <div> Geboortedatum: 
                 <div class="input-group">
                     <input class="form-control" placeholder="werkt niet"
-                           name="dp" [(ngModel)]="datum" ngbDatepicker #d="ngbDatepicker">
+                           name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
                     <div class="input-group-append">
                       <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">Open</button>
                     </div>
@@ -88,9 +73,9 @@
                 <input [required]="!gebruiker.userID"  class="form-control" placeholder="passwoord" type="password" [(ngModel)]="gebruiker.passwoord" name="passwoord"/>
             </p>
             <div>
-                <label for="foto">Kies een afbeelding</label>
-                <input type="file" [(ngModel)]="gebruiker.foto" name="foto" class="form-control " (change)="onChange($event)" required/>
-                <img [src]="this.gebruiker.foto" class="foto" alt="">  
+                <p>Foto: 
+                    <input type="file" id="img" name="img" accept="image/*">
+                </p>
             </div>
             <div>
                 <p>Ploeg: 
