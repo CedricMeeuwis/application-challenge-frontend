@@ -12,7 +12,9 @@ import { SharedModule } from './shared/shared.module';
 import { SecurityModule } from './security/security.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule } from "@angular/forms"
-import { HeaderComponent } from './header/header/header.component'
+import { HeaderComponent } from './header/header/header.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeModule } from './home/home.module';
 import { SignUpComponent } from './security/sign-up/sign-up.component';
 
 
@@ -32,6 +34,8 @@ import { SignUpComponent } from './security/sign-up/sign-up.component';
     KapiteinModule,
     NgbModule,
     FormsModule,
+    NoopAnimationsModule,
+    HomeModule
 
   ],
   providers: [{

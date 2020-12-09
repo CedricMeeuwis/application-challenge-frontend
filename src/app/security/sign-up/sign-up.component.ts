@@ -16,7 +16,7 @@ export class SignUpComponent implements OnInit {
   model: NgbDateStruct;
   gebruikers: User[];
   ploegen: Ploeg[];
-  gebruiker: User = new User("","",new Date(),"","",false,false);
+  gebruiker: User = new User("","",new Date(),"",false,false);
   datum;
   submitted = false;
 
@@ -57,15 +57,6 @@ export class SignUpComponent implements OnInit {
       subscriber.error(error);
       subscriber.complete();
     }
-  }
-
-
-  sendUser() {
-    const nieuweGebruiker = new User(this.gebruiker.email, this.gebruiker.naam, this.gebruiker.geboortedatum, this.gebruiker.foto, this.gebruiker.passwoord, false, false);
-    this._adminService.postUser(this.gebruiker).subscribe(result => {
-      debugger;
-      this._router.navigate(['login']);
-    })
   }
 
   onSubmit() {

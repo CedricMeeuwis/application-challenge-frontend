@@ -7,13 +7,14 @@ export class User {
         public naam: string, 
         public geboortedatum: Date,
         public foto: string,
-        public passwoord: string,
         public isAdmin : boolean,
-        public isKapitein : boolean,
-        public ploegID?: number,
+        public isKapitein: boolean,
+    
         //Optioneel voor nieuw gemaakte objecten
+        public passwoord?: string,
         public userID?: number, 
+        public ploegID?: number,
+        public ploeg?: Ploeg,
         public token?: string,
-        public ploeg?: Ploeg
     ){}
 }

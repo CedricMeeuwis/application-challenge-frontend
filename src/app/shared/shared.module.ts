@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -11,12 +12,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    MatIconModule,
   ],
   exports: [
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    MatIconModule,
   ]
 })
 export class SharedModule { }
