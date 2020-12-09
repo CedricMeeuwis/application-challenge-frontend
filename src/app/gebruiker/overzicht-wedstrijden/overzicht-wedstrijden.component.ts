@@ -37,7 +37,6 @@ export class OverzichtWedstrijdenComponent implements OnInit {
 
   open(content, wedstrijdID) {
     this.wedstrijd = {...this.wedstrijden.find(w => w.matchContextID == wedstrijdID)};
-    console.log(this.wedstrijd)
     this.modalService.open(content);
   }
 }
