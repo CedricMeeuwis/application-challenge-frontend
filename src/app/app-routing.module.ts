@@ -11,8 +11,11 @@ import { ManageTournooiComponent } from './administrator/manage-tournooi/manage-
 import { OverzichtWedstrijdenComponent } from './gebruiker/overzicht-wedstrijden/overzicht-wedstrijden.component';
 import { CompetitieBeherenComponent } from './administrator/competitie-beheren/competitie-beheren.component';
 
+import { HomeComponent } from './home/home/home.component';
+
+
 const routes: Routes = [
-  {path: '', component: AppComponent},
+  {path: '', component: HomeComponent},
   {path: 'ploegenBeheren', component: PloegenBeherenComponent},
   {path: 'admin/gebruikers', component: GebruikersComponent},
   {path: 'beheer-tournooi', component: TournooiBeheerComponent},
