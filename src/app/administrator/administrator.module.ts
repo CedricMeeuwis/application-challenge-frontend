@@ -9,13 +9,15 @@ import { TournooiBeheerComponent } from './tournooi-beheer/tournooi-beheer.compo
 import { PloegenBeherenComponent } from './ploegen-beheren/ploegen-beheren.component';
 import { SharedModule } from '../shared/shared.module';
 import { ManageTournooiComponent } from './manage-tournooi/manage-tournooi.component';
+import { CompetitieBeherenComponent } from './competitie-beheren/competitie-beheren.component';
 
 @NgModule({
   declarations: [GebruikersComponent,
                 TournooiBeheerComponent,
                 TafelsLijstComponent,
                 PloegenBeherenComponent,
-                ManageTournooiComponent],
+                ManageTournooiComponent,
+                CompetitieBeherenComponent],
   imports: [
     CommonModule,
     SharedModule,

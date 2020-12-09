@@ -9,6 +9,7 @@ import { TafelsLijstComponent } from './administrator/tafels-lijst/tafels-lijst.
 import { SecurityComponent } from './security/security/security.component';
 import { ManageTournooiComponent } from './administrator/manage-tournooi/manage-tournooi.component';
 import { OverzichtWedstrijdenComponent } from './gebruiker/overzicht-wedstrijden/overzicht-wedstrijden.component';
+import { CompetitieBeherenComponent } from './administrator/competitie-beheren/competitie-beheren.component';
 
 const routes: Routes = [
   {path: '', component: AppComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'tafels-lijst', component: TafelsLijstComponent},
   {path: 'manage-tournooi/:id', component: ManageTournooiComponent },
   {path: 'login', component: SecurityComponent},
-  {path: 'wedstrijden', component: OverzichtWedstrijdenComponent}
+  {path: 'wedstrijden', component: OverzichtWedstrijdenComponent},
+  {path: 'competitiesBeheren', component: CompetitieBeherenComponent}
 
 ];
 

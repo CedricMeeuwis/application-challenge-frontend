@@ -62,13 +62,13 @@ export class PloegenBeherenComponent implements OnInit {
   }
 
   deletegroep(groepID) {
-    this._administratorService.deleteArticle(groepID).subscribe(() =>
+    this._administratorService.deletePloeg(groepID).subscribe(() =>
       this.resetPloegen()
     )
   }
 
   open(content, ploeg?) {
-    this.gekozenPloeg = new Ploeg("", "", "", "");
+    this.gekozenPloeg = new Ploeg("", "", "", "",0);
     if (ploeg) {
       this.gekozenPloeg = ploeg;
       this._administratorService.getUsersbyPloeg(ploeg.ploegID).subscribe(users => {
