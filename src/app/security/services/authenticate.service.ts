@@ -14,4 +14,11 @@ export class AuthenticateService {
   authenticate(userLogin: UserLogin): Observable<User> {
     return this._httpClient.post<User>(this.authenticateUrl, userLogin);
   }
+  isLoggedIn(){
+    if(localStorage.getItem("token")){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }
