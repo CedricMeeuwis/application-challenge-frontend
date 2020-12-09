@@ -13,6 +13,7 @@ import { SecurityModule } from './security/security.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule } from "@angular/forms"
 import { HeaderComponent } from './header/header/header.component'
+import { SignUpComponent } from './security/sign-up/sign-up.component';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { HeaderComponent } from './header/header/header.component'
     GebruikerModule,
     KapiteinModule,
     NgbModule,
-    FormsModule
+    FormsModule,
 
   ],
   providers: [{
