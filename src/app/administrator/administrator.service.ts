@@ -29,6 +29,17 @@ export class AdministratorService {
   getUsersHasPloeg() : Observable<User[]>{
     return this.http.get<User[]>("https://localhost:44348/api/User/Ploeg");
   }
+
+  getUser(userID: number) : Observable<User>{
+    return this.http.get<User>("https://localhost:44348/api/user/" + userID);
+  }
+
+  getUsersbyPloeg(ploegId: number) : Observable<User[]>{
+    return this.http.get<User[]>("https://localhost:44348/api/User/Ploeg/" + ploegId);
+  }
+  getUsersZonderPloeg() : Observable<User[]>{
+    return this.http.get<User[]>("https://localhost:44348/api/User/Ploegloos");
+  }
   //post User voor admin
   postUser(user : User){
     return this.http.post<User>("https://localhost:44348/api/User/",user);

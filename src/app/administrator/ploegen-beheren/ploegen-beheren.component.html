@@ -1,66 +1,111 @@
-<div class="row justify-content-center table-responsive">
-    <table class="table text-center">
-        <thead>
-        <tr>
-            <th scope="d-none d-md-block">Id</th>
-            <th scope="">Naam</th>
-            <th scope="d-none d-md-block">Bedrijfsnaam</th>
-            <th scope="">Locatie</th>
+<section id="manage-ploegen">
+    <div class="container">
 
-            <th scope="">Bewerk</th>
-            <th scope="">Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let ploeg of (ploegen| async)">
-            <th>{{ploeg.ploegID}}</th>
-            <td>{{ploeg.naam}}</td>
-            <td>{{ploeg.bedrijfsnaam}}</td>
-            <td>{{ploeg.locatie}}</td>
+        <div class="section-title" data-aos="fade-left">
+            <h2>Ploegen beheren</h2>
+        </div>
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4>Ploegen</h4>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="modal-title" (click)="open(content)" class="btn btn-success"
+                                data-toggle="modal"><i
+                                    class="material-icons">&#xE147;</i><span>Toevoegen</span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center table-responsive">
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Naam</th>
+                                <th>Bedrijfsnaam</th>
+                                <th>Locatie</th>
 
-            <td><button class="btn btn-outline-primary btn-sm" (click)="open(content, ploeg)"><span class="d-none d-md-inline">Edit</span></button></td>
-            <td><button class="btn btn-outline-danger btn-sm" (click)="open(deleteModal, ploeg)"><span class="d-none d-md-inline">Delete</span></button></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+                                <th>Bewerk</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let ploeg of (ploegen| async)">
+                                <td>{{ploeg.ploegID}}</td>
+                                <td>{{ploeg.naam}}</td>
+                                <td>{{ploeg.bedrijfsnaam}}</td>
+                                <td>{{ploeg.locatie}}</td>
 
-<ng-template #content let-modal>
-    <div class="modal-header pb-0">
-      <h4 *ngIf="gekozenPloeg.ploegID == null" class="modal-title" id="modal-basic-title">Maak Ploeg Aan</h4>
-      <h4 *ngIf="gekozenPloeg.ploegID != null" class="modal-title" id="modal-basic-title">Bewerk Ploeg</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-        <form #registerForm="ngForm" (ngSubmit)="sendPloeg()">
-            <p> Naam: 
-                <input class="form-control" required ngbAutofocus placeholder="naam" type="text" [(ngModel)]="gekozenPloeg.naam" name="naam" minlength="2"/>
-            </p>
-            <p> Bedrijfsnaam: 
-                <input class="form-control" required ngbAutofocus placeholder="bedrijfsnaam" type="text" [(ngModel)]="gekozenPloeg.bedrijfsnaam" name="bedrijfsnaam" minlength="2"/>
-            </p>
-            <p> Locatie: 
-                <input class="form-control" required ngbAutofocus placeholder="locatie" type="text" [(ngModel)]="gekozenPloeg.locatie" name="locatie" minlength="2"/>
-            </p>
-            <p> PloegFoto: 
-                <input class="form-control" ngbAutofocus placeholder="ploegFoto" type="text" [(ngModel)]="gekozenPloeg.ploegFoto" name="ploegFoto"/>
-            </p>
+                                <td>
 
-            <div class="modal-footer pb-0">
-                <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">annuleer</button>
-                <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')" [disabled]="!registerForm.form.valid" >Save</button>
+									<a (click)="open(content, ploeg)" class="edit" data-toggle="modal"><i
+											class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+
+									<a (click)="open(deleteModal, ploeg)" class="delete"
+										data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
+											title="Delete">&#xE872;</i></a>
+								</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </form>
+        </div>
+
+        <ng-template #content let-modal>
+            <div class="modal-header pb-0">
+                <h4 *ngIf="gekozenPloeg.ploegID == null" class="modal-title" id="modal-basic-title">Maak Ploeg Aan</h4>
+                <h4 *ngIf="gekozenPloeg.ploegID != null" class="modal-title" id="modal-basic-title">Bewerk Ploeg</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #registerForm="ngForm" (ngSubmit)="sendPloeg()">
+                    <p> Naam:
+                        <input class="form-control" required ngbAutofocus placeholder="naam" type="text"
+                            [(ngModel)]="gekozenPloeg.naam" name="naam" minlength="2" />
+                    </p>
+                    <p> Bedrijfsnaam:
+                        <input class="form-control" required ngbAutofocus placeholder="bedrijfsnaam" type="text"
+                            [(ngModel)]="gekozenPloeg.bedrijfsnaam" name="bedrijfsnaam" minlength="2" />
+                    </p>
+                    <p> Locatie:
+                        <input class="form-control" required ngbAutofocus placeholder="locatie" type="text"
+                            [(ngModel)]="gekozenPloeg.locatie" name="locatie" minlength="2" />
+                    </p>
+                    <p>
+                        <label for="foto">Kies een afbeelding</label>
+                        <input type="file" [(ngModel)]="gekozenPloeg.ploegFoto" name="foto" class="form-control " (change)="onChange($event)"/>
+                        <img [src]="this.gekozenPloeg.ploegFoto" class="foto" alt="">  
+                    </p>
+                    <div>
+                        <p>Kapitein: 
+                            <select [(ngModel)]="kapiteinid" class="form-control" name="user">
+                                <option *ngFor="let user of users" [ngValue]="user.userID">{{user.naam}}</option>
+                            </select>
+                        </p>
+                    </div>
+
+                    <div class="modal-footer pb-0">
+                        <button type="button" class="btn btn-outline-secondary"
+                            (click)="modal.dismiss('cancel click')">annuleer</button>
+                        <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')"
+                            [disabled]="!registerForm.form.valid">Save</button>
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+        <ng-template #deleteModal let-modal>
+            <div class="modal-header pb-0">
+                <h4 class="modal-title" id="modal-basic-title">Verwijder Ploeg</h4>
+            </div>
+            <div class="modal-body">
+                <p>Bent u zeker dat u {{gekozenPloeg.naam}} wilt verwijderen?</p>
+                <button class="btn btn-outline-primary btn-sm" (click)="deletegroep(ploeg.ploegID)"><span
+                        class="d-none d-md-inline">Verwijder</span></button>
+            </div>
+        </ng-template>
     </div>
-</ng-template>
-<ng-template #deleteModal let-modal>
-    <div class="modal-header pb-0">
-      <h4 class="modal-title" id="modal-basic-title">Verwijder Ploeg</h4>
-    </div>
-    <div class="modal-body">
-        <p>Bent u zeker dat u {{gekozenPloeg.naam}} wilt verwijderen?</p>
-        <button class="btn btn-outline-primary btn-sm" (click)="deletegroep(ploegID.ploegID)"><span class="d-none d-md-inline">Verwijder</span></button>
-    </div>
-</ng-template>
+</section>
