@@ -8,12 +8,14 @@ import { TafelsLijstComponent } from './tafels-lijst/tafels-lijst.component'
 import { TournooiBeheerComponent } from './tournooi-beheer/tournooi-beheer.component';
 import { PloegenBeherenComponent } from './ploegen-beheren/ploegen-beheren.component';
 import { SharedModule } from '../shared/shared.module';
+import { ManageTournooiComponent } from './manage-tournooi/manage-tournooi.component';
 
 @NgModule({
   declarations: [GebruikersComponent,
                 TournooiBeheerComponent,
                 TafelsLijstComponent,
-                PloegenBeherenComponent],
+                PloegenBeherenComponent,
+                ManageTournooiComponent],
   imports: [
     CommonModule,
     SharedModule,

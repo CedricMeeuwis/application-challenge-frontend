@@ -1,0 +1,22 @@
+.nextElement{
+    float: left;
+}
+.newLine{
+    float: left;
+    clear: left;
+}
+.wedstrijdBlock{
+    height: 5em;
+    background-color: lightgray;
+    padding: 3px;
+    border-radius: 1em;
+    margin: 1em;
+    width: auto;
+}
+.delete{
+    color: red;
+    cursor: pointer;
+}
+#winnaars{
+    float: bottom;
+}

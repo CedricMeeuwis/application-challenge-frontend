@@ -12,7 +12,8 @@ import { SharedModule } from './shared/shared.module';
 import { SecurityModule } from './security/security.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule } from "@angular/forms"
-import { HeaderComponent } from './header/header/header.component'
+import { HeaderComponent } from './header/header/header.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { HeaderComponent } from './header/header/header.component'
     GebruikerModule,
     KapiteinModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    NoopAnimationsModule
 
   ],
   providers: [{
