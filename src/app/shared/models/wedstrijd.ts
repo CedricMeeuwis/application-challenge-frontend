@@ -21,10 +21,8 @@ export class Wedstrijd {
         public team2User1?: User,
         public team2User2ID?: number,
         public team2User2?: User,
-
         public matchContextID?: number,
         public matchContext?: MatchContext,
-
         public tafelID?: number,
         public tafel?: Tafel,
     ){}
