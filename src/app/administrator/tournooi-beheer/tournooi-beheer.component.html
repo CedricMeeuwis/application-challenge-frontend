@@ -1,6 +1,5 @@
-<section id="manage-tournooien">
+<section id="beheer-journalists">
     <div class="container">
-
         <div class="section-title" data-aos="fade-left">
             <h2>Tournooien beheren</h2>
         </div>
@@ -30,7 +29,7 @@
                     <tbody>
                         <tr *ngFor="let tournooi of tournooien">
                             <td>{{tournooi.tournooiID}}</td>
-                            <td>{{tournooi.naam}}</td>
+                            <td class="hover" (click)="manageTournooi(tournooi.tournooiID)">{{tournooi.naam}}</td>
 
                             <td>
                                 <a (click)="open(content, tournooi)" class="edit" data-toggle="modal"><i
@@ -63,10 +62,8 @@
                     [(ngModel)]="modalTournooi.naam" name="naam" minlength="2" />
             </p>
             <div class="modal-footer pb-0">
-                <button type="button" class="btn btn-outline-secondary"
-                    (click)="modal.dismiss('cancel click')">annuleer</button>
                 <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')"
-                    [disabled]="!registerForm.form.valid">Save</button>
+                    [disabled]="!registerForm.form.valid">Opslaan</button>
             </div>
         </form>
     </div>

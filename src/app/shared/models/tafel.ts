@@ -12,6 +12,5 @@ export class Tafel {
         public contactEmail: string,
         //Optioneel voor nieuw gemaakte objecten
         public tafelID?: number, 
-        public contactpersoon?: User,
     ){}
 }

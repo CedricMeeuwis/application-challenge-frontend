@@ -1,0 +1,90 @@
+<section id="beheer-journalists">
+    <div class="container">
+        <div class="section-title" data-aos="fade-left">
+            <h2>Tournooien beheren <span *ngIf="!canEdit">(geen beheer want het tournooi is onderweg)</span></h2>
+        </div>
+        <div id="tournooi">
+            <button *ngIf="canEdit" class="modal-title" (click)="open(content)" class="btn btn-success"><i class="material-icons">&#xE147;</i><span>Nieuwe wedstrijd</span></button>
+        </div>
+        <div id="matches">
+            <div *ngFor="let wedstrijd of wedstrijden; index as i; first as isFirst">
+                <div *ngIf="!isFirst && wedstrijden[i-1].matchContext.tournooiNiveau != wedstrijd.matchContext.tournooiNiveau" class="wedstrijdBlock newLine">
+                    {{wedstrijd.team1User1.naam}} VS {{wedstrijd.team2User1.naam}} <mat-icon *ngIf="canEdit" class="delete" (click)="open(delete, wedstrijd.wedstrijdID)" aria-hidden="false" aria-label="Verwijder match">delete</mat-icon>
+                </div>
+                <div *ngIf="isFirst || wedstrijden[i-1].matchContext.tournooiNiveau == wedstrijd.matchContext.tournooiNiveau" class="wedstrijdBlock nextElement">
+                    {{wedstrijd.team1User1.naam}} VS {{wedstrijd.team2User1.naam}} <mat-icon *ngIf="canEdit" class="delete" (click)="open(delete, wedstrijd.wedstrijdID)" aria-hidden="false" aria-label="Verwijder match">delete</mat-icon>
+                </div>
+            </div>
+        </div>
+        <div id="winnaars" *ngIf="winnaar1 != null">
+            Gefeliciteerd aan
+            {{winnaar1.naam}} <span *ngIf="winnaar2 != null">& {{winnaar2.naam}}</span>
+        </div>
+    </div>
+</section>
+<ng-template #content let-modal>
+    <div class="modal-header pb-0">
+        <h4 class="modal-title" id="modal-basic-title">Nieuwe wedstrijd</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form #registerForm="ngForm" (ngSubmit)="submitWedstrijd()">
+            <div>Filter:
+                <input type="text" name="search" [(ngModel)]="search"/>
+            </div>
+            <div class="team1">Team 1:
+                <p>Speler 1:
+                    <select matInput name="t1u1" placeholder="First player" required [(ngModel)]="team1user1">
+                        <option [ngValue]="emptyUser" disabled>Kies een speler</option>
+                        <ng-container *ngFor="let user of users">
+                            <option *ngIf="user.naam.toLowerCase().includes(search.toLowerCase()) && (team2user1 == null || user.ploegID != team2user1.ploegID)" [ngValue]="user">{{user.naam}}</option>
+                        </ng-container>
+                    </select>
+                </p>
+                <p *ngIf="team1user1 != emptyUser && team2user1 != emptyUser">Speler 2:
+                    <select matInput name="t1u2" placeholder="Second player" [(ngModel)]="team1user2">
+                        <option [ngValue]="emptyUser" disabled>Kies een speler</option>
+                        <ng-container *ngFor="let user of users">
+                            <option *ngIf="user.naam.toLowerCase().includes(search.toLowerCase()) && (team2user1 == null || (user.ploegID != team2user1.ploegID && user.userID != team1user1.userID))" [ngValue]="user">{{user.naam}}</option>
+                        </ng-container>
+                    </select>
+                </p>
+            </div>
+            <div class="team2">Team 2:
+                <p>Speler 1:
+                    <select matInput name="t2u1" placeholder="First player" required [(ngModel)]="team2user1">
+                        <option [ngValue]="emptyUser" disabled>Kies een speler</option>
+                        <ng-container *ngFor="let user of users">
+                            <option *ngIf="user.naam.toLowerCase().includes(search.toLowerCase()) && (team1user1 == null || user.ploegID != team1user1.ploegID)" [ngValue]="user">{{user.naam}}</option>
+                        </ng-container>
+                    </select>
+                </p>
+                <p *ngIf="team1user1 != emptyUser && team2user1 != emptyUser">Speler 2:
+                    <select matInput name="t2u2" placeholder="Second player" [(ngModel)]="team2user2">
+                        <option [ngValue]="emptyUser" disabled>Kies een speler</option>
+                        <ng-container *ngFor="let user of users">
+                            <option *ngIf="user.naam.toLowerCase().includes(search.toLowerCase()) && (team1user1 == null || (user.ploegID != team1user1.ploegID && user.userID != team2user1.userID))" [ngValue]="user">{{user.naam}}</option>
+                        </ng-container>
+                    </select>
+                </p>
+            </div>
+            <div class="modal-footer pb-0">
+                <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')"
+                    [disabled]="!registerForm.form.valid">Opslaan</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+<ng-template #delete let-modal>
+    <div class="modal-header pb-0">
+        <h4 class="modal-title" id="modal-basic-title">Verwijder wedstrijd</h4>
+        <button type="button" class="delete" aria-label="Delete" (click)="deleteWedstrijd()">
+            <span aria-hidden="true">Delete</span>
+        </button>
+        <button type="button" class="annuleer" aria-label="Annuleer" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">Annuleer</span>
+        </button>
+    </div>
+</ng-template>

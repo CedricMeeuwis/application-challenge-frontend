@@ -7,16 +7,19 @@ import { GebruikersComponent } from './administrator/gebruikers/gebruikers.compo
 import { TournooiBeheerComponent } from './administrator/tournooi-beheer/tournooi-beheer.component';
 import { TafelsLijstComponent } from './administrator/tafels-lijst/tafels-lijst.component';
 import { SecurityComponent } from './security/security/security.component';
+import { ManageTournooiComponent } from './administrator/manage-tournooi/manage-tournooi.component';
 import { OverzichtWedstrijdenComponent } from './gebruiker/overzicht-wedstrijden/overzicht-wedstrijden.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent},
-  { path: 'ploegenBeheren', component: PloegenBeherenComponent},
+  {path: '', component: AppComponent},
+  {path: 'ploegenBeheren', component: PloegenBeherenComponent},
   {path: 'admin/gebruikers', component: GebruikersComponent},
   {path: 'beheer-tournooi', component: TournooiBeheerComponent},
   {path: 'tafels-lijst', component: TafelsLijstComponent},
+  {path: 'manage-tournooi/:id', component: ManageTournooiComponent },
   {path: 'login', component: SecurityComponent},
   {path: 'wedstrijden', component: OverzichtWedstrijdenComponent}
+
 ];
 
 @NgModule({
