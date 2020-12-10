@@ -9,8 +9,11 @@ import { TafelsLijstComponent } from './administrator/tafels-lijst/tafels-lijst.
 import { SecurityComponent } from './security/security/security.component';
 import { ManageTournooiComponent } from './administrator/manage-tournooi/manage-tournooi.component';
 import { OverzichtWedstrijdenComponent } from './gebruiker/overzicht-wedstrijden/overzicht-wedstrijden.component';
+import { CompetitieBeherenComponent } from './administrator/competitie-beheren/competitie-beheren.component';
+
 import { HomeComponent } from './home/home/home.component';
 import { SignUpComponent } from './security/sign-up/sign-up.component';
+
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,7 +24,8 @@ const routes: Routes = [
   {path: 'sign-up', component: SignUpComponent},
   {path: 'manage-tournooi/:id', component: ManageTournooiComponent },
   {path: 'login', component: SecurityComponent},
-  {path: 'wedstrijden', component: OverzichtWedstrijdenComponent}
+  {path: 'wedstrijden', component: OverzichtWedstrijdenComponent},
+  {path: 'competitiesBeheren', component: CompetitieBeherenComponent}
 ];
 
 @NgModule({

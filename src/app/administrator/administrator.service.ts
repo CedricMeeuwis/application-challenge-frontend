@@ -7,6 +7,7 @@ import { Tafel } from '../shared/models/tafel';
 import { Tournooi } from '../shared/models/tournooi';
 import { Wedstrijd } from '../shared/models/wedstrijd';
 import { MatchContext } from '../shared/models/matchcontext';
+import { Competitie } from '../shared/models/competitie';
 
 
 @Injectable({
@@ -57,7 +58,7 @@ export class AdministratorService {
     return this.http.get<Ploeg[]>("https://localhost:44348/api/Ploeg/");
   }
 
-  deleteArticle(ploegID: number)
+  deletePloeg(ploegID: number)
   {
     return this.http.delete<Ploeg>("https://localhost:44348/api/ploeg/" + ploegID);
   }
@@ -109,5 +110,26 @@ export class AdministratorService {
   //MatchContexten
   postMatchContext(matchContext){
     return this.http.post<MatchContext>(this.matchContextUrl, matchContext);
+  }
+
+  getCompetities() : Observable<Competitie[]>{
+    return this.http.get<Competitie[]>("https://localhost:44348/api/Competitie/");
+  }
+
+  getCompetitie(competitieID: number) : Observable<Competitie>{
+    return this.http.get<Competitie>("https://localhost:44348/api/Competitie/" + competitieID);
+  }
+
+  deleteCompetitie(competitieID: number)
+  {
+    return this.http.delete<Competitie>("https://localhost:44348/api/Competitie/" + competitieID);
+  }
+
+  newCompetitie(competitie: Competitie) {
+    return this.http.post<Competitie>("https://localhost:44348/api/Competitie/", competitie);
+  }
+
+  updateCompetitie(competitie: Competitie) {
+    return this.http.put<Competitie>("https://localhost:44348/api/Competitie/" + competitie.competitieID, competitie);
   }
 }
