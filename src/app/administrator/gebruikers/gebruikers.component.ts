@@ -6,6 +6,7 @@ import { AdministratorService } from '../administrator.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import { Observable, Subscriber } from 'rxjs';
+import jwtDecode from 'jwt-decode';
 
 @Component({
   selector: 'app-gebruikers',
@@ -17,11 +18,15 @@ export class GebruikersComponent implements OnInit {
   gebruikers : User[];
   ploegen : Ploeg[];
   gebruiker : User;
+  userID : Number;
   datum;
   //gekozenPloeg : number;
   constructor(private _route: ActivatedRoute, private _adminService: AdministratorService, private _router : Router, private modalService: NgbModal) { }
 
   ngOnInit(): void {
+    const currentUser = jwtDecode(localStorage.getItem("token"));
+    this.userID = currentUser[Object.keys(currentUser)[0]]; 
+    
     this._adminService.getPloegen().subscribe(ploegen => {
       this.ploegen = ploegen
     })
@@ -71,7 +76,7 @@ export class GebruikersComponent implements OnInit {
     if(userID){
       this.gebruiker = {...this.gebruikers.find(u => u.userID == userID)}
       if(!this.gebruiker.ploegID){
-        this.gebruiker.ploegID == 0;
+        this.gebruiker.ploegID = 0;
       }
     }
     this.modalService.open(content)
