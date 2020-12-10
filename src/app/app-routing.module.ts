@@ -24,7 +24,7 @@ const routes: Routes = [
   {path: 'sign-up', component: SignUpComponent},
   {path: 'manage-tournooi/:id', component: ManageTournooiComponent },
   {path: 'login', component: SecurityComponent},
-  {path: 'wedstrijden', component: OverzichtWedstrijdenComponent},
+  {path: 'statistieken', component: OverzichtWedstrijdenComponent},
   {path: 'competitiesBeheren', component: CompetitieBeherenComponent}
 ];
 

@@ -1,17 +1,17 @@
-<section id="">
+<section id="statistieken">
     <div class="container">
         <div class="section-title" data-aos="fade-left">
-            <h2>Geschiedenis Wedstrijden</h2>
+            <h2>Statistieken</h2>
         </div>
         <div>
         </div>
-        <p>aantal gespeelde spellen: {{aantalSpellen}}, aantal gewonnen: {{aantalWins}}, aantal verloren: {{aantalVerloren}}, winpercentage: {{winpercentage}}% | aantal gespeelde tournooien: {{aantalTournooien}}</p>
+        <p>aantal gespeelde wedstrijden: {{aantalSpellen}}, aantal gewonnen: {{aantalWins}}, aantal verloren: {{aantalVerloren}}, winpercentage: {{winpercentage}}% | aantal gespeelde tournooien: {{aantalTournooien}}</p>
         <div class="table-responsive">
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h4>Wedstrijden</h4>
+                            <h4>Gespeelde Wedstrijden</h4>
                         </div>
                     </div>
                 </div>
@@ -71,15 +71,15 @@
     </div>
     <div class="modal-body">
         <h2>Score: 
-            <span *ngIf="wedstrijd.team1User1ID == userID || wedstrijd.team1User2ID == userID; else elseDiv">
+            <span *ngIf="wedstrijd.team1User1ID == userID || wedstrijd.team1User2ID == userID; else elseModalDiv">
                 <td>{{wedstrijd.team1Score}} - {{wedstrijd.team2Score}}</td>
             </span>
-            <ng-template #elseDiv>
+            <ng-template #elseModalDiv>
                 <td>{{wedstrijd.team2Score}} - {{wedstrijd.team1Score}}</td>
             </ng-template>
         </h2>
         <div>
-            <span *ngIf="wedstrijd.team1User1ID == userID || wedstrijd.team1User2ID == userID; else elseDiv">
+            <span *ngIf="wedstrijd.team1User1ID == userID || wedstrijd.team1User2ID == userID; else elseModalDiv2">
                 <div>
                     <p>Team: {{wedstrijd.team1User1.ploeg.naam}}</p>
                     <ul>
@@ -95,7 +95,7 @@
                     </ul>
                 </div>            
             </span>
-            <ng-template #elseDiv>
+            <ng-template #elseModalDiv2>
                 <div>
                     <p>Team: {{wedstrijd.team2User1.ploeg.naam}}</p>
                     <ul>
