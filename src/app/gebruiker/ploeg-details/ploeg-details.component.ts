@@ -19,6 +19,7 @@ export class PloegDetailsComponent implements OnInit {
   openChallenges: Challenge[];
   newChallenge: Challenge = new Challenge(0, false, false);
   uitgedaagdePloegID: string;
+  stats: Object;
 
   constructor(private _gebruikerService: GebruikerService, private modalService: NgbModal) {
     this._gebruikerService.getMijnPloeg().subscribe(
@@ -32,6 +33,7 @@ export class PloegDetailsComponent implements OnInit {
     this.loadLeden();
     this.loadChallenges();
     this.loadPloegen();
+    this.loadStats();
   }
 
   loadLeden() {
@@ -52,7 +54,13 @@ export class PloegDetailsComponent implements OnInit {
   loadPloegen() {
     this._gebruikerService.getPloegen().subscribe(
       result => this.ploegen = result
-    )
+    );
+  }
+
+  loadStats() {
+    this._gebruikerService.getMijnStats().subscribe(
+      result => this.stats = result
+    );
   }
 
   //Open modals
@@ -92,6 +100,10 @@ export class PloegDetailsComponent implements OnInit {
         this.loadChallenges();
       }
     );
+  }
+
+  openStats() {
+    console.log("WIP");
   }
 
   ngOnInit(): void {

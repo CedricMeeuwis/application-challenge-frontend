@@ -52,5 +52,9 @@ export class GebruikerService {
   getMijnPloegUsers(): Observable<User[]> {
     return this.http.get<User[]>("https://localhost:44348/api/User/MijnPloeg");
   }
+
+  getMijnStats(): Observable<Object> {
+    return this.http.get<Object>("https://localhost:44348/api/Wedstrijd/MijnStats");
+  }
   
 }

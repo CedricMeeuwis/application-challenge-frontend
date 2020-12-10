@@ -5,7 +5,9 @@
             <h2 *ngIf="!ploeg">Mijn ploeg</h2>
             <h2 *ngIf="ploeg">{{ploeg.naam}}</h2>
         </div>
+        <!-- Info Row -->
         <div class="row">
+            <!-- Ploegleden list -->
             <div class="col-sm-12 col-md-4" *ngIf="ploeg">
                 <div class="table-wrapper">
                     <div class="table-title">
@@ -22,25 +24,58 @@
                     </ul>
                 </div>
             </div>
-
-            <div class="col-sm-12 col-md-8" *ngIf="ploeg">
+            <!-- Ploeg stats -->
+            <div class="col-sm-6 col-md-4" *ngIf="stats">
                 <div class="table-wrapper">
                     <div class="table-title">
                         <div class="row">
                             <div class="col-sm-6">
-                                <h4>Andere Info</h4>
+                                <h4>Team stats</h4>
                             </div>
                         </div>
                     </div>
-                    <ul class="list-group" *ngIf="ploeg">
-                        <li class="list-group-item" *ngFor="let user of leden">
-                            {{user.naam}} <span *ngIf="user.isKapitein">- <b>Kapitein</b> </span>
+                    <ul class="list-group" *ngIf="stats">
+                        <li class="list-group-item list-group-item-success">
+                            Gewonnen: {{stats.ploegWins}}
+                        </li>
+                        <li class="list-group-item list-group-item-danger">
+                            Verloren: {{stats.ploegLosses}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Persoonlijke stats -->
+            <div class="col-sm-6 col-md-4" *ngIf="stats">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4>Mijn stats</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="list-group" *ngIf="stats">
+                        <li class="list-group-item list-group-item-success">
+                            Gewonnen: {{stats.mijnWins}}
+                        </li>
+                        <li class="list-group-item list-group-item-danger">
+                            Verloren: {{stats.mijnLosses}}
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
 
+        <!-- Button Row -->
+        <div class="row mt-5">
+            <div class="col-12 text-center justify-self-center">
+                <button class="btn btn-primary" (click)="openStats()" class="btn btn-success" data-toggle="modal">
+                    <span>Meer stats</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Challenge Row -->
         <div class="row mt-5">
             <div class="col-12" *ngIf="ploeg">
                 <div class="table-wrapper">
@@ -60,36 +95,42 @@
                     <ul class="list-group" *ngIf="challenges">
                         <div *ngFor="let openChallenge of openChallenges">
                             <!-- Uitgaande open challenge -->
-                            <li class="list-group-item" *ngIf="openChallenge.uitdagerPloegID == ploeg.ploegID">
+                            <li class="list-group-item list-group-item-info"
+                                *ngIf="openChallenge.uitdagerPloegID == ploeg.ploegID">
                                 Jou ploeg stuurde een challenge naar <b>{{openChallenge.uitgedaagdePloeg.naam}}</b>!
                                 <a (click)="challengeAnnuleer(openChallenge.challengeID)" class="delete float-right">
                                     <i class="material-icons" data-toggle="tooltip" title="Cancel">cancel</i>
                                 </a>
                             </li>
                             <!-- Inkomende open Challenge -->
-                            <li class="list-group-item" *ngIf="openChallenge.uitgedaagdePloegID == ploeg.ploegID">
+                            <li class="list-group-item list-group-item-info"
+                                *ngIf="openChallenge.uitgedaagdePloegID == ploeg.ploegID">
                                 {{openChallenge.uitdagerPloeg.naam}} challenged jou ploeg!
-                                <a (click)="challengeResponse(openChallenge.challengeID, true)" class="delete float-right">
-                                    <i class="material-icons mr-3" data-toggle="tooltip" title="Accepteer challenge">check</i>
+                                <a (click)="challengeResponse(openChallenge.challengeID, true)"
+                                    class="delete float-right">
+                                    <i class="material-icons mr-3" data-toggle="tooltip"
+                                        title="Accepteer challenge">check</i>
                                 </a>
-                                <a (click)="challengeResponse(openChallenge.challengeID, false)" class="delete float-right">
+                                <a (click)="challengeResponse(openChallenge.challengeID, false)"
+                                    class="delete float-right">
                                     <i class="material-icons" data-toggle="tooltip" title="Weiger challenge">block</i>
                                 </a>
                             </li>
                         </div>
-                        <li class="list-group-item" *ngFor="let challenge of challenges">
+                        <li class="list-group-item" *ngFor="let challenge of challenges"
+                            [ngClass]="{'list-group-item-secondary': challenge.afgewezen == true}">
                             <div class="row text-center">
                                 <div class="col-4">
                                     {{challenge.uitdagerPloeg.naam}}
                                 </div>
                                 <div class="col-1">
-                                    {{challenge.geaccepteerd == true ? "score" : ""}}
+                                    {{challenge.geaccepteerd == true ? challenge.wedstrijd.team1Score : ""}}
                                 </div>
                                 <div class="col-2">
                                     VS
                                 </div>
                                 <div class="col-1">
-                                    {{challenge.geaccepteerd == true ? "score" : "Geweigerd"}}
+                                    {{challenge.geaccepteerd == true ? challenge.wedstrijd.team2Score : "Geweigerd"}}
                                 </div>
                                 <div class="col-4">
                                     {{challenge.uitgedaagdePloeg.naam}}
@@ -100,7 +141,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </section>
 
