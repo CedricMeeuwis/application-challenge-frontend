@@ -12,6 +12,7 @@ import { OverzichtWedstrijdenComponent } from './gebruiker/overzicht-wedstrijden
 import { CompetitieBeherenComponent } from './administrator/competitie-beheren/competitie-beheren.component';
 
 import { HomeComponent } from './home/home/home.component';
+import { SignUpComponent } from './security/sign-up/sign-up.component';
 
 
 const routes: Routes = [
@@ -20,11 +21,11 @@ const routes: Routes = [
   {path: 'admin/gebruikers', component: GebruikersComponent},
   {path: 'beheer-tournooi', component: TournooiBeheerComponent},
   {path: 'tafels-lijst', component: TafelsLijstComponent},
+  {path: 'sign-up', component: SignUpComponent},
   {path: 'manage-tournooi/:id', component: ManageTournooiComponent },
   {path: 'login', component: SecurityComponent},
   {path: 'wedstrijden', component: OverzichtWedstrijdenComponent},
   {path: 'competitiesBeheren', component: CompetitieBeherenComponent}
-
 ];
 
 @NgModule({

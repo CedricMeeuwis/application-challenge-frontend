@@ -15,6 +15,7 @@ import {FormsModule } from "@angular/forms"
 import { HeaderComponent } from './header/header/header.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeModule } from './home/home.module';
+import { SignUpComponent } from './security/sign-up/sign-up.component';
 
 
 @NgModule({
