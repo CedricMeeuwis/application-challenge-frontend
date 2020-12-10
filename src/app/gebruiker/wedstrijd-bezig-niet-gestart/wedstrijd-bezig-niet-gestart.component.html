@@ -1,0 +1,158 @@
+<section id="">
+    <div class="container">
+        <div class="section-title" data-aos="fade-left">
+            <h2>te komen wedstrijden</h2>
+        </div>
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4>Wedstrijden</h4>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Score</th>
+                            <th>Tegenstander</th>
+                            <th>Tafelsituering</th>
+                            <th>Tournooi</th>
+                            <th>Info</th>
+                            <th>Bezig</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let wedstrijd of (wedstrijden| async)" class="">
+                            <td>
+                                <div *ngIf="wedstrijd.team1User1ID == userID || wedstrijd.team1User2ID == userID; else elseDiv">
+                                    {{wedstrijd.team1Score}} - {{wedstrijd.team2Score}}
+                                </div>
+                                <ng-template #elseDiv>
+                                    {{wedstrijd.team2Score}} - {{wedstrijd.team1Score}}
+                                </ng-template>
+                            </td>
+                            <td>
+                                <div *ngIf="wedstrijd.team1User1ID == userID; else elseDiv2">
+                                    {{wedstrijd.team2User1.ploeg.naam}}
+                                </div>
+                                <ng-template #elseDiv2>
+                                    {{wedstrijd.team1User1.ploeg.naam}}
+                                </ng-template>
+                            </td>
+                            <td>{{wedstrijd.tafel.bedrijfsnaam}}</td>
+                            <td>
+                                <div *ngIf="wedstrijd.matchContext.tournooi; else elseDiv3">
+                                    {{wedstrijd.matchContext.tournooi.naam}}
+                                </div>
+                                <ng-template #elseDiv3>
+                                    /
+                                </ng-template>
+                            </td>
+                            <td>
+                                <button (click)="open(content, wedstrijd)">Info</button>
+                            </td>
+                            <td>
+                                {{wedstrijd.bezig}}
+                            </td>
+                            <td>
+                                <button (click)="open(scoreModal, wedstrijd)">score</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <ng-template #content let-modal>
+            <div class="modal-header pb-0">
+                <h4 class="modal-title" id="modal-basic-title">Info Wedstrijd</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2>Score:
+                    <span *ngIf="wedstrijd.team1User1ID == userID || wedstrijd.team1User2ID == userID; else elseDiv">
+                        <td>{{wedstrijd.team1Score}} - {{wedstrijd.team2Score}}</td>
+                    </span>
+                    <ng-template #elseDiv>
+                        <td>{{wedstrijd.team2Score}} - {{wedstrijd.team1Score}}</td>
+                    </ng-template>
+                </h2>
+                <div>
+                    <span
+                        *ngIf="wedstrijd.team1User1ID == userID || wedstrijd.team1User2ID == userID; else elseDiv">
+                        <div>
+                            <p>Team: {{wedstrijd.team1User1.ploeg.naam}}</p>
+                            <ul>
+                                <li>{{wedstrijd.team1User1.naam}}</li>
+                                <li *ngIf="wedstrijd.team1User1">{{wedstrijd.team1User2.naam}}</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p>Team: {{wedstrijd.team2User1.ploeg.naam}}</p>
+                            <ul>
+                                <li>{{wedstrijd.team2User1.naam}}</li>
+                                <li *ngIf="wedstrijd.team2User2">{{wedstrijd.team2User2.naam}}</li>
+                            </ul>
+                        </div>
+                    </span>
+                    <ng-template #elseDiv>
+                        <div>
+                            <p>Team: {{wedstrijd.team2User1.ploeg.naam}}</p>
+                            <ul>
+                                <li>{{wedstrijd.team2User1.naam}}</li>
+                                <li *ngIf="wedstrijd.team2User2">{{wedstrijd.team2User2.naam}}</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p>Team: {{wedstrijd.team1User1.ploeg.naam}}</p>
+                            <ul>
+                                <li>{{wedstrijd.team1User1.naam}}</li>
+                                <li *ngIf="wedstrijd.team1User1">{{wedstrijd.team1User2.naam}}</li>
+                            </ul>
+                        </div>
+                    </ng-template>
+
+                </div>
+                <div *ngIf="wedstrijd.matchContext.tournooi">
+                    <hr>
+                    <p>Tournooi: {{wedstrijd.matchContext.tournooi.naam}}</p>
+                    <p>Niveau: {{wedstrijd.matchContext.tournooiNiveau}}</p>
+                    <p>Rangschikking: {{wedstrijd.matchContext.tournooiRangschikking}}</p>
+                </div>
+                <hr>
+                <p>Tafel: {{wedstrijd.tafel.naam}}</p>
+                <p>bedrijf tafel: {{wedstrijd.tafel.bedrijfsnaam}}</p>
+                <p>adres: {{wedstrijd.tafel.adres}}</p>
+            </div>
+        </ng-template>
+
+        <ng-template #scoreModal let-modal>
+            <div class="modal-header pb-0">
+                <h4 class="modal-title" id="modal-basic-title">Wedstrijd overzicht</h4>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="wedstrijd.bezig == false; else elseDiv4">
+                    <p>Deze wedstrijd is nog niet begonnen</p>
+
+                    <button type="button" ngbAutofocus class="btn btn-outline-secondary" (click)="begin()" >Begin</button>
+
+                    
+                </div>
+                <ng-template #elseDiv4>
+                    <p>Deze wedstrijd is begonnen</p>
+                    <p>{{wedstrijd.team1User1.ploeg.naam}}: {{wedstrijd.team1Score}} - {{wedstrijd.team2User1.ploeg.naam}}: {{wedstrijd.team2Score}}</p>
+                    <button type="button" class="btn btn-outline-secondary" (click)="scoreVerander(wedstrijd.team1User1.ploeg.naam, 1)" >ploeg 1: score+1</button>
+                    <button type="button" class="btn btn-outline-secondary" (click)="scoreVerander(wedstrijd.team1User1.ploeg.naam, -1)" >ploeg 1: score-1</button><br/>
+                    <button type="button" class="btn btn-outline-secondary" (click)="scoreVerander(wedstrijd.team2User1.ploeg.naam, 1)" >ploeg 2: score+1</button>
+                    <button type="button" class="btn btn-outline-secondary" (click)="scoreVerander(wedstrijd.team2User1.ploeg.naam, -1)" >ploeg 2: score-1</button>
+                </ng-template>
+                <br/>
+                <button type="button"  class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">annuleer</button>
+
+            </div>
+        </ng-template>

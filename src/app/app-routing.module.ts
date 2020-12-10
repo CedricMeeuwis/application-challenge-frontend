@@ -13,6 +13,7 @@ import { CompetitieBeherenComponent } from './administrator/competitie-beheren/c
 
 import { HomeComponent } from './home/home/home.component';
 import { SignUpComponent } from './security/sign-up/sign-up.component';
+import { WedstrijdBezigNietGestartComponent } from './gebruiker/wedstrijd-bezig-niet-gestart/wedstrijd-bezig-niet-gestart.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'manage-tournooi/:id', component: ManageTournooiComponent },
   {path: 'login', component: SecurityComponent},
   {path: 'wedstrijden', component: OverzichtWedstrijdenComponent},
-  {path: 'competitiesBeheren', component: CompetitieBeherenComponent}
+  {path: 'competitiesBeheren', component: CompetitieBeherenComponent},
+  {path: 'wedstrijdenBezigNietGestart', component: WedstrijdBezigNietGestartComponent}
 ];
 
 @NgModule({
