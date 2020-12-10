@@ -6,7 +6,6 @@ import { Ploeg } from '../shared/models/ploeg';
 import { Challenge } from '../shared/models/challenge';
 import { User } from '../shared/models/user';
 import { MatchContext } from '../shared/models/matchcontext';
-import { Ploeg } from '../shared/models/ploeg';
 import { Wedstrijd } from '../shared/models/wedstrijd';
 
 
