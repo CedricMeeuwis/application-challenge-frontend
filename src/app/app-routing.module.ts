@@ -33,7 +33,6 @@ const routes: Routes = [
   {path: 'admin/competities', component: CompetitieBeherenComponent},
   {path: 'ploeg-details', component: PloegDetailsComponent},
   {path: 'statistieken', component: OverzichtWedstrijdenComponent},
-  {path: 'competitiesBeheren', component: CompetitieBeherenComponent},
   {path: 'wedstrijdenBezigNietGestart', component: WedstrijdBezigNietGestartComponent},
   {path: 'betwisting', component: BetwistingComponent}
 
