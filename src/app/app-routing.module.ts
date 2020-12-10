@@ -15,20 +15,22 @@ import { CompetitieBeherenComponent } from './administrator/competitie-beheren/c
 
 import { HomeComponent } from './home/home/home.component';
 import { SignUpComponent } from './security/sign-up/sign-up.component';
+import { AdminDashboardComponent } from './administrator/admin-dashboard/admin-dashboard.component';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'ploegenBeheren', component: PloegenBeherenComponent},
-  {path: 'admin/gebruikers', component: GebruikersComponent},
-  {path: 'beheer-tournooi', component: TournooiBeheerComponent},
-  {path: 'tafels-lijst', component: TafelsLijstComponent},
-  {path: 'ploeg-details', component: PloegDetailsComponent},
   {path: 'sign-up', component: SignUpComponent},
-  {path: 'manage-tournooi/:id', component: ManageTournooiComponent },
   {path: 'login', component: SecurityComponent},
+  {path: 'admin/dashboard', component: AdminDashboardComponent},
+  {path: 'admin/ploegen', component: PloegenBeherenComponent},
+  {path: 'admin/gebruikers', component: GebruikersComponent},
+  {path: 'admin/tournooien', component: TournooiBeheerComponent},
+  {path: 'admin/tournooi/:id', component: ManageTournooiComponent },
+  {path: 'admin/tafels', component: TafelsLijstComponent},
+  {path: 'admin/competities', component: CompetitieBeherenComponent},
+  {path: 'ploeg-details', component: PloegDetailsComponent},
   {path: 'statistieken', component: OverzichtWedstrijdenComponent},
-  {path: 'competitiesBeheren', component: CompetitieBeherenComponent}
 
 ];
 
