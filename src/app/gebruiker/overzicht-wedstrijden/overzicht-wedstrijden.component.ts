@@ -4,6 +4,7 @@ import { GebruikerService } from '../gebruiker.service';
 import jwt_decode from "jwt-decode";
 import { User } from 'src/app/shared/models/user';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Wedstrijd } from 'src/app/shared/models/wedstrijd';
 
 @Component({
   selector: 'app-overzicht-wedstrijden',
@@ -11,13 +12,14 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./overzicht-wedstrijden.component.scss']
 })
 export class OverzichtWedstrijdenComponent implements OnInit {
-  wedstrijden : MatchContext[];
-  wedstrijd : MatchContext;
+  wedstrijden : Wedstrijd[];
+  wedstrijd : Wedstrijd;
   userID : number;
   aantalSpellen : number;
   aantalWins : number;
   aantalVerloren: number;
   //aantalDraws : number;
+  aantalTournooien: number
   winpercentage : number;
   constructor(private _gebruikerService : GebruikerService, private modalService: NgbModal) { }
 
@@ -27,7 +29,8 @@ export class OverzichtWedstrijdenComponent implements OnInit {
     this._gebruikerService.getMatches(this.userID).subscribe(result => {
       this.wedstrijden = result
       this.aantalSpellen = this.wedstrijden.length;
-      this.aantalWins = this.wedstrijden.filter(w => ((w.wedstrijd.team1User1ID == this.userID || w.wedstrijd.team1User2ID == this.userID) && w.wedstrijd.team1Score>w.wedstrijd.team2Score) || ((w.wedstrijd.team2User1ID == this.userID || w.wedstrijd.team2User2ID == this.userID) && w.wedstrijd.team2Score>w.wedstrijd.team1Score)).length;
+      this.aantalWins = this.wedstrijden.filter(w => ((w.team1User1ID == this.userID || w.team1User2ID == this.userID) && w.team1Score>w.team2Score) || ((w.team2User1ID == this.userID || w.team2User2ID == this.userID) && w.team2Score>w.team1Score)).length;
+      this.aantalTournooien = this.wedstrijden.filter(w => w.matchContext.tournooi).length;
       //this.aantalDraws = this.wedstrijden.filter(w => w.wedstrijd.team1Score == w.wedstrijd.team2Score).length;
       //this.aantalVerloren = this.aantalSpellen - this.aantalWins - this.aantalDraws;
       this.aantalVerloren = this.aantalSpellen - this.aantalWins;

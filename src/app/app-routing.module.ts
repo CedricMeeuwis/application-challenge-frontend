@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { GebruikersComponent } from './administrator/gebruikers/gebruikers.component';
 import { TournooiBeheerComponent } from './administrator/tournooi-beheer/tournooi-beheer.component';
 import { TafelsLijstComponent } from './administrator/tafels-lijst/tafels-lijst.component';
+import { PloegDetailsComponent } from './gebruiker/ploeg-details/ploeg-details.component';
+
 import { SecurityComponent } from './security/security/security.component';
 import { ManageTournooiComponent } from './administrator/manage-tournooi/manage-tournooi.component';
 import { OverzichtWedstrijdenComponent } from './gebruiker/overzicht-wedstrijden/overzicht-wedstrijden.component';
@@ -22,12 +24,15 @@ const routes: Routes = [
   {path: 'admin/gebruikers', component: GebruikersComponent},
   {path: 'beheer-tournooi', component: TournooiBeheerComponent},
   {path: 'tafels-lijst', component: TafelsLijstComponent},
+  {path: 'ploeg-details', component: PloegDetailsComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'manage-tournooi/:id', component: ManageTournooiComponent },
   {path: 'login', component: SecurityComponent},
   {path: 'wedstrijden', component: OverzichtWedstrijdenComponent},
   {path: 'competitiesBeheren', component: CompetitieBeherenComponent},
   {path: 'betwisting', component: BetwistingComponent},
+  {path: 'statistieken', component: OverzichtWedstrijdenComponent},
+  {path: 'competitiesBeheren', component: CompetitieBeherenComponent}
 ];
 
 @NgModule({

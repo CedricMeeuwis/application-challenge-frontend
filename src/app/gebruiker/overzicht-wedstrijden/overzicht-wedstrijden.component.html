@@ -1,19 +1,21 @@
-<section id="">
+<section id="statistieken">
     <div class="container">
         <div class="section-title" data-aos="fade-left">
-            <h2>Geschiedenis Wedstrijden</h2>
+            <h2>Statistieken</h2>
         </div>
-        <p>aantal gespeelde spellen: {{aantalSpellen}}, aantal gewonnen: {{aantalWins}}, aantal verloren: {{aantalVerloren}}, winpercentage: {{winpercentage}}%</p>
+        <div>
+        </div>
+        <p>aantal gespeelde wedstrijden: {{aantalSpellen}}, aantal gewonnen: {{aantalWins}}, aantal verloren: {{aantalVerloren}}, winpercentage: {{winpercentage}}% | aantal gespeelde tournooien: {{aantalTournooien}}</p>
         <div class="table-responsive">
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h4>Wedstrijden</h4>
+                            <h4>Gespeelde Wedstrijden</h4>
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-hover">
+                <table class="table table-hover text-center">
             <thead>
             <tr>
                 <th>Score</th>
@@ -24,34 +26,34 @@
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let match of wedstrijden" class="">
+                <tr *ngFor="let wedstrijd of wedstrijden" class="">
                 <td>
-                    <div *ngIf="match.wedstrijd.team1User1ID == userID || match.wedstrijd.team1User2ID == userID; else elseDiv">
-                        {{match.wedstrijd.team1Score}} - {{match.wedstrijd.team2Score}}
+                    <div *ngIf="wedstrijd.team1User1ID == userID || wedstrijd.team1User2ID == userID; else elseDiv">
+                        {{wedstrijd.team1Score}} - {{wedstrijd.team2Score}}
                     </div>
                     <ng-template #elseDiv>
-                        {{match.wedstrijd.team2Score}} - {{match.wedstrijd.team1Score}}
+                        {{wedstrijd.team2Score}} - {{wedstrijd.team1Score}}
                     </ng-template>
                 </td>
                 <td>
-                    <div *ngIf="match.wedstrijd.team1User1ID == userID; else elseDiv2">
-                        {{match.wedstrijd.team2User1.ploeg.naam}}
+                    <div *ngIf="wedstrijd.team1User1ID == userID; else elseDiv2">
+                        {{wedstrijd.team2User1.ploeg.naam}}
                     </div>
                     <ng-template #elseDiv2>
-                        {{match.wedstrijd.team1User1.ploeg.naam}}
+                        {{wedstrijd.team1User1.ploeg.naam}}
                     </ng-template>  
                 </td>
-                <td>{{match.wedstrijd.tafel.bedrijfsnaam}}</td>
+                <td>{{wedstrijd.tafel.bedrijfsnaam}}</td>
                 <td>
-                    <div *ngIf="match.tournooi; else elseDiv3">
-                        {{match.tournooi.naam}}
+                    <div *ngIf="wedstrijd.matchContext.tournooi; else elseDiv3">
+                        {{wedstrijd.matchContext.tournooi.naam}}
                     </div>
                     <ng-template #elseDiv3>
                         /
                     </ng-template>  
                 </td>
                 <td>
-                    <button (click)="open(content, match.matchContextID)">Info</button>
+                    <a class="info" (click)="open(content, wedstrijd.matchContextID)"><i class="material-icons" data-toggle="tooltip" title="Info">&#xE88E;</i></a>
                 </td>
                 </tr>
             </tbody>
@@ -69,57 +71,57 @@
     </div>
     <div class="modal-body">
         <h2>Score: 
-            <span *ngIf="wedstrijd.wedstrijd.team1User1ID == userID || wedstrijd.wedstrijd.team1User2ID == userID; else elseDiv">
-                <td>{{wedstrijd.wedstrijd.team1Score}} - {{wedstrijd.wedstrijd.team2Score}}</td>
+            <span *ngIf="wedstrijd.team1User1ID == userID || wedstrijd.team1User2ID == userID; else elseModalDiv">
+                <td>{{wedstrijd.team1Score}} - {{wedstrijd.team2Score}}</td>
             </span>
-            <ng-template #elseDiv>
-                <td>{{wedstrijd.wedstrijd.team2Score}} - {{wedstrijd.wedstrijd.team1Score}}</td>
+            <ng-template #elseModalDiv>
+                <td>{{wedstrijd.team2Score}} - {{wedstrijd.team1Score}}</td>
             </ng-template>
         </h2>
         <div>
-            <span *ngIf="wedstrijd.wedstrijd.team1User1ID == userID || wedstrijd.wedstrijd.team1User2ID == userID; else elseDiv">
+            <span *ngIf="wedstrijd.team1User1ID == userID || wedstrijd.team1User2ID == userID; else elseModalDiv2">
                 <div>
-                    <p>Team: {{wedstrijd.wedstrijd.team1User1.ploeg.naam}}</p>
+                    <p>Team: {{wedstrijd.team1User1.ploeg.naam}}</p>
                     <ul>
-                        <li>{{wedstrijd.wedstrijd.team1User1.naam}}</li>
-                        <li *ngIf="wedstrijd.wedstrijd.team1User1">{{wedstrijd.wedstrijd.team1User2.naam}}</li>
+                        <li>{{wedstrijd.team1User1.naam}}</li>
+                        <li *ngIf="wedstrijd.team1User1">{{wedstrijd.team1User2.naam}}</li>
                     </ul>
                 </div>
                 <div>
-                    <p>Team: {{wedstrijd.wedstrijd.team2User1.ploeg.naam}}</p>
+                    <p>Team: {{wedstrijd.team2User1.ploeg.naam}}</p>
                     <ul>
-                        <li>{{wedstrijd.wedstrijd.team2User1.naam}}</li>
-                        <li *ngIf="wedstrijd.wedstrijd.team2User2">{{wedstrijd.wedstrijd.team2User2.naam}}</li>
+                        <li>{{wedstrijd.team2User1.naam}}</li>
+                        <li *ngIf="wedstrijd.team2User2">{{wedstrijd.team2User2.naam}}</li>
                     </ul>
                 </div>            
             </span>
-            <ng-template #elseDiv>
+            <ng-template #elseModalDiv2>
                 <div>
-                    <p>Team: {{wedstrijd.wedstrijd.team2User1.ploeg.naam}}</p>
+                    <p>Team: {{wedstrijd.team2User1.ploeg.naam}}</p>
                     <ul>
-                        <li>{{wedstrijd.wedstrijd.team2User1.naam}}</li>
-                        <li *ngIf="wedstrijd.wedstrijd.team2User2">{{wedstrijd.wedstrijd.team2User2.naam}}</li>
+                        <li>{{wedstrijd.team2User1.naam}}</li>
+                        <li *ngIf="wedstrijd.team2User2">{{wedstrijd.team2User2.naam}}</li>
                     </ul>
                 </div>
                 <div>
-                    <p>Team: {{wedstrijd.wedstrijd.team1User1.ploeg.naam}}</p>
+                    <p>Team: {{wedstrijd.team1User1.ploeg.naam}}</p>
                     <ul>
-                        <li>{{wedstrijd.wedstrijd.team1User1.naam}}</li>
-                        <li *ngIf="wedstrijd.wedstrijd.team1User1">{{wedstrijd.wedstrijd.team1User2.naam}}</li>
+                        <li>{{wedstrijd.team1User1.naam}}</li>
+                        <li *ngIf="wedstrijd.team1User1">{{wedstrijd.team1User2.naam}}</li>
                     </ul>
                 </div>
             </ng-template>
 
         </div>
-        <div *ngIf="wedstrijd.tournooi">
+        <div *ngIf="wedstrijd.matchContext.tournooi">
             <hr>
-            <p>Tournooi: {{wedstrijd.tournooi.naam}}</p>
-            <p>Niveau: {{wedstrijd.tournooiNiveau}}</p>
-            <p>Rangschikking: {{wedstrijd.tournooiRangschikking}}</p>
+            <p>Tournooi: {{wedstrijd.matchContext.tournooi.naam}}</p>
+            <p>Niveau: {{wedstrijd.matchContext.tournooiNiveau}}</p>
+            <p>Rangschikking: {{wedstrijd.matchContext.tournooiRangschikking}}</p>
         </div>
         <hr>
-        <p>Tafel: {{wedstrijd.wedstrijd.tafel.naam}}</p>
-        <p>bedrijf tafel: {{wedstrijd.wedstrijd.tafel.bedrijfsnaam}}</p>
-        <p>adres: {{wedstrijd.wedstrijd.tafel.adres}}</p>
+        <p>Tafel: {{wedstrijd.tafel.naam}}</p>
+        <p>bedrijf tafel: {{wedstrijd.tafel.bedrijfsnaam}}</p>
+        <p>adres: {{wedstrijd.tafel.adres}}</p>
     </div>
 </ng-template>
