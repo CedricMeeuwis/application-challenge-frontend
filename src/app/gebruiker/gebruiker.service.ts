@@ -53,6 +53,10 @@ export class GebruikerService {
     return this.http.get<User[]>("https://localhost:44348/api/User/MijnPloeg");
   }
 
+  getMijnStats(): Observable<Object> {
+    return this.http.get<Object>("https://localhost:44348/api/Wedstrijd/MijnStats");
+  }
+  
   getWedstrijdenBusyOrNotStarted(userID) : Observable<Wedstrijd[]>{
     return this.http.get<Wedstrijd[]>("https://localhost:44348/api/Wedstrijd/User/BonS/"+userID);
   }
