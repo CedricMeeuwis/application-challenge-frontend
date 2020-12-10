@@ -19,6 +19,7 @@ export class AdministratorService {
   wedstrijden = new BehaviorSubject<Wedstrijd[]>(null);
   wedstrijdUrl = "https://localhost:44348/api/Wedstrijd";
   matchContextUrl = "https://localhost:44348/api/MatchContext";
+  betwistingen = new BehaviorSubject<Wedstrijd[]>(null);
 
   constructor(private http : HttpClient) { }
 
@@ -91,15 +92,15 @@ export class AdministratorService {
     });
   }
   //Wedstrijden
-  getWedstrijdenVanTournooi(id){
+  getWedstrijdenVanTournooi(id): Observable<Wedstrijd[]>{
     let _output = this.http.get<Wedstrijd[]>(this.wedstrijdUrl + "/Tournooi/" + id);
     this.refreshWedstrijden(_output);
     return _output;
   }
-  postWedstrijd(wedstrijd){
+  postWedstrijd(wedstrijd): Observable<Wedstrijd>{
     return this.http.post<Wedstrijd>(this.wedstrijdUrl, wedstrijd);
   }
-  deleteWedstrijd(id){
+  deleteWedstrijd(id): Observable<Wedstrijd>{
     return this.http.delete<Wedstrijd>(this.wedstrijdUrl + "/" + id);
   }
   refreshWedstrijden(output){
@@ -107,11 +108,20 @@ export class AdministratorService {
       this.wedstrijden.next(val);
     });
   }
+  //Betwistingen
+  getBetwistingen(){
+    this.http.get<Wedstrijd[]>(this.wedstrijdUrl + "/Betwisting").subscribe(val =>{
+      this.betwistingen.next(val);
+    });
+  }
+  changeWedstrijd(wedstrijd): Observable<Wedstrijd>{
+    return this.http.put<Wedstrijd>(this.wedstrijdUrl + "/" + wedstrijd.wedstrijdID, wedstrijd);
+  }
   //MatchContexten
-  postMatchContext(matchContext){
+  postMatchContext(matchContext) : Observable<MatchContext>{
     return this.http.post<MatchContext>(this.matchContextUrl, matchContext);
   }
-
+  //Competities
   getCompetities() : Observable<Competitie[]>{
     return this.http.get<Competitie[]>("https://localhost:44348/api/Competitie/");
   }

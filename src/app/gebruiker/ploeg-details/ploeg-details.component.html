@@ -1,0 +1,147 @@
+<section id="ploeg-details">
+    <div class="container">
+
+        <div class="section-title" data-aos="fade-left">
+            <h2 *ngIf="!ploeg">Mijn ploeg</h2>
+            <h2 *ngIf="ploeg">{{ploeg.naam}}</h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-4" *ngIf="ploeg">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4>Leden</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="list-group" *ngIf="ploeg">
+                        <li class="list-group-item" *ngFor="let user of leden">
+                            {{user.naam}} <span *ngIf="user.isKapitein">- <b>Kapitein</b> </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-8" *ngIf="ploeg">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4>Andere Info</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="list-group" *ngIf="ploeg">
+                        <li class="list-group-item" *ngFor="let user of leden">
+                            {{user.naam}} <span *ngIf="user.isKapitein">- <b>Kapitein</b> </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12" *ngIf="ploeg">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4>Challenges</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <button class="modal-title" (click)="open(newChallenge)" class="btn btn-success"
+                                    data-toggle="modal">
+                                    <span>Challenge een team</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="list-group" *ngIf="challenges">
+                        <div *ngFor="let openChallenge of openChallenges">
+                            <!-- Uitgaande open challenge -->
+                            <li class="list-group-item" *ngIf="openChallenge.uitdagerPloegID == ploeg.ploegID">
+                                Jou ploeg stuurde een challenge naar <b>{{openChallenge.uitgedaagdePloeg.naam}}</b>!
+                                <a (click)="challengeAnnuleer(openChallenge.challengeID)" class="delete float-right">
+                                    <i class="material-icons" data-toggle="tooltip" title="Cancel">cancel</i>
+                                </a>
+                            </li>
+                            <!-- Inkomende open Challenge -->
+                            <li class="list-group-item" *ngIf="openChallenge.uitgedaagdePloegID == ploeg.ploegID">
+                                {{openChallenge.uitdagerPloeg.naam}} challenged jou ploeg!
+                                <a (click)="challengeResponse(openChallenge.challengeID, true)" class="delete float-right">
+                                    <i class="material-icons mr-3" data-toggle="tooltip" title="Accepteer challenge">check</i>
+                                </a>
+                                <a (click)="challengeResponse(openChallenge.challengeID, false)" class="delete float-right">
+                                    <i class="material-icons" data-toggle="tooltip" title="Weiger challenge">block</i>
+                                </a>
+                            </li>
+                        </div>
+                        <li class="list-group-item" *ngFor="let challenge of challenges">
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    {{challenge.uitdagerPloeg.naam}}
+                                </div>
+                                <div class="col-1">
+                                    {{challenge.geaccepteerd == true ? "score" : ""}}
+                                </div>
+                                <div class="col-2">
+                                    VS
+                                </div>
+                                <div class="col-1">
+                                    {{challenge.geaccepteerd == true ? "score" : "Geweigerd"}}
+                                </div>
+                                <div class="col-4">
+                                    {{challenge.uitgedaagdePloeg.naam}}
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Modal to challenge a team -->
+<ng-template #newChallenge let-modal>
+    <div class="modal-header pb-0">
+        <h4 class="modal-title" id="modal-basic-title">Challenge een ploeg</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form #challengeForm="ngForm" (ngSubmit)="challengePloeg()">
+            <p> Kies ploeg:
+                <select required [(ngModel)]="uitgedaagdePloegID" name="ploegToChallenge">
+                    <option *ngFor="let pl of ploegen" [value]="pl.ploegID">
+                        {{ pl.naam }}
+                    </option>
+                </select>
+            </p>
+            <div class="modal-footer pb-0">
+                <button type="button" class="btn btn-outline-secondary"
+                    (click)="modal.dismiss('cancel click')">Annuleer</button>
+                <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')"
+                    [disabled]="!challengeForm.form.valid">Stuur challenge</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<!-- Modal to challenge a team -->
+<ng-template #response let-modal>
+    <div class="modal-header pb-0">
+        <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>
+            {{message}}
+        </p>
+    </div>
+</ng-template>
