@@ -113,10 +113,8 @@ export class PloegenBeherenComponent implements OnInit {
             this.nieuweKapitein.ploegID = ploeg.ploegID
             this._administratorService.updateUser(this.nieuweKapitein.userID, this.nieuweKapitein).subscribe()
 
-          }
-          )
-        }
-        )
+          })
+        })
       }
     }
   }

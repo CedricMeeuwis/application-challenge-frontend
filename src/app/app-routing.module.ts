@@ -12,9 +12,11 @@ import { SecurityComponent } from './security/security/security.component';
 import { ManageTournooiComponent } from './administrator/manage-tournooi/manage-tournooi.component';
 import { OverzichtWedstrijdenComponent } from './gebruiker/overzicht-wedstrijden/overzicht-wedstrijden.component';
 import { CompetitieBeherenComponent } from './administrator/competitie-beheren/competitie-beheren.component';
+import { BetwistingComponent } from './administrator/betwisting/betwisting.component';
 
 import { HomeComponent } from './home/home/home.component';
 import { SignUpComponent } from './security/sign-up/sign-up.component';
+import { WedstrijdBezigNietGestartComponent } from './gebruiker/wedstrijd-bezig-niet-gestart/wedstrijd-bezig-niet-gestart.component';
 import { AdminDashboardComponent } from './administrator/admin-dashboard/admin-dashboard.component';
 
 
@@ -31,6 +33,10 @@ const routes: Routes = [
   {path: 'admin/competities', component: CompetitieBeherenComponent},
   {path: 'ploeg-details', component: PloegDetailsComponent},
   {path: 'statistieken', component: OverzichtWedstrijdenComponent},
+  {path: 'competitiesBeheren', component: CompetitieBeherenComponent},
+  {path: 'wedstrijdenBezigNietGestart', component: WedstrijdBezigNietGestartComponent},
+  {path: 'betwisting', component: BetwistingComponent}
+
 
 ];
 
