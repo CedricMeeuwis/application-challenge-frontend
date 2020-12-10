@@ -6,6 +6,7 @@ import { Ploeg } from '../shared/models/ploeg';
 import { Challenge } from '../shared/models/challenge';
 import { User } from '../shared/models/user';
 import { MatchContext } from '../shared/models/matchcontext';
+import { Ploeg } from '../shared/models/ploeg';
 import { Wedstrijd } from '../shared/models/wedstrijd';
 
 
@@ -52,5 +53,19 @@ export class GebruikerService {
   getMijnPloegUsers(): Observable<User[]> {
     return this.http.get<User[]>("https://localhost:44348/api/User/MijnPloeg");
   }
-  
+
+  getWedstrijdenBusyOrNotStarted(userID) : Observable<Wedstrijd[]>{
+    return this.http.get<Wedstrijd[]>("https://localhost:44348/api/Wedstrijd/User/BonS/"+userID);
+  }
+
+  getWedstrijd(wedstrijdId: number){
+    return this.http.get<Wedstrijd>("https://localhost:44348/api/Wedstrijd/" + wedstrijdId);
+  }
+  updateWedstrijd(wedstrijd: Wedstrijd){
+    return this.http.put<Wedstrijd>("https://localhost:44348/api/Wedstrijd/" + wedstrijd.wedstrijdID, wedstrijd);
+  }
+
+  updatePloeg(ploeg: Ploeg){
+    return this.http.put<Ploeg>("https://localhost:44348/api/Ploeg/" + ploeg.ploegID, ploeg);
+  }
 }

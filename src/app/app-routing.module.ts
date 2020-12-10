@@ -16,6 +16,7 @@ import { BetwistingComponent } from './administrator/betwisting/betwisting.compo
 
 import { HomeComponent } from './home/home/home.component';
 import { SignUpComponent } from './security/sign-up/sign-up.component';
+import { WedstrijdBezigNietGestartComponent } from './gebruiker/wedstrijd-bezig-niet-gestart/wedstrijd-bezig-niet-gestart.component';
 
 
 const routes: Routes = [
@@ -28,11 +29,12 @@ const routes: Routes = [
   {path: 'sign-up', component: SignUpComponent},
   {path: 'manage-tournooi/:id', component: ManageTournooiComponent },
   {path: 'login', component: SecurityComponent},
-  {path: 'wedstrijden', component: OverzichtWedstrijdenComponent},
-  {path: 'competitiesBeheren', component: CompetitieBeherenComponent},
-  {path: 'betwisting', component: BetwistingComponent},
   {path: 'statistieken', component: OverzichtWedstrijdenComponent},
-  {path: 'competitiesBeheren', component: CompetitieBeherenComponent}
+  {path: 'competitiesBeheren', component: CompetitieBeherenComponent},
+  {path: 'wedstrijdenBezigNietGestart', component: WedstrijdBezigNietGestartComponent},
+  {path: 'betwisting', component: BetwistingComponent}
+
+
 ];
 
 @NgModule({
