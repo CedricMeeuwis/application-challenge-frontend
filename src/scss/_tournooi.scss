@@ -1,0 +1,72 @@
+.toernooien {
+    padding-bottom: 30px;
+    content: center;
+    width: 100%;
+  }
+  
+  .toernooien .finale{
+      text-align: center !important;
+      color: $buttonColor;
+      font-size: 26px !important;
+      border: 1.5px $buttonColor solid;
+      border-radius: 15px;
+      box-shadow: 5px 5px 8px 5px #e3e5e5;
+      margin-bottom: 30px !important;
+      padding: 5px;
+  }
+  
+  .toernooien .toernooibox {
+      margin-bottom: 15px !important;
+      margin: 0 auto; /* Added */
+      float: none; /* Added */
+  }
+
+  .toernooien .card {
+    padding: 10%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+
+    transition: all 0.3s ease-in-out;
+    border-radius: 8px;
+    z-index: 1;
+    text-align: center;
+  }
+  
+  .toernooien .card::before {
+    content: '';
+    position: absolute;
+    background: #fdeff2;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 100%;
+    transition: all 0.4s;
+    z-index: -1;
+  }
+  
+  .toernooien .card:hover::before {
+    background: $buttonColor;
+    top: 0;
+    border-radius: 0px;
+  }
+
+  .toernooien .title {
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+  
+  .toernooien .title a {
+    color: #111;
+  }
+  
+  .toernooien .card:hover .title a, .toernooien .card:hover .title {
+    color: #fff !important;
+  }
+
+
+  .toernooien .card:hover .title a, .toernooien .card:hover .vs {
+    color: #fff !important;
+  }
