@@ -1,0 +1,105 @@
+<section id="manage-competities">
+    <div class="container">
+
+        <div class="section-title" data-aos="fade-left">
+            <h2>Competities beheren</h2>
+        </div>
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4>Competities</h4>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="modal-title" (click)="open(content)" class="btn btn-success"
+                                data-toggle="modal"><i
+                                    class="material-icons">&#xE147;</i><span>Toevoegen</span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center table-responsive">
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Naam</th>
+                                <th>Periode</th>
+                                <th>Aantal Spelers per team</th>
+
+                                <th>Bewerk</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let competitie of (competities| async)">
+                                <td>{{competitie.competitieID}}</td>
+                                <td>{{competitie.naam}}</td>
+                                <td>{{competitie.periode}}</td>
+                                <td>{{competitie.participentAantal}}</td>
+
+                                <td>
+
+									<a (click)="open(content, competitie)" class="edit" data-toggle="modal"><i
+											class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+
+									<a (click)="open(deleteModal, competitie)" class="delete"
+										data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
+											title="Delete">&#xE872;</i></a>
+								</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #content let-modal>
+            <div class="modal-header pb-0">
+                <h4 *ngIf="gekozenCompetitie.competitieID == 0" class="modal-title" id="modal-basic-title">Maak Competitie Aan</h4>
+                <h4 *ngIf="gekozenCompetitie.competitieID != 0" class="modal-title" id="modal-basic-title">Bewerk Competitie</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #registerForm="ngForm" (ngSubmit)="sendCompetitie()">
+                    <p> Naam:
+                        <input class="form-control" required ngbAutofocus placeholder="naam" type="text"
+                            [(ngModel)]="gekozenCompetitie.naam" name="naam" minlength="2" />
+                    </p>
+                    <p> Periode:
+                        <input class="form-control" required ngbAutofocus placeholder="periode" type="text"
+                            [(ngModel)]="gekozenCompetitie.periode" name="periode" minlength="2" />
+                    </p>
+                    <div>
+                        <p>Aantal spelers per team: 
+                            <select [(ngModel)]="gekozenCompetitie.participentAantal" class="form-control" name="aantal">
+                                <option [ngValue]=1>1</option>
+                                <option [ngValue]=2>2</option>
+                            </select>
+                        </p>
+                    </div>
+
+                    <div class="modal-footer pb-0">
+                        <button type="button" class="btn btn-outline-secondary"
+                            (click)="modal.dismiss('cancel click')">annuleer</button>
+                        <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')"
+                            [disabled]="!registerForm.form.valid">Save</button>
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+        <ng-template #deleteModal let-modal>
+            <div class="modal-header pb-0">
+                <h4 class="modal-title" id="modal-basic-title">Verwijder Competitie</h4>
+            </div>
+            <div class="modal-body">
+                <p>Bent u zeker dat u {{gekozenCompetitie.naam}} wilt verwijderen?</p>
+                <button type="button" ngbAutofocus class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">annuleer</button>
+                <form #deleteForm="ngForm" (ngSubmit)="deletecompetitie(gekozenCompetitie.competitieID)">
+                    <button type="submit" class="btn btn-danger" (click)="modal.close('Ok click')">Delete</button>
+                </form>
+            </div>
+        </ng-template>
+    </div>
+</section>

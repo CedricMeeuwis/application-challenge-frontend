@@ -32,7 +32,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let tafel of tafels">
-                            <th>{{tafel.naam}}</th>
+                            <td>{{tafel.naam}}</td>
                             <td>{{tafel.bedrijfsnaam}}</td>
                             <td>{{tafel.adres}}</td>
                             <td>{{tafel.contactNaam}}</td>
@@ -84,14 +84,13 @@
                     [(ngModel)]="tafel.contactTelefoon" name="contactTelefoon" />
             </p>
             <p> Verantwoordelijke e-mail:
-                <input class="form-control" required placeholder="Verantwoordelijke e-mail" type="text"
+                <input class="form-control" required placeholder="Verantwoordelijke e-mail" type="email"
                     [(ngModel)]="tafel.contactEmail" name="contactEmail" />
             </p>
             <div>
-                <p> Foto:
-                    <input class="form-control" placeholder="link foto (nog te veranderen)" type="password"
-                        [(ngModel)]="tafel.foto" name="foto" />
-                </p>
+                <label for="foto">Kies een afbeelding</label>
+                <input type="file" [(ngModel)]="tafel.foto" name="foto" class="form-control " (change)="onChange($event)" required/>
+                <img [src]="this.tafel.foto" class="foto" alt="">  
             </div>
             <div class="modal-footer pb-0">
                 <button type="button" class="btn btn-outline-secondary"

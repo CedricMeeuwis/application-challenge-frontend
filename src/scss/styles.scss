@@ -4,3 +4,8 @@
 @import "./header";
 @import "./table";
 @import "./general";
+@import "./foto";
+@import "./tournooi";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import "./login";

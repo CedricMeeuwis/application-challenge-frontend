@@ -1,0 +1,29 @@
+@import './variabelen';
+
+.foto{
+ 
+        border-radius: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        height: auto;
+        margin-top: 2.5%;
+        margin-bottom: 6%;
+    
+}
+
+.fileContainer {
+    overflow: hidden;
+    position: relative;
+}
+.homeImage{
+    width: 100%;
+    height: auto;
+}
+
+@media screen and (min-width: 769px) {
+    .foto{
+        width: 50% !important;
+    }
+  }

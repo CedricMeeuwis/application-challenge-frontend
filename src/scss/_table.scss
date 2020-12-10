@@ -82,6 +82,13 @@ table.table td a {
 table.table td a:hover {
 	color: #2196F3;
 }
+table.table td a.info {
+	color: $info;
+}
+table.table td a.info:hover {
+    color: $infoHover;
+    cursor: pointer;
+}
 table.table td a.edit {
 	color: $editColor;
 }

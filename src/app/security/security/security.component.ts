@@ -17,6 +17,13 @@ export class SecurityComponent implements OnInit {
   onSubmit() {
     this._authenticateService.authenticate(this.userLogin).subscribe(result => {
       localStorage.setItem("token", result.token);
+      localStorage.setItem("isAdmin", result.isAdmin.toString())
+      localStorage.setItem("isKapitein", result.isKapitein.toString())
+      if(result.ploegID == null)
+      {
+        result.ploegID =0
+      }
+      localStorage.setItem("ploegID", result.ploegID.toString())
     });
   }
 }

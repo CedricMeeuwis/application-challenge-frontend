@@ -1,9 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { Ploeg } from '../shared/models/ploeg';
 import { Challenge } from '../shared/models/challenge';
 import { User } from '../shared/models/user';
+import { MatchContext } from '../shared/models/matchcontext';
+import { Wedstrijd } from '../shared/models/wedstrijd';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +17,10 @@ export class GebruikerService {
 
   constructor(private http: HttpClient) { }
 
+  getMatches(userID) : Observable<Wedstrijd[]>{
+    return this.http.get<Wedstrijd[]>("https://localhost:44348/api/Wedstrijd/User/"+userID);
+  }
+  
   getMijnPloeg(): Observable<Ploeg> {
     return this.http.get<Ploeg>("https://localhost:44348/api/ploeg/mijnploeg");
   }
@@ -44,5 +52,5 @@ export class GebruikerService {
   getMijnPloegUsers(): Observable<User[]> {
     return this.http.get<User[]>("https://localhost:44348/api/User/MijnPloeg");
   }
-
+  
 }
