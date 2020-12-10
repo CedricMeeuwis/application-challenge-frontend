@@ -71,7 +71,7 @@ export class GebruikersComponent implements OnInit {
     if(userID){
       this.gebruiker = {...this.gebruikers.find(u => u.userID == userID)}
       if(!this.gebruiker.ploegID){
-        this.gebruiker.ploegID == 0;
+        this.gebruiker.ploegID = 0;
       }
     }
     this.modalService.open(content)

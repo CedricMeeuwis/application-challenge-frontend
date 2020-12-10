@@ -1,48 +1,63 @@
-<div class="container">
-    <div class="row justify-content-center my-3">
-        <h1>Lijst Gebruikers</h1>
-    </div>
-    <div class="row pb-1 justify-content-between">
-        <div class="col-auto">
-            <button type="button" class="btn btn-success btn-sm mb-1" (click)="open(content)">Nieuwe Gebruiker</button>
+<section id="manage-gebruikers">
+    <div class="container">
+        <div class="section-title" data-aos="fade-left">
+            <h2>Lijst Gebruikers</h2>
+        </div>
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4>Gebruikers</h4>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="modal-title" (click)="open(content)" class="btn btn-success"
+                                data-toggle="modal"><i
+                                    class="material-icons">&#xE147;</i><span>Nieuwe Gebruiker</span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center table-responsive">
+                    <table class="table text-center">
+                        <thead>
+                        <tr>
+                            <th scope="d-none d-md-block">Id</th>
+                            <th scope="">Naam</th>
+                            <th scope="d-none d-md-block">Email</th>
+                            <th scope="">Ploeg</th>
+                            <th>Admin</th>
+                            <th scope="">Bewerk</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let gebruiker of gebruikers">
+                                <th>{{gebruiker.userID}}</th>
+                                <td>{{gebruiker.naam}}</td>
+                                <td>{{gebruiker.email}}</td>
+                                <td><div *ngIf="gebruiker.ploegID != null; else elseDiv">{{gebruiker.ploeg.naam}}</div>
+                                    <ng-template #elseDiv><span class="text-danger">Geen Ploeg</span></ng-template>
+                                </td>
+                                <td>
+                                    <div *ngIf="gebruiker.isAdmin == true; else elseBlock"><i class="material-icons">&#xE5CA;</i></div>
+                                    <ng-template #elseBlock><i class="material-icons">&#xE14C;</i></ng-template>
+                                </td>
+                                <td>
+                                    <a  (click)="open(content, gebruiker.userID)" class="edit" data-toggle="modal"><i
+                                            class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a (click)="open(deleteModal, gebruiker.userID)" class="delete"
+                                        data-toggle="modal"><i class="material-icons" data-toggle="tooltip"
+                                            title="Delete">&#xE872;</i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>   
         </div>
     </div>
+</section>
 
-    <div class="row justify-content-center table-responsive">
-        <table class="table text-center">
-            <thead>
-            <tr>
-                <th scope="d-none d-md-block">Id</th>
-                <th scope="">Naam</th>
-                <th scope="d-none d-md-block">Email</th>
-                <th scope="">Ploeg</th>
-                <th>Admin</th>
-                <th scope="">Bewerk</th>
-                <th scope="">Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let gebruiker of gebruikers">
-                <th>{{gebruiker.userID}}</th>
-                <td>{{gebruiker.naam}}</td>
-                <td>{{gebruiker.email}}</td>
-                <td><div *ngIf="gebruiker.ploegID != null">{{gebruiker.ploeg.naam}}
-                </div></td>
-                <td>
-                    <div *ngIf="gebruiker.isAdmin == true; else elseBlock">Ja</div>
-                    <ng-template #elseBlock>Nee</ng-template>
-                </td>
-                <td><button class="btn btn-outline-primary btn-sm" (click)="open(content, gebruiker.userID)"><span class="d-none d-md-inline">Edit</span></button></td>
-                <td><button class="btn btn-outline-danger btn-sm" (click)="open(deleteModal, gebruiker.userID)"><span class="d-none d-md-inline">Delete</span></button></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
 
-    <div class="input-group">
-
-    </div>  
 <!-- modals voor CRUD -->
 <ng-template #content let-modal>
     <div class="modal-header pb-0">
@@ -78,16 +93,16 @@
                 </p>
             </div>
             <div>
-                <p>Ploeg: 
+                <p>Ploeg:
                     <select [(ngModel)]="gebruiker.ploegID" class="form-control" name="ploeg">
                         <option value="0">Geen</option>
-                        <option *ngFor="let ploeg of ploegen" [ngValue]="ploeg.ploegID">{{ploeg.naam}}</option>
+                        <option *ngFor="let ploeg of ploegen" [value]="ploeg.ploegID">{{ploeg.naam}}</option>
                     </select>
                 </p>
             </div>
             <div>
                 <p>Administrator: 
-                    <select [(ngModel)]="gebruiker.isAdmin" class="form-control" name="ploeg">
+                    <select [(ngModel)]="gebruiker.isAdmin" class="form-control" name="isAdmin">
                         <option selected value="false">Nee</option>
                         <option value="true">Ja</option>
                     </select>
