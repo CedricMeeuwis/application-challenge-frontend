@@ -10,6 +10,7 @@ import { PloegenBeherenComponent } from './ploegen-beheren/ploegen-beheren.compo
 import { SharedModule } from '../shared/shared.module';
 import { ManageTournooiComponent } from './manage-tournooi/manage-tournooi.component';
 import { CompetitieBeherenComponent } from './competitie-beheren/competitie-beheren.component';
+import { BetwistingComponent } from './betwisting/betwisting.component';
 
 @NgModule({
   declarations: [GebruikersComponent,
@@ -17,7 +18,8 @@ import { CompetitieBeherenComponent } from './competitie-beheren/competitie-behe
                 TafelsLijstComponent,
                 PloegenBeherenComponent,
                 ManageTournooiComponent,
-                CompetitieBeherenComponent],
+                CompetitieBeherenComponent,
+                BetwistingComponent],
   imports: [
     CommonModule,
     SharedModule,

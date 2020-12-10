@@ -71,22 +71,24 @@ export class ManageTournooiComponent implements OnInit {
     this.modalService.dismissAll();
   }
   private checkIfEditable(){
-    if(this.wedstrijden != null){
+    if(this.wedstrijden != null && this.wedstrijden.length > 0){
       for(let i = 0; i < this.wedstrijden.length; i++){
         if(this.wedstrijden[i].matchContext.tournooiNiveau > 1 || this.wedstrijden[i].bezig == true){
           this.canEdit = false;
         }
       }
+    }else{
+      this.canEdit = true;
     }
   }
   private refresh(){
     this._administratoService.getUsersHasPloeg().subscribe(val =>{
       this.users = val;
-      this._administratoService.getWedstrijdenVanTournooi(this.route.snapshot.params['id']);
+      this._administratoService.getWedstrijdenVanTournooi(this.route.snapshot.params['id']).subscribe();
     });
   }
   private filterAvailable(){
-    if(this.wedstrijden != null && this.users != null){
+    if(this.wedstrijden != null && this.wedstrijden.length > 0 && this.users != null){
       for(let i = 0; i < this.wedstrijden.length; i++){
         for(let j = 0; j < this.users.length; j++){
           if(this.wedstrijden[i].team1User1ID == this.users[j].userID 
@@ -101,7 +103,7 @@ export class ManageTournooiComponent implements OnInit {
     }
   }
   private checkVoorWinneer(){
-    if(this.wedstrijden != null){
+    if(this.wedstrijden != null && this.wedstrijden.length > 0){
       let wedstrijdToCheck = this.wedstrijden[this.wedstrijden.length-1];
       let niveauCheck = wedstrijdToCheck.matchContext.tournooiNiveau - 1;
       let som = 0;
