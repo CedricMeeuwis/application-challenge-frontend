@@ -14,7 +14,7 @@ export class MatchContext {
         public wedstrijd?: Wedstrijd,
         public tournooiID?: number,
         public tournooi?: Tournooi,
-        public competitieID?: User,
+        public competitieID?: number,
         public competitie?: Competitie,
     ){}
 }

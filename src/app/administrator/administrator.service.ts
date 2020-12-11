@@ -91,12 +91,13 @@ export class AdministratorService {
       this.tournooien.next(val);
     });
   }
-  //Wedstrijden
+
   getWedstrijdenVanTournooi(id): Observable<Wedstrijd[]>{
-    let _output = this.http.get<Wedstrijd[]>(this.wedstrijdUrl + "/Tournooi/" + id);
+    let _output = this.http.get<Wedstrijd[]>(this.wedstrijdUrl + "/Competitie/" + id);
     this.refreshWedstrijden(_output);
     return _output;
   }
+
   postWedstrijd(wedstrijd): Observable<Wedstrijd>{
     return this.http.post<Wedstrijd>(this.wedstrijdUrl, wedstrijd);
   }
@@ -141,5 +142,21 @@ export class AdministratorService {
 
   updateCompetitie(competitie: Competitie) {
     return this.http.put<Competitie>("https://localhost:44348/api/Competitie/" + competitie.competitieID, competitie);
+  }
+
+  getWedstrijdenVanCompetitie(id): Observable<Wedstrijd[]>{
+    return this.http.get<Wedstrijd[]>("https://localhost:44348/api/Wedstrijd/Competitie/" + id);
+  }
+
+  getTafels(): Observable<Tafel[]> {
+    return this.http.get<Tafel[]>("https://localhost:44348/api/tafel");
+  }
+
+  deleteMatchContext(id): Observable<MatchContext>{
+    return this.http.delete<MatchContext>(this.matchContextUrl + "/" + id);
+  }
+
+  updateWedstrijd(wedstrijd: Wedstrijd) {
+    return this.http.put<Wedstrijd[]>(this.wedstrijdUrl+ "/" + wedstrijd.wedstrijdID, wedstrijd);
   }
 }
