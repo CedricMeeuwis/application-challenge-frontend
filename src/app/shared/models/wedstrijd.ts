@@ -2,12 +2,13 @@ import { Tafel } from './tafel';
 import { MatchContext } from './matchcontext';
 import { User } from './user';
 
+enum Bezig { NogTeSpelen, Bezig, Gespeeld };
 export class Wedstrijd {
     constructor(
         //Nodige informatie
         public team1Score: number,
         public team2Score: number,
-        public bezig: boolean,
+        public bezig: Bezig,
         public akkoord: boolean,
         
         //Optioneel voor nieuw gemaakte objecten

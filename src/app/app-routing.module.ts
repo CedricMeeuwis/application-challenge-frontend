@@ -16,23 +16,30 @@ import { BetwistingComponent } from './administrator/betwisting/betwisting.compo
 
 import { HomeComponent } from './home/home/home.component';
 import { SignUpComponent } from './security/sign-up/sign-up.component';
+import { WedstrijdBezigNietGestartComponent } from './gebruiker/wedstrijd-bezig-niet-gestart/wedstrijd-bezig-niet-gestart.component';
+import { AdminDashboardComponent } from './administrator/admin-dashboard/admin-dashboard.component';
+
+import {AdminGuard} from './security/guards/admin/admin.guard';
+import {KapiteinGuard} from './security/guards/kapitein/kapitein.guard';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'ploegenBeheren', component: PloegenBeherenComponent},
-  {path: 'admin/gebruikers', component: GebruikersComponent},
-  {path: 'beheer-tournooi', component: TournooiBeheerComponent},
-  {path: 'tafels-lijst', component: TafelsLijstComponent},
-  {path: 'ploeg-details', component: PloegDetailsComponent},
   {path: 'sign-up', component: SignUpComponent},
-  {path: 'manage-tournooi/:id', component: ManageTournooiComponent },
   {path: 'login', component: SecurityComponent},
-  {path: 'wedstrijden', component: OverzichtWedstrijdenComponent},
-  {path: 'competitiesBeheren', component: CompetitieBeherenComponent},
-  {path: 'betwisting', component: BetwistingComponent},
+  {path: 'admin/dashboard', component: AdminDashboardComponent, canActivate: [AdminGuard]},
+  {path: 'admin/ploegen', component: PloegenBeherenComponent},
+  {path: 'admin/gebruikers', component: GebruikersComponent},
+  {path: 'admin/tournooien', component: TournooiBeheerComponent},
+  {path: 'admin/tournooi/:id', component: ManageTournooiComponent },
+  {path: 'admin/tafels', component: TafelsLijstComponent},
+  {path: 'admin/competities', component: CompetitieBeherenComponent},
+  {path: 'ploeg-details', component: PloegDetailsComponent},
   {path: 'statistieken', component: OverzichtWedstrijdenComponent},
-  {path: 'competitiesBeheren', component: CompetitieBeherenComponent}
+  {path: 'wedstrijdenBezigNietGestart', component: WedstrijdBezigNietGestartComponent},
+  {path: 'betwisting', component: BetwistingComponent}
+
+
 ];
 
 @NgModule({

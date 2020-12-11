@@ -6,6 +6,8 @@ import { MatchContext } from '../../shared/models/matchcontext';
 import { Wedstrijd } from '../../shared/models/wedstrijd';
 import { AdministratorService } from '../administrator.service';
 
+enum Bezig { NogTeSpelen, Bezig, Gespeeld };
+
 @Component({
   selector: 'app-manage-tournooi',
   templateUrl: './manage-tournooi.component.html',
@@ -19,7 +21,7 @@ export class ManageTournooiComponent implements OnInit {
   canEdit = true;
   toDelete = null;
 
-  nieuwWedstrijd: Wedstrijd = new Wedstrijd(0,0, false, false);
+  nieuwWedstrijd: Wedstrijd = new Wedstrijd(0,0, Bezig.NogTeSpelen, false);
   emptyUser = new User("","", new Date(),"", false, false, "", -1);
   team1user1: User = this.emptyUser;
   team1user2: User = this.emptyUser;

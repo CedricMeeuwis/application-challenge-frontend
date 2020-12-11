@@ -52,5 +52,23 @@ export class GebruikerService {
   getMijnPloegUsers(): Observable<User[]> {
     return this.http.get<User[]>("https://localhost:44348/api/User/MijnPloeg");
   }
+
+  getMijnStats(): Observable<Object> {
+    return this.http.get<Object>("https://localhost:44348/api/Wedstrijd/MijnStats");
+  }
   
+  getWedstrijdenBusyOrNotStarted(userID) : Observable<Wedstrijd[]>{
+    return this.http.get<Wedstrijd[]>("https://localhost:44348/api/Wedstrijd/User/BonS/"+userID);
+  }
+
+  getWedstrijd(wedstrijdId: number){
+    return this.http.get<Wedstrijd>("https://localhost:44348/api/Wedstrijd/" + wedstrijdId);
+  }
+  updateWedstrijd(wedstrijd: Wedstrijd){
+    return this.http.put<Wedstrijd>("https://localhost:44348/api/Wedstrijd/" + wedstrijd.wedstrijdID, wedstrijd);
+  }
+
+  updatePloeg(ploeg: Ploeg){
+    return this.http.put<Ploeg>("https://localhost:44348/api/Ploeg/" + ploeg.ploegID, ploeg);
+  }
 }

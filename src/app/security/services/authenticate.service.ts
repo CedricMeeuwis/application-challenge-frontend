@@ -8,7 +8,7 @@ import { User } from '../../shared/models/user';
   providedIn: 'root'
 })
 export class AuthenticateService {
-  authenticateUrl = "https://localhost:5001/api/User/authenticate";
+  authenticateUrl = "https://localhost:44348/api/User/authenticate";
   constructor(private _httpClient: HttpClient) { }
   
   authenticate(userLogin: UserLogin): Observable<User> {

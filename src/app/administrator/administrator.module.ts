@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ManageTournooiComponent } from './manage-tournooi/manage-tournooi.component';
 import { CompetitieBeherenComponent } from './competitie-beheren/competitie-beheren.component';
 import { BetwistingComponent } from './betwisting/betwisting.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [GebruikersComponent,
@@ -19,10 +20,13 @@ import { BetwistingComponent } from './betwisting/betwisting.component';
                 PloegenBeherenComponent,
                 ManageTournooiComponent,
                 CompetitieBeherenComponent,
-                BetwistingComponent],
+                BetwistingComponent,
+                AdminDashboardComponent],
   imports: [
     CommonModule,
     SharedModule,
+    RouterModule,
+
   ],
   providers: [AdministratorService],
   exports: [PloegenBeherenComponent]
