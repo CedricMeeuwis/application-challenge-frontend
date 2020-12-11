@@ -99,7 +99,7 @@ export class CompetitieBeherenComponent implements OnInit {
         else {
 
           if (this.gekozenWedstrijd.wedstrijdID == 0) {
-            const matchContext = new MatchContext(0, 0, 0, 0, null, null, null, this.competitieID)
+            const matchContext = new MatchContext(0, 0, 0, null, null, null,  this.competitieID);
             this._administratorService.postMatchContext(matchContext).subscribe(res => {
               this.gekozenWedstrijd.matchContextID = res.matchContextID
               this._administratorService.postWedstrijd(this.gekozenWedstrijd).subscribe()
