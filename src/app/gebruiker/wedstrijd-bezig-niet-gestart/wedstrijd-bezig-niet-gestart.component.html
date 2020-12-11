@@ -55,7 +55,12 @@
                                 <button (click)="open(content, wedstrijd)">Info</button>
                             </td>
                             <td>
-                                {{wedstrijd.bezig}}
+                                <div *ngIf="wedstrijd.bezig == 0; else elseDiv5">
+                                    <p>niet bezig</p>
+                                </div>
+                                <ng-template #elseDiv5>
+                                    <p>bezig</p>
+                                </ng-template>
                             </td>
                             <td>
                                 <button (click)="open(scoreModal, wedstrijd)">score</button>
@@ -136,7 +141,7 @@
                 <h4 class="modal-title" id="modal-basic-title">Wedstrijd overzicht</h4>
             </div>
             <div class="modal-body">
-                <div *ngIf="wedstrijd.bezig == false; else elseDiv4">
+                <div *ngIf="wedstrijd.bezig == 0; else elseDiv4">
                     <p>Deze wedstrijd is nog niet begonnen</p>
 
                     <button type="button" ngbAutofocus class="btn btn-outline-secondary" (click)="begin()" >Begin</button>
@@ -153,6 +158,6 @@
                 </ng-template>
                 <br/>
                 <button type="button"  class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">annuleer</button>
-
+                <button type="button"  class="btn btn-outline-secondary" (click)="beeindig()">beeindig wedstrijd</button>
             </div>
         </ng-template>
