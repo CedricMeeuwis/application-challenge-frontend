@@ -15,6 +15,7 @@ enum Bezig { NogTeSpelen, Bezig, Gespeeld };
 })
 export class ManageTournooiComponent implements OnInit {
   wedstrijden: Wedstrijd[];
+  orderedWedstrijden: Wedstrijd[][];
   users: User[];
   search = "";
   canEdit = true;
@@ -33,9 +34,10 @@ export class ManageTournooiComponent implements OnInit {
   constructor(private route: ActivatedRoute, private _administratoService: AdministratorService, private modalService: NgbModal) {
     _administratoService.wedstrijden.subscribe(val=>{
       this.wedstrijden = val;
-      this.filterAvailable();
       this.checkIfEditable();
+      this.filterAvailableUsers();
       this.checkVoorWinneer();
+      this.splitData(val);
     });
   }
 
@@ -72,10 +74,20 @@ export class ManageTournooiComponent implements OnInit {
     });
     this.modalService.dismissAll();
   }
+  private refresh(){
+    this._administratoService.getUsersHasPloeg().subscribe(val =>{
+      this.users = val;
+      this._administratoService.getWedstrijdenVanTournooi(this.route.snapshot.params['id']).subscribe();
+    });
+  }
+  //Internal functioning
   private checkIfEditable(){
     if(this.wedstrijden != null && this.wedstrijden.length > 0){
       for(let i = 0; i < this.wedstrijden.length; i++){
-        if(this.wedstrijden[i].matchContext.tournooiNiveau > 1 || this.wedstrijden[i].bezig == Bezig.Bezig){
+        if(this.wedstrijden[i].matchContext.tournooiNiveau > 1 
+          || this.wedstrijden[i].bezig == true
+          || this.wedstrijden[i].team1Score > 0
+          || this.wedstrijden[i].team2Score > 0){
           this.canEdit = false;
         }
       }
@@ -83,22 +95,18 @@ export class ManageTournooiComponent implements OnInit {
       this.canEdit = true;
     }
   }
-  private refresh(){
-    this._administratoService.getUsersHasPloeg().subscribe(val =>{
-      this.users = val;
-      this._administratoService.getWedstrijdenVanTournooi(this.route.snapshot.params['id']).subscribe();
-    });
-  }
-  private filterAvailable(){
-    if(this.wedstrijden != null && this.wedstrijden.length > 0 && this.users != null){
+  private filterAvailableUsers(){
+    if(this.wedstrijden != null && this.wedstrijden.length > 0 && this.users != null && this.canEdit){
       for(let i = 0; i < this.wedstrijden.length; i++){
         for(let j = 0; j < this.users.length; j++){
-          if(this.wedstrijden[i].team1User1ID == this.users[j].userID 
-              || this.wedstrijden[i].team1User2ID == this.users[j].userID 
-              || this.wedstrijden[i].team2User1ID == this.users[j].userID
-              || this.wedstrijden[i].team2User2ID == this.users[j].userID)
+          let check = this.users[j].userID 
+          if(this.wedstrijden[i].team1User1ID == check 
+              || this.wedstrijden[i].team1User2ID == check  
+              || this.wedstrijden[i].team2User1ID == check 
+              || this.wedstrijden[i].team2User2ID == check )
           {
             this.users.splice(j, 1);
+            j--;
           }
         }
       }
@@ -124,6 +132,20 @@ export class ManageTournooiComponent implements OnInit {
           this.winnaar2 = wedstrijdToCheck.team2User2;
         }
       }
+    }
+  }
+  private splitData(data){
+    this.orderedWedstrijden = [];
+    if(data != null && data.length > 0){
+      let newRow: Wedstrijd[] = [];
+      for(let i = 0; i < data.length; i++){
+        if(i != 0 && data[i].matchContext.tournooiNiveau != data[i-1].matchContext.tournooiNiveau){
+          this.orderedWedstrijden.push(newRow);
+          newRow = [];
+        }
+        newRow.push(data[i]);
+      }
+      this.orderedWedstrijden.push(newRow);
     }
   }
 }

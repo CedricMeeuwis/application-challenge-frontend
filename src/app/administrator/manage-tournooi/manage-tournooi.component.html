@@ -6,22 +6,187 @@
         <div id="tournooi">
             <button *ngIf="canEdit" class="modal-title" (click)="open(content)" class="btn btn-success"><i class="material-icons">&#xE147;</i><span>Nieuwe wedstrijd</span></button>
         </div>
-        <div id="matches">
-            <div *ngFor="let wedstrijd of wedstrijden; index as i; first as isFirst">
-                <div *ngIf="!isFirst && wedstrijden[i-1].matchContext.tournooiNiveau != wedstrijd.matchContext.tournooiNiveau" class="wedstrijdBlock newLine">
-                    {{wedstrijd.team1User1.naam}} VS {{wedstrijd.team2User1.naam}} <mat-icon *ngIf="canEdit" class="delete" (click)="open(delete, wedstrijd.wedstrijdID)" aria-hidden="false" aria-label="Verwijder match">delete</mat-icon>
-                </div>
-                <div *ngIf="isFirst || wedstrijden[i-1].matchContext.tournooiNiveau == wedstrijd.matchContext.tournooiNiveau" class="wedstrijdBlock nextElement">
-                    {{wedstrijd.team1User1.naam}} VS {{wedstrijd.team2User1.naam}} <mat-icon *ngIf="canEdit" class="delete" (click)="open(delete, wedstrijd.wedstrijdID)" aria-hidden="false" aria-label="Verwijder match">delete</mat-icon>
-                </div>
-            </div>
-        </div>
-        <div id="winnaars" *ngIf="winnaar1 != null">
-            Gefeliciteerd aan
-            {{winnaar1.naam}} <span *ngIf="winnaar2 != null">& {{winnaar2.naam}}</span>
-        </div>
     </div>
 </section>
+<ng-container *ngFor="let wedstrijdlijst of orderedWedstrijden; index as i">
+    <section id="expertise" class="toernooien">
+        <div class="container">
+            <h2 class="finale">Ronde {{i+1}}</h2>
+            <div class="row">
+                <div *ngFor="let wedstrijd of wedstrijdlijst" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+                    <div class="card shadow">
+                        <h4 class="title">{{wedstrijd.team1User1.naam}}</h4>
+                        <p class="vs">Vs</p>
+                        <h4 class="title">{{wedstrijd.team2User1.naam}}</h4>
+                        <mat-icon *ngIf="canEdit" class="delete" (click)="open(delete, wedstrijd.wedstrijdID)" aria-hidden="false" aria-label="Verwijder match">delete</mat-icon>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </section>
+</ng-container>
+<!--<section id="expertise" class="toernooien">
+    <div class="container">
+        <div class="section-title" data-aos="fade-left">
+            <h2>Wedstrijden</h2>
+        </div>
+
+        <h2 class="finale">8e Finale</h2>
+      <div class="row">
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+          <div class="card shadow">
+            <h4 class="title">Team 1</h4>
+            <p class="vs">Vs</p>
+            <h4 class="title">Team 2</h4>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+            <div class="card shadow">
+              <h4 class="title">Team 1</h4>
+              <p class="vs">Vs</p>
+              <h4 class="title">Team 2</h4>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+            <div class="card shadow">
+              <h4 class="title">Team 1</h4>
+              <p class="vs">Vs</p>
+              <h4 class="title">Team 2</h4>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+            <div class="card shadow">
+              <h4 class="title">Team 1</h4>
+              <p class="vs">Vs</p>
+              <h4 class="title">Team 2</h4>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+            <div class="card shadow">
+              <h4 class="title">Team 1</h4>
+              <p class="vs">Vs</p>
+              <h4 class="title">Team 2</h4>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+            <div class="card shadow">
+              <h4 class="title">Team 1</h4>
+              <p class="vs">Vs</p>
+              <h4 class="title">Team 2</h4>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+            <div class="card shadow">
+              <h4 class="title">Team 1</h4>
+              <p class="vs">Vs</p>
+              <h4 class="title">Team 2</h4>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+            <div class="card shadow">
+              <h4 class="title">Team 1</h4>
+              <p class="vs">Vs</p>
+              <h4 class="title">Team 2</h4>
+            </div>
+          </div>
+       </div>
+    </div>
+</section>
+
+  <section id="expertise" class="toernooien">
+    <div class="container">
+
+        <h2 class="finale">Kwart Finale</h2>
+      <div class="row">
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+            <div class="card shadow">
+            <h4 class="title">Team 1</h4>
+            <p class="vs">Vs</p>
+            <h4 class="title">Team 2</h4>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+            <div class="card shadow">
+              <h4 class="title">Team 1</h4>
+              <p class="vs">Vs</p>
+              <h4 class="title">Team 2</h4>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+            <div class="card shadow">
+              <h4 class="title">Team 1</h4>
+              <p class="vs">Vs</p>
+              <h4 class="title">Team 2</h4>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+            <div class="card shadow">
+              <h4 class="title">Team 1</h4>
+              <p class="vs">Vs</p>
+              <h4 class="title">Team 2</h4>
+            </div>
+          </div>
+       </div>
+    </div>
+  </section>
+  <section id="expertise" class="toernooien content-center">
+    <div class="container">
+      <h2 class="finale">Finale</h2>
+      <div class="row">
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+            <div class="card shadow">
+            <h4 class="title">Team 1</h4>
+            <p class="vs">Vs</p>
+            <h4 class="title">Team 2</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="expertise" class="toernooien content-center">
+    <div class="container">
+      <h2 class="finale">Winnaar</h2>
+      <div class="row">
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+            <div class="card shadow">
+            <h4 class="title">Team 1</h4>
+          </div>
+        </div>
+       </div>
+    </div>
+  </section>
+
+  <section id="expertise" class="toernooien content-center">
+    <div class="container">
+      <h2 class="finale">Halve Finale</h2>
+      <div class="row">
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+            <div class="card shadow">
+            <h4 class="title">Team 1</h4>
+            <p class="vs">Vs</p>
+            <h4 class="title">Team 2</h4>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 toernooibox">
+            <div class="card shadow">
+              <h4 class="title">Team 1</h4>
+              <p class="vs">Vs</p>
+              <h4 class="title">Team 2</h4>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>-->
 <ng-template #content let-modal>
     <div class="modal-header pb-0">
         <h4 class="modal-title" id="modal-basic-title">Nieuwe wedstrijd</h4>
