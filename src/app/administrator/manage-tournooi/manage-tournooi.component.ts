@@ -85,7 +85,7 @@ export class ManageTournooiComponent implements OnInit {
     if(this.wedstrijden != null && this.wedstrijden.length > 0){
       for(let i = 0; i < this.wedstrijden.length; i++){
         if(this.wedstrijden[i].matchContext.tournooiNiveau > 1 
-          || this.wedstrijden[i].bezig == true
+          || this.wedstrijden[i].bezig != Bezig.NogTeSpelen
           || this.wedstrijden[i].team1Score > 0
           || this.wedstrijden[i].team2Score > 0){
           this.canEdit = false;
