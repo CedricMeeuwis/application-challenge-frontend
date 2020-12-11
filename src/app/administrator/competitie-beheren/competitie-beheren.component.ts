@@ -78,6 +78,7 @@ export class CompetitieBeherenComponent implements OnInit {
     this.resetWedstrijden(competitie.competitieID)
     this.huidigeSpelers = this.gekozenCompetitie.participentAantal
     this.competitieID = this.gekozenCompetitie.competitieID
+    console.log(this.competitieID)
   }
 
   sendWedstrijd() {
@@ -99,7 +100,8 @@ export class CompetitieBeherenComponent implements OnInit {
         else {
 
           if (this.gekozenWedstrijd.wedstrijdID == 0) {
-            const matchContext = new MatchContext(0, 0, 0, null, null, null, this.competitieID);
+
+            let matchContext = new MatchContext(0,0,null,null,this.competitieID,null)
             this._administratorService.postMatchContext(matchContext).subscribe(res => {
               this.gekozenWedstrijd.matchContextID = res.matchContextID
               this._administratorService.postWedstrijd(this.gekozenWedstrijd).subscribe()
@@ -110,7 +112,6 @@ export class CompetitieBeherenComponent implements OnInit {
             console.log(this.gekozenWedstrijd)
               this._administratorService.updateWedstrijd(this.gekozenWedstrijd).subscribe()
           }
-          this.toonWedstrijden(this.competitieID)
         }
       }
     }
