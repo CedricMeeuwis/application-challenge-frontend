@@ -71,4 +71,8 @@ export class GebruikerService {
   updatePloeg(ploeg: Ploeg){
     return this.http.put<Ploeg>("https://localhost:44348/api/Ploeg/" + ploeg.ploegID, ploeg);
   }
+
+  betwistWedstrijd(wedstrijdID: number) {
+    return this.http.put<Wedstrijd>("https://localhost:44348/api/Wedstrijd/Betwist/" + wedstrijdID, null);
+  }
 }

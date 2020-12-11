@@ -14,12 +14,13 @@ import { Wedstrijd } from 'src/app/shared/models/wedstrijd';
 export class OverzichtWedstrijdenComponent implements OnInit {
   wedstrijden : Wedstrijd[];
   wedstrijd : Wedstrijd;
+  betwisteWedstrijd: Wedstrijd;
   userID : number;
   aantalSpellen : number;
   aantalWins : number;
   aantalVerloren: number;
   //aantalDraws : number;
-  aantalTournooien: number
+  aantalTournooien: number;
   winpercentage : number;
   constructor(private _gebruikerService : GebruikerService, private modalService: NgbModal) { }
 
@@ -41,5 +42,21 @@ export class OverzichtWedstrijdenComponent implements OnInit {
   open(content, wedstrijdID) {
     this.wedstrijd = {...this.wedstrijden.find(w => w.matchContextID == wedstrijdID)};
     this.modalService.open(content);
+  }
+
+  betwist(content, wedstrijd: Wedstrijd) {
+    this.betwisteWedstrijd = wedstrijd;
+    this.modalService.open(content);
+  }
+
+  betwistWedstrijd() {
+    this._gebruikerService.betwistWedstrijd(this.betwisteWedstrijd.wedstrijdID).subscribe(
+      result => console.log(result),
+      err => console.log(err),
+      () => {
+        this.wedstrijden.splice(this.wedstrijden.indexOf(this.betwisteWedstrijd), 1)
+        this.betwisteWedstrijd = null;
+      }
+    );
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Challenge } from 'src/app/shared/models/challenge';
 import { Ploeg } from 'src/app/shared/models/ploeg';
@@ -21,7 +22,7 @@ export class PloegDetailsComponent implements OnInit {
   uitgedaagdePloegID: string;
   stats: Object;
 
-  constructor(private _gebruikerService: GebruikerService, private modalService: NgbModal) {
+  constructor(private _gebruikerService: GebruikerService, private modalService: NgbModal, private router: Router) {
     this._gebruikerService.getMijnPloeg().subscribe(
       result => this.ploeg = result,
       error => console.log(error),
@@ -103,7 +104,7 @@ export class PloegDetailsComponent implements OnInit {
   }
 
   openStats() {
-    console.log("WIP");
+    this.router.navigate(['statistieken']);
   }
 
   ngOnInit(): void {

@@ -23,6 +23,7 @@
                 <th>Tafelsituering</th>
                 <th>Tournooi</th>
                 <th>Info</th>
+                <th>Conflict</th>
             </tr>
             </thead>
             <tbody>
@@ -54,6 +55,9 @@
                 </td>
                 <td>
                     <a class="info" (click)="open(content, wedstrijd.matchContextID)"><i class="material-icons" data-toggle="tooltip" title="Info">&#xE88E;</i></a>
+                </td>
+                <td>
+                    <a class="edit" (click)="betwist(report, wedstrijd)"><i class="material-icons" data-toggle="tooltip" title="Meld probleem">report_problem</i></a>
                 </td>
                 </tr>
             </tbody>
@@ -123,5 +127,25 @@
         <p>Tafel: {{wedstrijd.tafel.naam}}</p>
         <p>bedrijf tafel: {{wedstrijd.tafel.bedrijfsnaam}}</p>
         <p>adres: {{wedstrijd.tafel.adres}}</p>
+    </div>
+</ng-template>
+
+<ng-template #report let-modal>
+    <div class="modal-header pb-0">
+      <h4 class="modal-title" id="modal-basic-title">Melden aan administrator</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <h2>Betwisting openen</h2>
+        <p>Ben je zeker dat je de uitslag van deze match wil betwisten?</p>
+    </div>
+    <div class="modal-footer pb-1">
+        <button type="button" ngbAutofocus class="btn btn-outline-secondary"
+            (click)="modal.dismiss('cancel click')">annuleer</button>
+        <form #reportForm="ngForm" (ngSubmit)="betwistWedstrijd()">
+            <button type="submit" class="btn btn-warning" (click)="modal.close('Ok click')">Rapporteer</button>
+        </form>
     </div>
 </ng-template>
