@@ -19,12 +19,15 @@ import { SignUpComponent } from './security/sign-up/sign-up.component';
 import { WedstrijdBezigNietGestartComponent } from './gebruiker/wedstrijd-bezig-niet-gestart/wedstrijd-bezig-niet-gestart.component';
 import { AdminDashboardComponent } from './administrator/admin-dashboard/admin-dashboard.component';
 
+import {AdminGuard} from './security/guards/admin/admin.guard';
+import {KapiteinGuard} from './security/guards/kapitein/kapitein.guard';
+
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'login', component: SecurityComponent},
-  {path: 'admin/dashboard', component: AdminDashboardComponent},
+  {path: 'admin/dashboard', component: AdminDashboardComponent, canActivate: [AdminGuard]},
   {path: 'admin/ploegen', component: PloegenBeherenComponent},
   {path: 'admin/gebruikers', component: GebruikersComponent},
   {path: 'admin/tournooien', component: TournooiBeheerComponent},
