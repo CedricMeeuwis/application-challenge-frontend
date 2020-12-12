@@ -65,28 +65,33 @@
                 <form #registerForm="ngForm" (ngSubmit)="sendWedstrijd()">
                     <p>Tafel:
                         <select [(ngModel)]="gekozenWedstrijd.tafelID" class="form-control" name="user">
+                            <option [ngValue]=0>geen</option>
                             <option *ngFor="let tafel of tafels" [ngValue]="tafel.tafelID">{{tafel.naam}}</option>
                         </select>
                     </p>
                     <p>Team 1 Speler 1:
                         <select [(ngModel)]="gekozenWedstrijd.team1User1ID" class="form-control" name="user">
+                            <option [ngValue]=0>geen</option>
                             <option *ngFor="let speler of spelers" [ngValue]="speler.userID">{{speler.naam}}</option>
                         </select>
                     </p>
                     <p>Team 2 Speler 1:
                         <select [(ngModel)]="gekozenWedstrijd.team2User1ID" class="form-control" name="user">
+                            <option [ngValue]=0>geen</option>
                             <option *ngFor="let speler of spelers" [ngValue]="speler.userID">{{speler.naam}}</option>
                         </select>
                     </p>
                     <div *ngIf="huidigeSpelers == 2">
                         <p>Team 1 Speler 2:
                             <select [(ngModel)]="gekozenWedstrijd.team1User2ID" class="form-control" name="user">
+                                <option [ngValue]=0>geen</option>
                                 <option *ngFor="let speler of spelers" [ngValue]="speler.userID">{{speler.naam}}
                                 </option>
                             </select>
                         </p>
                         <p>Team 2 Speler 2:
                             <select [(ngModel)]="gekozenWedstrijd.team2User2ID" class="form-control" name="user">
+                                <option [ngValue]=0>geen</option>
                                 <option *ngFor="let speler of spelers" [ngValue]="speler.userID">{{speler.naam}}
                                 </option>
                             </select>
