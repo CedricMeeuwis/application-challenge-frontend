@@ -78,13 +78,13 @@ export class CompetitieBeherenComponent implements OnInit {
     this.resetWedstrijden(competitie.competitieID)
     this.huidigeSpelers = this.gekozenCompetitie.participentAantal
     this.competitieID = this.gekozenCompetitie.competitieID
-    console.log(this.competitieID)
   }
 
   sendWedstrijd() {
-    if ((this.gekozenWedstrijd.team1User2ID == null || this.gekozenWedstrijd.team2User2ID == null) && this.huidigeSpelers == 2) {
+    if ((this.gekozenWedstrijd.team1User2ID == 0 || this.gekozenWedstrijd.team2User2ID == 0) && this.huidigeSpelers == 2) {
       alert("gelieve 2 spelers in te geven per team voor een wedstrijd met 2 spelers.")
     } else {
+
       if (this.gekozenWedstrijd.tafelID == 0 || this.gekozenWedstrijd.team1User1ID == 0 || this.gekozenWedstrijd.team2User1ID == 0) {
         alert("Zowel tafel als de eerste speler in beide teams moeten ingevuld zijn.")
       }
@@ -99,18 +99,29 @@ export class CompetitieBeherenComponent implements OnInit {
         }
         else {
 
+          if(this.huidigeSpelers == 1)
+          {
+            this.gekozenWedstrijd.team1User2ID = null
+            this.gekozenWedstrijd.team2User2ID = null
+          }
+
           if (this.gekozenWedstrijd.wedstrijdID == 0) {
 
             let matchContext = new MatchContext(0,0,null,null,this.competitieID,null)
             this._administratorService.postMatchContext(matchContext).subscribe(res => {
               this.gekozenWedstrijd.matchContextID = res.matchContextID
-              this._administratorService.postWedstrijd(this.gekozenWedstrijd).subscribe()
+              this._administratorService.postWedstrijd(this.gekozenWedstrijd).subscribe(() =>
+              {
+                this.resetWedstrijden(this.gekozenCompetitie.competitieID)
+              })
 
             })
           }else
           {
-            console.log(this.gekozenWedstrijd)
-              this._administratorService.updateWedstrijd(this.gekozenWedstrijd).subscribe()
+              this._administratorService.updateWedstrijd(this.gekozenWedstrijd).subscribe(() =>
+              {
+                this.resetWedstrijden(this.gekozenCompetitie.competitieID)
+              })
           }
         }
       }
@@ -118,10 +129,14 @@ export class CompetitieBeherenComponent implements OnInit {
   }
 
   openWedstrijd(content, wedstrijd?) {
-    this.gekozenWedstrijd = new Wedstrijd(0, 0, 0, false, 0, 0, null, null, null, 0, null, null, null, 0, null, 0);
+    this.gekozenWedstrijd = new Wedstrijd(0, 0, 0, false, 0, 0, null, 0, null, 0, null, 0, null, 0, null, 0);
     if (wedstrijd) {
+      wedstrijd.tafelID = 0
+      wedstrijd.team1User1ID = 0
+      wedstrijd.team2User1ID = 0
+      wedstrijd.team1User2ID = 0
+      wedstrijd.team2User2ID = 0
       this.gekozenWedstrijd = wedstrijd;
-      console.log(this.gekozenWedstrijd)
     }
     this.modalService.open(content)
   }
@@ -129,6 +144,8 @@ export class CompetitieBeherenComponent implements OnInit {
   deleteWedstrijd(wedstrijd: Wedstrijd) {
     this._administratorService.deleteWedstrijd(wedstrijd.wedstrijdID).subscribe(() => {
       this._administratorService.deleteMatchContext(wedstrijd.matchContextID).subscribe(() => {
+        this.resetWedstrijden(this.gekozenCompetitie.competitieID)
+      }, () =>{
         this.resetWedstrijden(this.gekozenCompetitie.competitieID)
       })
     })
