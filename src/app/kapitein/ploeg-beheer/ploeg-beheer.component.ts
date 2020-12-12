@@ -48,7 +48,10 @@ export class PloegBeheerComponent implements OnInit {
   }
 
   updatePloeg() {
-    
+    this._kapiteinService.updatePloeg(this.ploeg).subscribe(
+      result => console.log(result),
+      err => console.log(err)
+    );
   }
 
   addLid() {

@@ -24,14 +24,18 @@ export class KapiteinService {
   }
 
   addLid(userID: number) : Observable<User[]>{
-    return this.http.put<User[]>("https://localhost:44348/api/User/AddToMyTeam?userID="+ userID, null);
+    return this.http.put<User[]>("https://localhost:44348/api/User/AddToMyTeam?userID=" + userID, null);
   }
 
   removeLid(userID: number) : Observable<User[]>{
-    return this.http.put<User[]>("https://localhost:44348/api/User/RemoveFromMyTeam?userID="+ userID, null);
+    return this.http.put<User[]>("https://localhost:44348/api/User/RemoveFromMyTeam?userID=" + userID, null);
   }
 
   setKapitein(userID: number) : Observable<User[]>{
-    return this.http.put<User[]>("https://localhost:44348/api/User/SetKapiteinOfMyTeam?userID="+ userID, null);
+    return this.http.put<User[]>("https://localhost:44348/api/User/SetKapiteinOfMyTeam?userID=" + userID, null);
+  }
+
+  updatePloeg(ploeg: Ploeg) : Observable<Ploeg>{
+    return this.http.put<Ploeg>("https://localhost:44348/api/Ploeg/" + ploeg.ploegID, ploeg);
   }
 }
