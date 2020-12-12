@@ -2,11 +2,11 @@
     <div class="container">
 
         <div class="section-title" data-aos="fade-left">
-            <h2 *ngIf="!ploeg">Mijn ploeg</h2>
+            <h2 *ngIf="!ploeg">Geen ploeg</h2>
             <h2 *ngIf="ploeg">{{ploeg.naam}}</h2>
         </div>
         <!-- Info Row -->
-        <div class="row">
+        <div class="row" *ngIf="ploeg">
             <!-- Ploegleden list -->
             <div class="col-sm-12 col-md-4" *ngIf="ploeg">
                 <div class="table-wrapper">
@@ -67,7 +67,7 @@
         </div>
 
         <!-- Button Row -->
-        <div class="row mt-5">
+        <div class="row mt-5" *ngIf="ploeg">
             <div class="col-12 text-center justify-self-center">
                 <button class="btn btn-primary" (click)="openStats()" class="btn btn-success" data-toggle="modal">
                     <span>Meer stats</span>
@@ -76,8 +76,8 @@
         </div>
 
         <!-- Challenge Row -->
-        <div class="row mt-5">
-            <div class="col-12" *ngIf="ploeg">
+        <div class="row mt-5" *ngIf="ploeg">
+            <div class="col-12">
                 <div class="table-wrapper">
                     <div class="table-title">
                         <div class="row">
@@ -168,20 +168,5 @@
                     [disabled]="!challengeForm.form.valid">Stuur challenge</button>
             </div>
         </form>
-    </div>
-</ng-template>
-
-<!-- Modal to challenge a team -->
-<ng-template #response let-modal>
-    <div class="modal-header pb-0">
-        <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <p>
-            {{message}}
-        </p>
     </div>
 </ng-template>

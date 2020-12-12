@@ -7,6 +7,7 @@ import { GebruikersComponent } from './administrator/gebruikers/gebruikers.compo
 import { TournooiBeheerComponent } from './administrator/tournooi-beheer/tournooi-beheer.component';
 import { TafelsLijstComponent } from './administrator/tafels-lijst/tafels-lijst.component';
 import { PloegDetailsComponent } from './gebruiker/ploeg-details/ploeg-details.component';
+import { PloegBeheerComponent } from './kapitein/ploeg-beheer/ploeg-beheer.component';
 
 import { SecurityComponent } from './security/security/security.component';
 import { ManageTournooiComponent } from './administrator/manage-tournooi/manage-tournooi.component';
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path: 'admin/tafels', component: TafelsLijstComponent},
   {path: 'admin/competities', component: CompetitieBeherenComponent},
   {path: 'ploeg-details', component: PloegDetailsComponent},
+  {path: 'kapitein/ploeg-beheer', component: PloegBeheerComponent},
   {path: 'statistieken', component: OverzichtWedstrijdenComponent},
   {path: 'wedstrijdenBezigNietGestart', component: WedstrijdBezigNietGestartComponent},
   {path: 'betwisting', component: BetwistingComponent}
