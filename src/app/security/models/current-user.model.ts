@@ -3,8 +3,8 @@ export class CurrentUser {
         //Nodige informatie
         public email: string,
         public naam: string, 
-        public isAdmin : boolean,
-        public isKapitein: boolean,
+        public isAdmin : string,
+        public isKapitein: string,
         public userID?: number,
         public ploegID?: number,
     ){}

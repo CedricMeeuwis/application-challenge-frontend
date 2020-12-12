@@ -30,7 +30,7 @@ export class UserInformationService {
 
         const stringIsAdmin = userInfo.IsAdmin;
 
-        if (stringIsAdmin == "True") {
+        if (stringIsAdmin === "True") {
           this.isAdmin = true;
         } else {
           this.isAdmin = false;
@@ -38,13 +38,13 @@ export class UserInformationService {
 
         const stringIsKapitein = userInfo.IsKapitein;
 
-        if (stringIsKapitein == "True") {
+        if (stringIsKapitein === "True") {
           this.isKapitein = true;
         } else {
           this.isKapitein = false;
         }
 
-        this.user = new CurrentUser(userInfo.Email, userInfo.Naam, this.isAdmin, this.isKapitein, userID, ploegID);
+        this.user = new CurrentUser(userInfo.Email, userInfo.Naam, stringIsAdmin, stringIsKapitein, userID, ploegID);
         _callback(this.user as CurrentUser);
 
       }.bind(this), 0);

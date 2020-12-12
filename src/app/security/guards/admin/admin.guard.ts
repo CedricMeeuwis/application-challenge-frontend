@@ -12,6 +12,7 @@ export class AdminGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+      localStorage.setItem("guard", JSON.stringify(this._roleauthenticationService.isAdmin()));
     if (this._roleauthenticationService.isAdmin()){
       return true;
     } else {
