@@ -18,7 +18,7 @@ export class RoleAuthenticateService {
   }
 
   getInfo() {
-    if (localStorage.getItem("token") !=null){
+    if (localStorage.getItem("token") != null) {
 
       this._userInformationService.getUserInfo((currentUser: CurrentUser) => {
         this.user = currentUser;
@@ -28,9 +28,7 @@ export class RoleAuthenticateService {
   }
 
   isLoggedIn() {
-    if (localStorage.getItem("token") !=null && this.info==true){
-
-      
+    if (localStorage.getItem("token") != null && this.info == true) {
       return true;
     } else {
       return false;
@@ -38,21 +36,9 @@ export class RoleAuthenticateService {
   }
 
   isAdmin() {
-    if (localStorage.getItem("token") !=null){
-
-      this._userInformationService.getUserInfo((currentUser: CurrentUser) => {
-        this.user = currentUser;
-        this.info = true;
-
-        if (this.user.isAdmin == true) {
-          console.log(this.user.isAdmin);
-          this.administrator == true;
-        } else {
-          this.administrator == false;
-        }
-      });
-
-      if(this.administrator  == true){
+    if (localStorage.getItem("token") != null) {
+      if (this.user.isAdmin == true) {
+        console.log(this.user.isAdmin);
         return true;
       } else {
         return false;
@@ -61,9 +47,8 @@ export class RoleAuthenticateService {
   }
 
   isKapitein() {
-    if (this.isLoggedIn) {
-      const kapitein = this.user.isKapitein;
-      if (kapitein == true) {
+    if (localStorage.getItem("token") != null) {
+      if (this.user.isKapitein == true) {
         return true;
       } else {
         return false;
