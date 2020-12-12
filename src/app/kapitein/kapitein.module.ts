@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { KapiteinService } from './kapitein.service'
+import { KapiteinService } from './kapitein.service';
+import { KapiteinDashboardComponent } from './kapitein-dashboard/kapitein-dashboard.component'
+import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [KapiteinDashboardComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
   ],
   providers: [KapiteinService]
 })

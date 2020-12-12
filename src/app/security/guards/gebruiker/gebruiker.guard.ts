@@ -6,15 +6,15 @@ import { RoleAuthenticateService } from '../../services/role-authenticate.servic
 @Injectable({
   providedIn: 'root'
 })
-export class KapiteinGuard implements CanActivate {
+export class GebruikerGuard implements CanActivate {
   constructor(private _roleauthenticationService: RoleAuthenticateService, private router: Router) { }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this._roleauthenticationService.isKapitein()){
-        return true;
-      } else {
-        this.router.navigate(['']);
-      }
+    if (this._roleauthenticationService.isLoggedIn()) {
+      return true;
+    } else {
+      this.router.navigate(['']);
+    }
   }
 }

@@ -41,9 +41,9 @@ export class SecurityComponent implements OnInit {
         if (this._roleAuthenticateService.isAdmin()) {
           this.router.navigate(['/admin/dashboard']);
         } else if (this._roleAuthenticateService.isKapitein()) {
-          this.router.navigate(['/admin/dashboard']);
-        } else {
-          this.router.navigate(['']);
+          this.router.navigate(['/kapitein/dashboard']);
+        } else if (this._roleAuthenticateService.isUser()){
+          this.router.navigate(['/gebruiker/dashboard']);
         }
       });
     });

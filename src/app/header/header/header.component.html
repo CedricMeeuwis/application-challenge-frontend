@@ -23,6 +23,9 @@
       <li class="nav-item active" *ngIf="roleAuthenticateService.isUser()">
         <a class="nav-link" routerLink="/gebruiker/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
       </li>
+      <li class="nav-item active" *ngIf="roleAuthenticateService.isKapitein()">
+        <a class="nav-link" routerLink="/kapitein/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+      </li>
       <li class="nav-item active" *ngIf="roleAuthenticateService.isAdmin()">
         <a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
       </li>

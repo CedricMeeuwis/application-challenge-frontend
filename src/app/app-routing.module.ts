@@ -22,6 +22,7 @@ import {GebruikerDashboardComponent} from './gebruiker/gebruiker-dashboard/gebru
 
 import {AdminGuard} from './security/guards/admin/admin.guard';
 import {KapiteinGuard} from './security/guards/kapitein/kapitein.guard';
+import { KapiteinDashboardComponent } from './kapitein/kapitein-dashboard/kapitein-dashboard.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
   {path: 'gebruiker/ploeg', component: PloegDetailsComponent},
   {path: 'gebruiker/statistieken', component: OverzichtWedstrijdenComponent},
   {path: 'gebruiker/wedstrijden', component: WedstrijdBezigNietGestartComponent},
+  {path: 'kapitein/dashboard', component: KapiteinDashboardComponent},
 
 
 ];
