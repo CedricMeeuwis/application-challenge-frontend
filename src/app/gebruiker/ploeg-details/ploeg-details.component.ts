@@ -104,7 +104,7 @@ export class PloegDetailsComponent implements OnInit {
   }
 
   openStats() {
-    this.router.navigate(['statistieken']);
+    this.router.navigate(['gebruiker/statistieken']);
   }
 
   ngOnInit(): void {

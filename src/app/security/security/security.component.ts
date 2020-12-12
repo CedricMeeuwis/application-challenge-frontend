@@ -39,15 +39,11 @@ export class SecurityComponent implements OnInit {
         this.user = currentUser;
 
         if (this._roleAuthenticateService.isAdmin()) {
-          console.log(this.admin);
-          console.log(this._roleAuthenticateService.isAdmin())
           this.router.navigate(['/admin/dashboard']);
-        } else if (this._roleAuthenticateService.isAdmin()) {
-          console.log(this.admin);
-          console.log(this._roleAuthenticateService.isAdmin())
-          this.router.navigate(['/admin/dashboard']);
-        } else {
-          this.router.navigate(['']);
+        } else if (this._roleAuthenticateService.isKapitein()) {
+          this.router.navigate(['/kapitein/dashboard']);
+        } else if (this._roleAuthenticateService.isUser()){
+          this.router.navigate(['/gebruiker/dashboard']);
         }
       });
     });

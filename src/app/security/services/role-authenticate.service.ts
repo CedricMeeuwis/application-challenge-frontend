@@ -45,7 +45,6 @@ export class RoleAuthenticateService {
       if (this.info == true) {
 
         if (this.user.isAdmin == "True") {
-          console.log(this.user.isAdmin);
           return true;
         } else {
           return false;
@@ -64,7 +63,25 @@ export class RoleAuthenticateService {
       if (this.info == true) {
 
         if (this.user.isKapitein == "True") {
-          console.log(this.user.isKapitein);
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  }
+
+
+  isUser() {
+    if (localStorage.getItem("token")) {
+      this._userInformationService.getUserInfo((currentUser: CurrentUser) => {
+        this.user = currentUser;
+        this.info = true;
+      });
+
+      if (this.info == true) {
+
+        if (this.user.isAdmin == "False" && this.user.isKapitein == "False") {
           return true;
         } else {
           return false;

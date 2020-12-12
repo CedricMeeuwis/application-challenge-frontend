@@ -93,7 +93,7 @@ export class AdministratorService {
   }
 
   getWedstrijdenVanTournooi(id): Observable<Wedstrijd[]>{
-    let _output = this.http.get<Wedstrijd[]>(this.wedstrijdUrl + "/Competitie/" + id);
+    let _output = this.http.get<Wedstrijd[]>(this.wedstrijdUrl + "/Tournooi/" + id);
     this.refreshWedstrijden(_output);
     return _output;
   }
@@ -101,6 +101,7 @@ export class AdministratorService {
   postWedstrijd(wedstrijd): Observable<Wedstrijd>{
     return this.http.post<Wedstrijd>(this.wedstrijdUrl, wedstrijd);
   }
+  
   deleteWedstrijd(id): Observable<Wedstrijd>{
     return this.http.delete<Wedstrijd>(this.wedstrijdUrl + "/" + id);
   }
