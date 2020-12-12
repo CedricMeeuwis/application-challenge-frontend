@@ -27,22 +27,22 @@
         <a class="nav-link" routerLink="/statistieken" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Statistieken</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/betwisting" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Betwistingen oplossen</a>
-      </li>
-      <li class="nav-item active">
         <a class="nav-link" routerLink="/wedstrijdenBezigNietGestart" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Wedstrijden die bezig of niet gestart zijn</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item active" *ngIf="roleAuthenticateService.isUser()">
+        <a class="nav-link" routerLink="/gebruiker/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+      </li>
+      <li class="nav-item active" *ngIf="roleAuthenticateService.isAdmin()">
         <a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item active" *ngIf="!roleAuthenticateService.isLoggedIn()">
         <a class="nav-link" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item active" *ngIf="!roleAuthenticateService.isLoggedIn()">
         <a class="nav-link" routerLink="/sign-up" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Registreer</a>
       </li>
       <li class="nav-item active"  *ngIf="roleAuthenticateService.isLoggedIn()">
-        <a class="nav-link" (click)="logout()">Logout</a>
+        <a class="nav-link"(click)="logout()" routerLinkActive="active">Logout</a>
       </li>
     </ul>
   </div>

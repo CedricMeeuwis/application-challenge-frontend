@@ -8,8 +8,8 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-<div class="container h-100">
-        <div class="d-flex justify-content-center h-100">
+<div class="container h-150">
+        <div class="d-flex justify-content-center h-150">
                 <div class="user_card">
                         <div class="d-flex justify-content-center">
                                 <div class="brand_logo_container">
@@ -23,7 +23,7 @@
                                                         <span class="input-group-text"><i
                                                                         class="fas fa-user"></i></span>
                                                 </div>
-                                                <input placeholder="email" type="text" required
+                                                <input placeholder="email" type="email" required
                                                         [(ngModel)]="userLogin.email" name="email"
                                                         placeholder=" Email" />
                                         </div>
@@ -31,12 +31,12 @@
                                                 <div class="input-group-append">
                                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                                                 </div>
-                                                <input placeholder="password" type="text" required
+                                                <input placeholder="password" type="password" required
                                                         [(ngModel)]="userLogin.passwoord" name="passwoord"
                                                         placeholder="Wachtwoord" />
                                         </div>
                                         <div class="d-flex justify-content-center mt-3 login_container">
-                                                <button color="submit" type="submit"
+                                                <button class="btn login_btn" type="submit"
                                                         [disabled]="!registerForm.form.valid">Login</button>
                                         </div>
                                 </form>
