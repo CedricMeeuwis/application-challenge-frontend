@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RoleAuthenticateService } from 'src/app/security/services/role-authenticate.service';
 import { AuthenticateService } from '../../security/services/authenticate.service';
 
 @Component({
@@ -9,15 +10,19 @@ import { AuthenticateService } from '../../security/services/authenticate.servic
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router, private _authenticateService: AuthenticateService) { }
+  constructor(private router: Router, private _roleAuthenticateService: RoleAuthenticateService) { }
 
   ngOnInit(): void {
   }
   direct(){
-    if(this._authenticateService.isLoggedIn()){
+    if(!this._roleAuthenticateService.isLoggedIn()){
       this.router.navigate(["login"]);
-    }else{
-      this.router.navigate(["wedstrijde"]);
+    }else if (this._roleAuthenticateService.isAdmin()){
+      this.router.navigate(["admin/dashboard"]);
+    } else if (this._roleAuthenticateService.isKapitein()){
+      this.router.navigate(["kapitein/dashboard"]);
+    } else if (this._roleAuthenticateService.isUser()){
+      this.router.navigate(["user/dashboard"]);
     }
   }
 

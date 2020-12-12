@@ -10,7 +10,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:  #415A77;">
   <a class="navbar-brand headerTitle" href="/">Soccer</a>
   <span class="nav-item">
-    <a class="nav-link">Welkom!</a>
+    <a class="nav-link">Welkom {{roleAuthenticateService.user.naam}}!</a>
   </span>
   <button class="navbar-toggler" type="button" (click)="toggleNavbar()"  data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -19,15 +19,6 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
         <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/ploeg-details" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Mijn Ploeg</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/statistieken" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Statistieken</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/wedstrijdenBezigNietGestart" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Wedstrijden die bezig of niet gestart zijn</a>
       </li>
       <li class="nav-item active" *ngIf="roleAuthenticateService.isUser()">
         <a class="nav-link" routerLink="/gebruiker/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
