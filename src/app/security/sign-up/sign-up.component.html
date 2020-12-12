@@ -36,8 +36,8 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user-edit"></i></span>
                         </div>                      
-                        <input matInput [matDatepicker]="picker" class="form-control" [max]="now" [(ngModel)]="gebruiker.geboortedatum" placeholder="Geboortedatum" name="geboortedatum" disabled>
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <input matInput [matDatepicker]="picker" class="col" [max]="now" [(ngModel)]="gebruiker.geboortedatum" placeholder="Geboortedatum" name="geboortedatum" disabled>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker  #picker disabled="false"></mat-datepicker>
                     </div>
                     <div class="input-group mb-3">
