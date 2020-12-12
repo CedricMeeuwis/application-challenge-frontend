@@ -28,7 +28,7 @@ export class RoleAuthenticateService {
   }
 
   isLoggedIn() {
-    if (localStorage.getItem("token") != null && this.info == true) {
+    if (localStorage.getItem("token") != null) {
       return true;
     } else {
       return false;
@@ -49,6 +49,16 @@ export class RoleAuthenticateService {
   isKapitein() {
     if (localStorage.getItem("token") != null) {
       if (this.user.isKapitein == true) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  isUser() {
+    if (localStorage.getItem("token") != null) {
+      if (this.user.isAdmin == false && this.user.isKapitein == false) {
         return true;
       } else {
         return false;

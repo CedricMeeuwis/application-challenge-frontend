@@ -30,7 +30,10 @@ export class SecurityComponent implements OnInit {
     ''
       this._userInformationService.getUserInfo((currentUser: CurrentUser) => {
         console.log(currentUser);
-        if (this._roleAuthenticateService.isAdmin()) {
+        if (this._roleAuthenticateService.isUser()) {
+          console.log('')
+          this.router.navigate(['']);
+        } else if (this._roleAuthenticateService.isAdmin()) {
           console.log("login")
           this.router.navigate(['/admin/dashboard']);
         } else if (this._roleAuthenticateService.isKapitein()) {

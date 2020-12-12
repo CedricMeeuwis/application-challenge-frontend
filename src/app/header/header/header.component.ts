@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { RoleAuthenticateService } from 'src/app/security/services/role-authenticate.service';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    public roleAuthenticateService: RoleAuthenticateService,
+  ) { }
 
   navbarOpen = false;
 
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['']);
   }
 
   ngOnInit(): void {
