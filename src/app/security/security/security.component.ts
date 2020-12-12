@@ -25,16 +25,14 @@ export class SecurityComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit() {
+    localStorage.clear();
     this._authenticateService.authenticate(this.userLogin).subscribe(result => {
       localStorage.setItem("token", result.token);
-    ''
       this._userInformationService.getUserInfo((currentUser: CurrentUser) => {
         console.log(currentUser);
         if (this._roleAuthenticateService.isUser()) {
-          console.log('')
           this.router.navigate(['']);
         } else if (this._roleAuthenticateService.isAdmin()) {
-          console.log("login")
           this.router.navigate(['/admin/dashboard']);
         } else if (this._roleAuthenticateService.isKapitein()) {
           this.router.navigate(['/kapitein/dashboard'])
