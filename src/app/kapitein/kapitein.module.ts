@@ -7,13 +7,12 @@ import { KapiteinDashboardComponent } from './kapitein-dashboard/kapitein-dashbo
 import { RouterModule } from '@angular/router';
 
 
-
-
 @NgModule({
   declarations: [KapiteinDashboardComponent, PloegBeheerComponent],
   imports: [
     CommonModule,
     RouterModule,
+    SharedModule
   ],
   providers: [KapiteinService]
 })
