@@ -1,69 +1,77 @@
 <section id="statistieken">
     <div class="container">
-        <div class="section-title" data-aos="fade-left">
-            <h2>Statistieken</h2>
+        <div *ngIf="aantalSpellen==0; else notEmpty">
+            <div class="section-title" data-aos="fade-left">
+                <h2>Statistieken</h2>
+            </div>
+            <h2 class="text-center ">Nog geen gespeelde wedstrijden om weer te geven!</h2>        
         </div>
-        <div>
-        </div>
-        <p>aantal gespeelde wedstrijden: {{aantalSpellen}}, aantal gewonnen: {{aantalWins}}, aantal verloren: {{aantalVerloren}}, winpercentage: {{winpercentage}}% | aantal gespeelde tournooien: {{aantalTournooien}}</p>
-        <div class="table-responsive">
-            <div class="table-wrapper">
-                <div class="table-title">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h4>Gespeelde Wedstrijden</h4>
+        <ng-template #notEmpty>
+            <div class="section-title" data-aos="fade-left">
+                <h2>Statistieken</h2>
+            </div>
+            <p>aantal gespeelde wedstrijden: {{aantalSpellen}}, aantal gewonnen: {{aantalWins}}, aantal verloren: {{aantalVerloren}}, winpercentage: {{winpercentage}}% | aantal gespeelde tournooien: {{aantalTournooien}}</p>
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4>Gespeelde Wedstrijden</h4>
+                            </div>
                         </div>
                     </div>
+                    <table class="table table-hover text-center">
+                        <thead>
+                        <tr>
+                            <th>Score</th>
+                            <th>Tegenstander</th>
+                            <th>Tafelsituering</th>
+                            <th>Tournooi</th>
+                            <th>Info</th>
+                            <th>Conflict</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let wedstrijd of wedstrijden">
+                                <td>
+                                    <div *ngIf="wedstrijd.team1User1ID == userID || wedstrijd.team1User2ID == userID; else elseDiv">
+                                        {{wedstrijd.team1Score}} - {{wedstrijd.team2Score}}
+                                    </div>
+                                    <ng-template #elseDiv>
+                                        {{wedstrijd.team2Score}} - {{wedstrijd.team1Score}}
+                                    </ng-template>
+                                </td>
+                                <td>
+                                    <div *ngIf="wedstrijd.team1User1ID == userID; else elseDiv2">
+                                        {{wedstrijd.team2User1.ploeg.naam}}
+                                    </div>
+                                    <ng-template #elseDiv2>
+                                        {{wedstrijd.team1User1.ploeg.naam}}
+                                    </ng-template>  
+                                </td>
+                                <td>{{wedstrijd.tafel.bedrijfsnaam}}</td>
+                                <td>
+                                    <div *ngIf="wedstrijd.matchContext.tournooi; else elseDiv3">
+                                        {{wedstrijd.matchContext.tournooi.naam}}
+                                    </div>
+                                    <ng-template #elseDiv3>
+                                        /
+                                    </ng-template>  
+                                </td>
+                                <td>
+                                    <a class="info" (click)="open(content, wedstrijd.matchContextID)"><i class="material-icons" data-toggle="tooltip" title="Info">&#xE88E;</i></a>
+                                </td>
+                                <td>
+                                    <a class="edit" (click)="betwist(report, wedstrijd)"><i class="material-icons" data-toggle="tooltip" title="Meld probleem">report_problem</i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <table class="table table-hover text-center">
-            <thead>
-            <tr>
-                <th>Score</th>
-                <th>Tegenstander</th>
-                <th>Tafelsituering</th>
-                <th>Tournooi</th>
-                <th>Info</th>
-                <th>Conflict</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let wedstrijd of wedstrijden" class="">
-                <td>
-                    <div *ngIf="wedstrijd.team1User1ID == userID || wedstrijd.team1User2ID == userID; else elseDiv">
-                        {{wedstrijd.team1Score}} - {{wedstrijd.team2Score}}
-                    </div>
-                    <ng-template #elseDiv>
-                        {{wedstrijd.team2Score}} - {{wedstrijd.team1Score}}
-                    </ng-template>
-                </td>
-                <td>
-                    <div *ngIf="wedstrijd.team1User1ID == userID; else elseDiv2">
-                        {{wedstrijd.team2User1.ploeg.naam}}
-                    </div>
-                    <ng-template #elseDiv2>
-                        {{wedstrijd.team1User1.ploeg.naam}}
-                    </ng-template>  
-                </td>
-                <td>{{wedstrijd.tafel.bedrijfsnaam}}</td>
-                <td>
-                    <div *ngIf="wedstrijd.matchContext.tournooi; else elseDiv3">
-                        {{wedstrijd.matchContext.tournooi.naam}}
-                    </div>
-                    <ng-template #elseDiv3>
-                        /
-                    </ng-template>  
-                </td>
-                <td>
-                    <a class="info" (click)="open(content, wedstrijd.matchContextID)"><i class="material-icons" data-toggle="tooltip" title="Info">&#xE88E;</i></a>
-                </td>
-                <td>
-                    <a class="edit" (click)="betwist(report, wedstrijd)"><i class="material-icons" data-toggle="tooltip" title="Meld probleem">report_problem</i></a>
-                </td>
-                </tr>
-            </tbody>
-        </table>
+            </div>
+        </ng-template>
     </div>
-</div>
+</section>
 
 <!-- modals voor CRUD -->
 <ng-template #content let-modal>

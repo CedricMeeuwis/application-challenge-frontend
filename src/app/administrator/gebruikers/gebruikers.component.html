@@ -77,10 +77,10 @@
             </p>
             <div> Geboortedatum: 
                 <div class="input-group">
-                    <input class="form-control" placeholder="werkt niet"
-                           name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
+                    <input matInput [matDatepicker]="picker" [max]="now" class="form-control" [(ngModel)]="gebruiker.geboortedatum" name="geboortedatum" disabled>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <div class="input-group-append">
-                      <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">Open</button>
+                        <mat-datepicker #picker disabled="false"></mat-datepicker>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ploeg } from 'src/app/shared/models/ploeg';
 import { User } from 'src/app/shared/models/user';
@@ -20,6 +20,8 @@ export class GebruikersComponent implements OnInit {
   gebruiker : User;
   userID : Number;
   datum;
+  @Input() max: any;
+  now = new Date();
   //gekozenPloeg : number;
   constructor(private _route: ActivatedRoute, private _adminService: AdministratorService, private _router : Router, private modalService: NgbModal) { }
 
@@ -72,22 +74,28 @@ export class GebruikersComponent implements OnInit {
   //modals
   open(content, userID?) {
     this.gebruiker = new User("","", new Date(), "", false, false, "");
-    //this.gekozenPloeg = 0;
     if(userID){
       this.gebruiker = {...this.gebruikers.find(u => u.userID == userID)}
       if(!this.gebruiker.ploegID){
         this.gebruiker.ploegID = 0;
       }
     }
+    this.datum = this.gebruiker.geboortedatum;
     this.modalService.open(content)
   }
 
   sendUser(){
+    if(this.datum != this.gebruiker.geboortedatum){ //bij updaten van datum met de date picker zet hij die 1 dag ervoor in de api om een of andere reden
+      this.gebruiker.geboortedatum.setDate(this.gebruiker.geboortedatum.getDate() + 1);
+    }
     if(this.gebruiker.ploegID == 0){
       this.gebruiker.ploegID = null;
     }    
     if(this.gebruiker.userID){
       this._adminService.updateUser(this.gebruiker.userID, this.gebruiker).subscribe(result => {
+        if(this.datum != this.gebruiker.geboortedatum){ //lokaal dan weer niet dus moet die een dag terug gezet worden in de lokale array
+          this.gebruiker.geboortedatum.setDate(this.gebruiker.geboortedatum.getDate() - 1);
+        }
         this.gebruiker.ploeg = this.ploegen.find(x => x.ploegID === this.gebruiker.ploegID)
         var pos = this.gebruikers.findIndex(u => u.userID == this.gebruiker.userID)
         this.gebruikers.splice(pos,1)
@@ -96,6 +104,9 @@ export class GebruikersComponent implements OnInit {
     }else{
       this._adminService.postUser(this.gebruiker).subscribe(result => {
         result.ploeg = this.ploegen.find(x => x.ploegID === this.gebruiker.ploegID)
+        if(this.datum != this.gebruiker.geboortedatum){ //lokaal dan weer niet dus moet die een dag terug gezet worden in de lokale array
+          this.gebruiker.geboortedatum.setDate(this.gebruiker.geboortedatum.getDate() - 1);
+        }
         console.log(this.datum)
         debugger;
         this.gebruikers.push(result)

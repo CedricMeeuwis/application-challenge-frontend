@@ -16,6 +16,7 @@ import { HeaderComponent } from './header/header/header.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeModule } from './home/home.module';
 import { SignUpComponent } from './security/sign-up/sign-up.component';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
 
 @NgModule({
@@ -41,8 +42,10 @@ import { SignUpComponent } from './security/sign-up/sign-up.component';
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: SecurityInterceptor,
-    multi: true
-  }],
+    multi: true,
+    },
+    {provide: MAT_DATE_LOCALE, useValue: 'nl-BE'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
