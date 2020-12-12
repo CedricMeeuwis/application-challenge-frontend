@@ -36,6 +36,7 @@ export class OverzichtWedstrijdenComponent implements OnInit {
       //this.aantalVerloren = this.aantalSpellen - this.aantalWins - this.aantalDraws;
       this.aantalVerloren = this.aantalSpellen - this.aantalWins;
       this.winpercentage = (this.aantalWins/this.aantalSpellen)*100
+      console.log(this.aantalSpellen)
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, Subscriber } from 'rxjs';
@@ -12,7 +12,8 @@ import { User } from 'src/app/shared/models/user';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
-
+  @Input() max: any;
+  now = new Date();
   model: NgbDateStruct;
   gebruikers: User[];
   ploegen: Ploeg[];
@@ -60,6 +61,7 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
+    this.gebruiker.geboortedatum.setDate(this.gebruiker.geboortedatum.getDate() + 1);
     this.submitted = true;
     this._adminService.postUser(this.gebruiker).subscribe(result => {
       debugger;
@@ -68,6 +70,7 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.gebruiker.geboortedatum = null;
   }
 
 }
