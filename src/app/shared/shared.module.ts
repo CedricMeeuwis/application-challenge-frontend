@@ -23,12 +23,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-    MatButtonModule,
-    MatButtonToggleModule,
     MatDatepickerModule,
-    MatIconModule,
-    MatInputModule,
-    MatNativeDateModule,
   ],
   exports: [
     FormsModule,
@@ -37,14 +32,9 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatIconModule,
     MatButtonModule,
     MatButtonToggleModule,
-    MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-    MatButtonModule,
-    MatButtonToggleModule,
     MatDatepickerModule,
-    MatIconModule,
-    MatInputModule,
     MatNativeDateModule,
   ]
 })
