@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserLogin } from '../models/user-login';
 import { AuthenticateService } from '../services/authenticate.service';
+import {UserInformationService} from '../../security/services/user-information.service';
+import { CurrentUser } from '../models/current-user.model';
+import { RoleAuthenticateService } from '../services/role-authenticate.service';
 
 @Component({
   selector: 'app-security',
@@ -13,6 +16,8 @@ export class SecurityComponent implements OnInit {
 
   constructor(
     private _authenticateService: AuthenticateService,
+    private _userInformationService: UserInformationService,
+    private _roleAuthenticateService: RoleAuthenticateService,
     private router: Router) {
 
   }
@@ -22,22 +27,18 @@ export class SecurityComponent implements OnInit {
   onSubmit() {
     this._authenticateService.authenticate(this.userLogin).subscribe(result => {
       localStorage.setItem("token", result.token);
-      localStorage.setItem("isAdmin", result.isAdmin.toString());
-      localStorage.setItem("isKapitein", result.isKapitein.toString());
-
-      if (result.ploegID == null) {
-        result.ploegID = 0
-      }
-
-      localStorage.setItem("ploegID", result.ploegID.toString());
-
-      if (result.isAdmin == true) {
-        this.router.navigate(['/admin/dashboard']);
-      } else if (result.isKapitein == true) {
-        this.router.navigate(['/kapitein/dashboard'])
-      } else {
-        this.router.navigate(['']);
-      }
-    });
+    ''
+      this._userInformationService.getUserInfo((currentUser: CurrentUser) => {
+        console.log(currentUser);
+        if (this._roleAuthenticateService.isAdmin()) {
+          console.log("login")
+          this.router.navigate(['/admin/dashboard']);
+        } else if (this._roleAuthenticateService.isKapitein()) {
+          this.router.navigate(['/kapitein/dashboard'])
+        } else {
+          this.router.navigate(['']);
+        }
+      });
+      });
   }
 }
