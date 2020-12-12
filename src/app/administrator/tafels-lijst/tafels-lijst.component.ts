@@ -55,7 +55,6 @@ export class TafelsLijstComponent implements OnInit {
     }
   }
 
-
   //Open modals
   open(content, tafel?: Tafel) {
     if (!tafel) {

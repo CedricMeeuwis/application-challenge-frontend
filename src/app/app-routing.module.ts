@@ -7,6 +7,7 @@ import { GebruikersComponent } from './administrator/gebruikers/gebruikers.compo
 import { TournooiBeheerComponent } from './administrator/tournooi-beheer/tournooi-beheer.component';
 import { TafelsLijstComponent } from './administrator/tafels-lijst/tafels-lijst.component';
 import { PloegDetailsComponent } from './gebruiker/ploeg-details/ploeg-details.component';
+import { PloegBeheerComponent } from './kapitein/ploeg-beheer/ploeg-beheer.component';
 
 import { SecurityComponent } from './security/security/security.component';
 import { ManageTournooiComponent } from './administrator/manage-tournooi/manage-tournooi.component';
@@ -37,13 +38,12 @@ const routes: Routes = [
   {path: 'admin/tafels', component: TafelsLijstComponent},
   {path: 'admin/betwistingen', component: BetwistingComponent},
   {path: 'admin/competities', component: CompetitieBeherenComponent},
+  {path: 'kapitein/ploeg-beheer', component: PloegBeheerComponent},
   {path: 'gebruiker/dashboard', component: GebruikerDashboardComponent},
   {path: 'gebruiker/ploeg', component: PloegDetailsComponent},
   {path: 'gebruiker/statistieken', component: OverzichtWedstrijdenComponent},
   {path: 'gebruiker/wedstrijden', component: WedstrijdBezigNietGestartComponent},
-  {path: 'kapitein/dashboard', component: KapiteinDashboardComponent},
-
-
+  {path: 'kapitein/dashboard', component: KapiteinDashboardComponent}
 ];
 
 @NgModule({

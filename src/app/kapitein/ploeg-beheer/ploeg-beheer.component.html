@@ -1,0 +1,171 @@
+<section id="manage-ploegen">
+    <div class="container">
+
+        <div class="section-title" data-aos="fade-left">
+            <h2>Ploeg beheren</h2>
+        </div>
+        <div class="table-responsive" *ngIf="leden">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4>TeamLeden</h4>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="modal-title" (click)="open(inviteModal)" class="btn btn-success"
+                                data-toggle="modal"><i
+                                    class="material-icons">&#xE147;</i><span>Toevoegen</span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center table-responsive">
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th>Naam</th>
+                                <th>E-mail</th>
+                                <th>Kick</th>
+                                <th>Maak Kapitein</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let lid of leden">
+                                <td>{{lid.naam}}</td>
+                                <td>{{lid.email}}</td>
+                                <td>
+                                    <a (click)="open(kickModal, lid)" class="delete" data-toggle="modal"
+                                        *ngIf="!lid.isKapitein"><i class="material-icons" data-toggle="tooltip"
+                                            title="Kick lid.naam">&#xE872;</i></a>
+                                </td>
+                                <td>
+                                    <a (click)="open(captainModal, lid)" class="delete" data-toggle="modal"
+                                        *ngIf="!lid.isKapitein"><i class="material-icons" data-toggle="tooltip"
+                                            title="Maak lid.naam kapitein">&#xE872;</i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wijzig ploeg button row -->
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <button (click)="open(content)" class="btn btn-success" data-toggle="modal">Wijzig ploeg</button>
+            </div>
+        </div>
+
+        <!-- Edit ploeg Modal -->
+        <ng-template #content let-modal>
+            <div class="modal-header pb-0">
+                <h4 class="modal-title" id="modal-basic-title">Bewerk Ploeg</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #ploegForm="ngForm" (ngSubmit)="updatePloeg()">
+                    <p> Naam:
+                        <input class="form-control" required ngbAutofocus placeholder="naam" type="text"
+                            [(ngModel)]="ploeg.naam" name="naam" minlength="2" />
+                    </p>
+                    <p> Bedrijfsnaam:
+                        <input class="form-control" required ngbAutofocus placeholder="bedrijfsnaam" type="text"
+                            [(ngModel)]="ploeg.bedrijfsnaam" name="bedrijfsnaam" minlength="2" />
+                    </p>
+                    <p> Locatie:
+                        <input class="form-control" required ngbAutofocus placeholder="locatie" type="text"
+                            [(ngModel)]="ploeg.locatie" name="locatie" minlength="2" />
+                    </p>
+                    <p>
+                        <label for="foto">Kies een afbeelding</label>
+                        <input type="file" [(ngModel)]="ploeg.ploegFoto" name="foto" class="form-control "
+                            (change)="onChange($event)" />
+                        <img [src]="this.ploeg.ploegFoto" class="foto" alt="">
+                    </p>
+
+                    <div class="modal-footer pb-0">
+                        <button type="button" class="btn btn-outline-secondary"
+                            (click)="modal.dismiss('cancel click')">Annuleer</button>
+                        <button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')"
+                            [disabled]="!ploegForm.form.valid">Save</button>
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+
+        <!-- Invite member modal -->
+        <ng-template #inviteModal let-modal>
+            <div class="modal-header pb-0">
+                <h4 class="modal-title" id="modal-basic-title">Voeg lid toe</h4>
+            </div>
+            <div class="modal-body">
+                <!-- Als er gebruikers zonder team zijn toon formulier -->
+                <form #inviteForm="ngForm" (ngSubmit)="addLid()" *ngIf="usersZonderPloeg.length != 0">
+                    <div class="mt-2 mb-2">
+                        <p> Kies gebruiker:
+                            <select required [(ngModel)]="selectedUserID" name="userToAdd">
+                                <option *ngFor="let user of usersZonderPloeg" [value]="user.userID">
+                                    {{user.naam}}
+                                </option>
+                            </select>
+                        </p>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary"
+                        (click)="modal.dismiss('cancel click')">Annuleer</button>
+                    <button type="submit" class="btn btn-danger float-right" (click)="modal.close('Ok click')">Voeg
+                        toe</button>
+                </form>
+                <!-- Indien er geen gebruikers zonder ploeg zijn -->
+                <div *ngIf="usersZonderPloeg.length == 0">
+                    <div class="mt-2 mb-2">
+                        <p>
+                            Er zijn momenteel geen gebruikers zonder ploeg.
+                        </p>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary"
+                        (click)="modal.dismiss('cancel click')">Annuleer</button>
+                </div>
+            </div>
+        </ng-template>
+
+        <!-- Kick member modal -->
+        <ng-template #kickModal let-modal>
+            <div class="modal-header pb-0">
+                <h4 class="modal-title" id="modal-basic-title">Kick ploeglid</h4>
+            </div>
+            <div class="modal-body">
+                <p>Bent u zeker dat u <b>{{selectedLid.naam}}</b> wilt kicken van de ploeg?</p>
+
+                <form #kickForm="ngForm" (ngSubmit)="kickLid()">
+                    <button type="button" ngbAutofocus class="btn btn-outline-secondary"
+                        (click)="modal.dismiss('cancel click')">annuleer</button>
+                    <button type="submit" class="btn btn-danger float-right"
+                        (click)="modal.close('Ok click')">Kick</button>
+                </form>
+            </div>
+        </ng-template>
+
+        <!-- Set kapitein modal -->
+        <ng-template #captainModal let-modal>
+            <div class="modal-header pb-0">
+                <h4 class="modal-title" id="modal-basic-title">Maak kapitein</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Bent u zeker dat u <b>{{selectedLid.naam}}</b> kapitein wil maken van de ploeg?
+                    <br><br>
+                    <b>Deze actie zal je uitloggen, en je zal geen kapitein meer zijn!</b>
+                </p>
+
+                <form #captainForm="ngForm" (ngSubmit)="setKapitein()">
+                    <button type="button" ngbAutofocus class="btn btn-outline-secondary"
+                        (click)="modal.dismiss('cancel click')">annuleer</button>
+                    <button type="submit" class="btn btn-danger float-right"
+                        (click)="modal.close('Ok click')">Bevestig</button>
+                </form>
+            </div>
+        </ng-template>
+    </div>
+</section>
