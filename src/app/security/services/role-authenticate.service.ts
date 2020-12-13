@@ -14,11 +14,6 @@ export class RoleAuthenticateService {
 
   constructor(private _userInformationService: UserInformationService) {
     this.getInfo();
-    if(localStorage.getItem("token") != null){
-      console.log(jwtDecode(localStorage.getItem("token")));
-    }else{
-      console.log("no token");
-    }
   }
 
   getInfo() {

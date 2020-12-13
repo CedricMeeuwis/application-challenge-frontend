@@ -49,16 +49,12 @@ export class PloegBeheerComponent implements OnInit {
 
   updatePloeg() {
     this._kapiteinService.updatePloeg(this.ploeg).subscribe(
-      result => console.log(result),
-      err => console.log(err)
     );
   }
 
   addLid() {
     var addedMember;
     this._kapiteinService.addLid(Number(this.selectedUserID)).subscribe(
-      result => addedMember = result,
-      err => console.log(err),
       () => {
         this.leden.push(addedMember);
         this.loadUsersZonderPloeg();
@@ -69,8 +65,6 @@ export class PloegBeheerComponent implements OnInit {
 
   kickLid() {
     this._kapiteinService.removeLid(this.selectedLid.userID).subscribe(
-      result => console.log(result),
-      err => console.log(err),
       () => {
         this.leden.splice(this.leden.indexOf(this.selectedLid) ,1)
         this.loadUsersZonderPloeg();
@@ -81,8 +75,6 @@ export class PloegBeheerComponent implements OnInit {
 
   setKapitein() {
     this._kapiteinService.setKapitein(this.selectedLid.userID).subscribe(
-      result => console.log(result),
-      err => console.log(err),
       () => {
         localStorage.clear();
         this.router.navigate(['']);

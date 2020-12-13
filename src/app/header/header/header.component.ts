@@ -17,7 +17,6 @@ export class HeaderComponent implements OnInit {
   ) { 
     roleAuthenticateService.user.subscribe(val =>{
       this.currentUser = val;
-      console.log(this.currentUser);
     });
   }
 

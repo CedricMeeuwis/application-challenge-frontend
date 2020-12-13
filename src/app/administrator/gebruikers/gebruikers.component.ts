@@ -107,8 +107,6 @@ export class GebruikersComponent implements OnInit {
         if(this.datum != this.gebruiker.geboortedatum){ //lokaal dan weer niet dus moet die een dag terug gezet worden in de lokale array
           this.gebruiker.geboortedatum.setDate(this.gebruiker.geboortedatum.getDate() - 1);
         }
-        console.log(this.datum)
-        debugger;
         this.gebruikers.push(result)
       })
     }

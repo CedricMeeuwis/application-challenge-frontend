@@ -24,8 +24,6 @@ export class PloegDetailsComponent implements OnInit {
 
   constructor(private _gebruikerService: GebruikerService, private modalService: NgbModal, private router: Router) {
     this._gebruikerService.getMijnPloeg().subscribe(
-      result => this.ploeg = result,
-      error => console.log(error),
       () => this.loadRest()
     );
   }
@@ -72,10 +70,7 @@ export class PloegDetailsComponent implements OnInit {
   challengePloeg() {
     this.newChallenge.uitgedaagdePloegID = Number(this.uitgedaagdePloegID);
     this._gebruikerService.createChallenge(this.newChallenge).subscribe(
-      result => console.log(result),
-      err => console.log(err.message),
       () => {
-        console.log("Challenge verzonden")
         this.loadChallenges();
       }
     );
@@ -83,10 +78,7 @@ export class PloegDetailsComponent implements OnInit {
 
   challengeAnnuleer(challengeID: number) {
     this._gebruikerService.deleteChallenge(challengeID).subscribe(
-      result => console.log(result),
-      err => console.log(err.message),
       () => {
-        console.log("Challenge ingetrokken")
         this.loadChallenges();
       }
     );
@@ -94,10 +86,7 @@ export class PloegDetailsComponent implements OnInit {
 
   challengeResponse(challengeID: number, response: boolean) {
     this._gebruikerService.setChallengeReactie(challengeID, response).subscribe(
-      result => console.log(result),
-      err => console.log(err.message),
       () => {
-        console.log("Challenge beantwoord")
         this.loadChallenges();
       }
     );
