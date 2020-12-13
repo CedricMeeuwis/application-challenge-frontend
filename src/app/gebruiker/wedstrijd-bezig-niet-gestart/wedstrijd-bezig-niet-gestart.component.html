@@ -106,7 +106,7 @@
                             <p>Team: {{wedstrijd.team1User1.ploeg.naam}}</p>
                             <ul>
                                 <li>{{wedstrijd.team1User1.naam}}</li>
-                                <li *ngIf="wedstrijd.team1User1">{{wedstrijd.team1User2.naam}}</li>
+                                <li *ngIf="wedstrijd.team1User2">{{wedstrijd.team1User2.naam}}</li>
                             </ul>
                         </div>
                         <div>
@@ -156,22 +156,39 @@
             </div>
             <div class="modal-body">
                 <div *ngIf="wedstrijd.bezig == 0; else elseDiv4">
-                    <p>Deze wedstrijd is nog niet begonnen</p>
-
-                    <button type="button" ngbAutofocus class="btn btn-outline-secondary" (click)="begin()" >Begin</button>
-
-                    
+                    <div class="row text-center mb-2">
+                        <div class="col-12">
+                            <h2>Deze wedstrijd is nog niet begonnen</h2>
+                        </div>
+                        <div class="col-12">
+                            <button type="button" ngbAutofocus class="btn btn-outline-secondary" (click)="begin()" >Begin wedstrijd</button>
+                        </div>
+                    </div>
                 </div>
+
                 <ng-template #elseDiv4>
-                    <p>Deze wedstrijd is begonnen</p>
-                    <p>{{wedstrijd.team1User1.ploeg.naam}}: {{wedstrijd.team1Score}} - {{wedstrijd.team2User1.ploeg.naam}}: {{wedstrijd.team2Score}}</p>
-                    <button type="button" class="btn btn-outline-secondary" (click)="scoreVerander(wedstrijd.team1User1.ploeg.naam, 1)" >ploeg 1: score+1</button>
-                    <button type="button" class="btn btn-outline-secondary" (click)="scoreVerander(wedstrijd.team1User1.ploeg.naam, -1)" >ploeg 1: score-1</button><br/>
-                    <button type="button" class="btn btn-outline-secondary" (click)="scoreVerander(wedstrijd.team2User1.ploeg.naam, 1)" >ploeg 2: score+1</button>
-                    <button type="button" class="btn btn-outline-secondary" (click)="scoreVerander(wedstrijd.team2User1.ploeg.naam, -1)" >ploeg 2: score-1</button>
+                    <div class="row text-center mb-2">
+                        <div class="col-12">
+                            <h2>Deze wedstrijd is begonnen</h2>
+                        </div>
+                    </div>
+                    <div class="row text-center mb-2">
+                        <div class="col-6">
+                            <h2><b>{{wedstrijd.team1User1.ploeg.naam}}</b></h2>
+                            <p><button type="button" class="btn btn-outline-info" (click)="scoreVerander(wedstrijd.team1User1.ploeg.naam, 1)" [disabled]="wedstrijd.team1Score == 10"> +1 </button></p>
+                            <p><b>{{wedstrijd.team1Score}}</b></p>
+                            <p><button type="button" class="btn btn-outline-warning" (click)="scoreVerander(wedstrijd.team1User1.ploeg.naam, -1)" [disabled]="wedstrijd.team1Score == 0"> -1 </button></p>
+                        </div>
+                        <div class="col-6">
+                            <h2><b>{{wedstrijd.team2User1.ploeg.naam}}</b></h2>
+                            <p><button type="button" class="btn btn-outline-info" (click)="scoreVerander(wedstrijd.team2User1.ploeg.naam, 1)" [disabled]="wedstrijd.team2Score == 10"> +1 </button></p>
+                            <p><b>{{wedstrijd.team2Score}}</b></p>
+                            <p><button type="button" class="btn btn-outline-warning" (click)="scoreVerander(wedstrijd.team2User1.ploeg.naam, -1)" [disabled]="wedstrijd.team2Score == 0"> -1 </button></p>
+                        </div>
+                    </div>
                 </ng-template>
                 <br/>
-                <button type="button"  class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">annuleer</button>
-                <button type="button"  class="btn btn-outline-secondary" (click)="beeindig()">beeindig wedstrijd</button>
+                <button type="button" class="btn btn-danger" (click)="modal.dismiss('cancel click')">Annuleer</button>
+                <button type="button" class="btn btn-success float-right" (click)="beeindig()">Beëindig wedstrijd</button>
             </div>
         </ng-template>
