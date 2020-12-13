@@ -30,17 +30,20 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let lid of leden">
-                                <td>{{lid.naam}}</td>
+                                <td>
+                                    <span *ngIf="lid.isKapitein"><i class="material-icons">military_tech</i> </span>
+                                    {{lid.naam}}
+                                </td>
                                 <td>{{lid.email}}</td>
                                 <td>
-                                    <a (click)="open(kickModal, lid)" class="delete" data-toggle="modal"
+                                    <a (click)="open(kickModal, lid)" class="edit" data-toggle="modal"
                                         *ngIf="!lid.isKapitein"><i class="material-icons" data-toggle="tooltip"
-                                            title="Kick lid.naam">&#xE872;</i></a>
+                                            title="Kick lid.naam">person_remove</i></a>
                                 </td>
                                 <td>
-                                    <a (click)="open(captainModal, lid)" class="delete" data-toggle="modal"
+                                    <a (click)="open(captainModal, lid)" class="info" data-toggle="modal"
                                         *ngIf="!lid.isKapitein"><i class="material-icons" data-toggle="tooltip"
-                                            title="Maak lid.naam kapitein">&#xE872;</i></a>
+                                            title="Maak lid.naam kapitein">military_tech</i></a>
                                 </td>
                             </tr>
                         </tbody>
