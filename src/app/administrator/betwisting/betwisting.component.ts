@@ -30,7 +30,6 @@ export class BetwistingComponent implements OnInit {
       data.team2User1ID, data.team2User1, data.team2User2ID,
       data.team2User2, data.matchContextID, data.matchContext, 
       data.tafelID, data.tafel);
-    console.log(this.betwisting);
     this.modalService.open(content);
     this.errorBoodschap = "";
   }
@@ -41,7 +40,6 @@ export class BetwistingComponent implements OnInit {
       this.errorBoodschap = "Foute score gegevens";
     }else{
       this.betwisting.akkoord = true;
-      console.log(this.betwisting);
       this._administratorService.changeWedstrijd(this.betwisting).subscribe(val=>{
         this._administratorService.getBetwistingen();
       });

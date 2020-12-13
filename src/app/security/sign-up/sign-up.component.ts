@@ -64,7 +64,6 @@ export class SignUpComponent implements OnInit {
     this.gebruiker.geboortedatum.setDate(this.gebruiker.geboortedatum.getDate() + 1);
     this.submitted = true;
     this._adminService.postUser(this.gebruiker).subscribe(result => {
-      debugger;
       this._router.navigate(['login']);
     })
   }

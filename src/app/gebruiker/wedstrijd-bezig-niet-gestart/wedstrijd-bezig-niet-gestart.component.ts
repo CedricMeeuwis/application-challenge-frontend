@@ -27,7 +27,6 @@ export class WedstrijdBezigNietGestartComponent implements OnInit {
 
   open(content, wedstrijd) {
     this.wedstrijd = wedstrijd
-    console.log(wedstrijd)
     this.modalService.open(content);
   }
 

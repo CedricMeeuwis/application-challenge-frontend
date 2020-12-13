@@ -51,8 +51,6 @@ export class OverzichtWedstrijdenComponent implements OnInit {
 
   betwistWedstrijd() {
     this._gebruikerService.betwistWedstrijd(this.betwisteWedstrijd.wedstrijdID).subscribe(
-      result => console.log(result),
-      err => console.log(err),
       () => {
         this.wedstrijden.splice(this.wedstrijden.indexOf(this.betwisteWedstrijd), 1)
         this.betwisteWedstrijd = null;

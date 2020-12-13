@@ -67,7 +67,6 @@ export class TafelsLijstComponent implements OnInit {
   }
 
   sendTafel() {
-    console.log(this.tafel)
     if (!this.tafel.tafelID) {
       const newTafel = new Tafel(this.tafel.naam, this.tafel.bedrijfsnaam, this.tafel.adres, this.tafel.foto, this.tafel.contactTelefoon, this.tafel.contactNaam, this.tafel.contactEmail);
       this._tafelService.addTafel(newTafel).subscribe(result => {
@@ -85,8 +84,6 @@ export class TafelsLijstComponent implements OnInit {
 
   deleteTafel(tafelID: number) {
     this._tafelService.deleteTafel(tafelID).subscribe(
-      result => console.log(result),
-      err => console.log(err),
       () => this.tafels.splice(this.tafels.findIndex(t => t.tafelID == tafelID), 1)
     );
   }
