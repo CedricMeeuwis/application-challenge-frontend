@@ -42,7 +42,7 @@
                                     </ng-template>
                                 </td>
                                 <td>
-                                    <div *ngIf="wedstrijd.team1User1ID == userID; else elseDiv2">
+                                    <div *ngIf="wedstrijd.team1User1ID == userID || wedstrijd.team1User2ID == userID; else elseDiv2">
                                         {{wedstrijd.team2User1.ploeg.naam}}
                                     </div>
                                     <ng-template #elseDiv2>
