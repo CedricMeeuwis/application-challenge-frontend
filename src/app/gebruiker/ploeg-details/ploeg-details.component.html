@@ -105,9 +105,9 @@
                             <!-- Inkomende open Challenge -->
                             <li class="list-group-item list-group-item-info"
                                 *ngIf="openChallenge.uitgedaagdePloegID == ploeg.ploegID">
-                                {{openChallenge.uitdagerPloeg.naam}} challenged jou ploeg!
+                                <b>{{openChallenge.uitdagerPloeg.naam}}</b> challenged jou ploeg!
                                 <a (click)="challengeResponse(openChallenge.challengeID, true)"
-                                    class="delete float-right">
+                                    class="info float-right">
                                     <i class="material-icons mr-3" data-toggle="tooltip"
                                         title="Accepteer challenge">check</i>
                                 </a>
