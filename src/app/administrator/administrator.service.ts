@@ -15,61 +15,61 @@ import { Competitie } from '../shared/models/competitie';
 })
 export class AdministratorService {
   tournooien = new BehaviorSubject<Tournooi[]>(null);
-  tournooiUrl = "https://applicationchallengeapi20201212171638.azurewebsites.net/api/Tournooi";
+  tournooiUrl = "https://localhost:44348/api/Tournooi";
   wedstrijden = new BehaviorSubject<Wedstrijd[]>(null);
-  wedstrijdUrl = "https://applicationchallengeapi20201212171638.azurewebsites.net/api/Wedstrijd";
-  matchContextUrl = "https://applicationchallengeapi20201212171638.azurewebsites.net/api/MatchContext";
+  wedstrijdUrl = "https://localhost:44348/api/Wedstrijd";
+  matchContextUrl = "https://localhost:44348/api/MatchContext";
   betwistingen = new BehaviorSubject<Wedstrijd[]>(null);
 
   constructor(private http : HttpClient) { }
 
   //get Users voor admin
   getUsers() : Observable<User[]>{
-    return this.http.get<User[]>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/User/");
+    return this.http.get<User[]>("https://localhost:44348/api/User/");
   }
   //get Users met een ploeg
   getUsersHasPloeg() : Observable<User[]>{
-    return this.http.get<User[]>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/User/Ploeg");
+    return this.http.get<User[]>("https://localhost:44348/api/User/Ploeg");
   }
 
   getUser(userID: number) : Observable<User>{
-    return this.http.get<User>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/user/" + userID);
+    return this.http.get<User>("https://localhost:44348/api/user/" + userID);
   }
 
   getUsersbyPloeg(ploegId: number) : Observable<User[]>{
-    return this.http.get<User[]>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/User/Ploeg/" + ploegId);
+    return this.http.get<User[]>("https://localhost:44348/api/User/Ploeg/" + ploegId);
   }
   getUsersZonderPloeg() : Observable<User[]>{
-    return this.http.get<User[]>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/User/Ploegloos");
+    return this.http.get<User[]>("https://localhost:44348/api/User/Ploegloos");
   }
   //post User voor admin
   postUser(user : User){
-    return this.http.post<User>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/User/",user);
+    return this.http.post<User>("https://localhost:44348/api/User/",user);
   }
   //update User voor admin
   updateUser(userID : number, user : User){
-    return this.http.put<User>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/User/"+userID, user);
+    return this.http.put<User>("https://localhost:44348/api/User/"+userID, user);
   }
   //delete User voor admin
   deleteUser(userID : number){
-    return this.http.delete<User>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/User/"+userID);
+    return this.http.delete<User>("https://localhost:44348/api/User/"+userID);
   }
   //get ploegen
   getPloegen() : Observable<Ploeg[]>{
-    return this.http.get<Ploeg[]>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/Ploeg/");
+    return this.http.get<Ploeg[]>("https://localhost:44348/api/Ploeg/");
   }
 
   deletePloeg(ploegID: number)
   {
-    return this.http.delete<Ploeg>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/ploeg/" + ploegID);
+    return this.http.delete<Ploeg>("https://localhost:44348/api/ploeg/" + ploegID);
   }
 
   newPloeg(ploeg: Ploeg) {
-    return this.http.post<Ploeg>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/ploeg", ploeg);
+    return this.http.post<Ploeg>("https://localhost:44348/api/ploeg", ploeg);
   }
 
   updatePloeg(ploeg: Ploeg) {
-    return this.http.put<Ploeg>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/ploeg/" + ploeg.ploegID, ploeg);
+    return this.http.put<Ploeg>("https://localhost:44348/api/ploeg/" + ploeg.ploegID, ploeg);
   }
   //Tournooi beheer
   getAllTournoois(): Observable<Tournooi[]>{
@@ -125,32 +125,32 @@ export class AdministratorService {
   }
   //Competities
   getCompetities() : Observable<Competitie[]>{
-    return this.http.get<Competitie[]>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/Competitie/");
+    return this.http.get<Competitie[]>("https://localhost:44348/api/Competitie/");
   }
 
   getCompetitie(competitieID: number) : Observable<Competitie>{
-    return this.http.get<Competitie>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/Competitie/" + competitieID);
+    return this.http.get<Competitie>("https://localhost:44348/api/Competitie/" + competitieID);
   }
 
   deleteCompetitie(competitieID: number)
   {
-    return this.http.delete<Competitie>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/Competitie/" + competitieID);
+    return this.http.delete<Competitie>("https://localhost:44348/api/Competitie/" + competitieID);
   }
 
   newCompetitie(competitie: Competitie) {
-    return this.http.post<Competitie>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/Competitie/", competitie);
+    return this.http.post<Competitie>("https://localhost:44348/api/Competitie/", competitie);
   }
 
   updateCompetitie(competitie: Competitie) {
-    return this.http.put<Competitie>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/Competitie/" + competitie.competitieID, competitie);
+    return this.http.put<Competitie>("https://localhost:44348/api/Competitie/" + competitie.competitieID, competitie);
   }
 
   getWedstrijdenVanCompetitie(id): Observable<Wedstrijd[]>{
-    return this.http.get<Wedstrijd[]>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/Wedstrijd/Competitie/" + id);
+    return this.http.get<Wedstrijd[]>("https://localhost:44348/api/Wedstrijd/Competitie/" + id);
   }
 
   getTafels(): Observable<Tafel[]> {
-    return this.http.get<Tafel[]>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/tafel");
+    return this.http.get<Tafel[]>("https://localhost:44348/api/tafel");
   }
 
   deleteMatchContext(id): Observable<MatchContext>{

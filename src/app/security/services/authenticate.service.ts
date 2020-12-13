@@ -8,7 +8,7 @@ import { User } from '../../shared/models/user';
   providedIn: 'root'
 })
 export class AuthenticateService {
-  authenticateUrl = "https://applicationchallengeapi20201212171638.azurewebsites.net/api/User/authenticate";
+  authenticateUrl = "https://localhost:44348/api/User/authenticate";
   constructor(private _httpClient: HttpClient) { }
   
   authenticate(userLogin: UserLogin): Observable<User> {

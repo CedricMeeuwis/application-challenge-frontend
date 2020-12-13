@@ -11,22 +11,22 @@ export class TafelService {
   constructor(private http: HttpClient) { }
 
   getTafels(): Observable<Tafel[]> {
-    return this.http.get<Tafel[]>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/tafel");
+    return this.http.get<Tafel[]>("https://localhost:44348/api/tafel");
   }
 
   getTafel(tafelID: number): Observable<Tafel> {
-    return this.http.get<Tafel>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/tafel/" + tafelID);
+    return this.http.get<Tafel>("https://localhost:44348/api/tafel/" + tafelID);
   }
 
   addTafel(tafel: Tafel) {
-    return this.http.post<Tafel>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/tafel", tafel);
+    return this.http.post<Tafel>("https://localhost:44348/api/tafel", tafel);
   }
 
   updateTafel(tafelID: number, tafel: Tafel) {
-    return this.http.put<Tafel>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/tafel/" + tafelID, tafel);
+    return this.http.put<Tafel>("https://localhost:44348/api/tafel/" + tafelID, tafel);
   }
 
   deleteTafel(tafelID: number) {
-    return this.http.delete<Tafel>("https://applicationchallengeapi20201212171638.azurewebsites.net/api/tafel/" + tafelID);
+    return this.http.delete<Tafel>("https://localhost:44348/api/tafel/" + tafelID);
   }
 }
