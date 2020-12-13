@@ -17,10 +17,8 @@ export class SecurityComponent implements OnInit {
   admin: boolean;
   constructor(
     private _authenticateService: AuthenticateService,
-    private _userInformationService: UserInformationService,
     private _roleAuthenticateService: RoleAuthenticateService,
     private router: Router) {
- 
   }
  
   ngOnInit(): void {
@@ -28,25 +26,15 @@ export class SecurityComponent implements OnInit {
   onSubmit() {
     localStorage.clear();
     this._authenticateService.authenticate(this.userLogin).subscribe(result => {
- 
       localStorage.setItem("token", result.token);
- 
       this._roleAuthenticateService.getInfo();
-      this._roleAuthenticateService.isAdmin();
-      this._roleAuthenticateService.isKapitein();
-      this._roleAuthenticateService.isUser();
- 
-      this._userInformationService.getUserInfo((currentUser: CurrentUser) => {
-        this.user = currentUser;
- 
-        if (this._roleAuthenticateService.isAdmin()) {
-          this.router.navigate(['/admin/dashboard']);
-        } else if (this._roleAuthenticateService.isKapitein()) {
-          this.router.navigate(['/kapitein/dashboard']);
-        } else if (this._roleAuthenticateService.isUser()){
-          this.router.navigate(['/gebruiker/dashboard']);
-        }
-      });
+      if (this._roleAuthenticateService.isAdmin()) {
+        this.router.navigate(['/admin/dashboard']);
+      } else if (this._roleAuthenticateService.isKapitein()) {
+        this.router.navigate(['/kapitein/dashboard']);
+      } else if (this._roleAuthenticateService.isLoggedIn()){
+        this.router.navigate(['/gebruiker/dashboard']);
+      } 
     });
   }
 }
