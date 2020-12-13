@@ -15,14 +15,14 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
   direct(){
-    if(!this._roleAuthenticateService.isLoggedIn()){
-      this.router.navigate(["login"]);
+    if(this._roleAuthenticateService.isLoggedIn()){
+      this.router.navigate(["user/dashboard"]);
     }else if (this._roleAuthenticateService.isAdmin()){
       this.router.navigate(["admin/dashboard"]);
     } else if (this._roleAuthenticateService.isKapitein()){
       this.router.navigate(["kapitein/dashboard"]);
-    } else if (this._roleAuthenticateService.isUser()){
-      this.router.navigate(["user/dashboard"]);
+    } else{
+      this.router.navigate(["login"]);
     }
   }
 
