@@ -115,10 +115,12 @@
                             </select>
                         </p>
                     </div>
-                    <button type="button" class="btn btn-outline-secondary"
-                        (click)="modal.dismiss('cancel click')">Annuleer</button>
-                    <button type="submit" class="btn btn-danger float-right" (click)="modal.close('Ok click')">Voeg
-                        toe</button>
+                    <div class="modal-footer pb-0">
+                        <button type="button" class="btn btn-outline-secondary"
+                            (click)="modal.dismiss('cancel click')">Annuleer</button>
+                        <button type="submit" class="btn btn-danger" (click)="modal.close('Ok click')">Voeg
+                            toe</button>
+                    </div>
                 </form>
                 <!-- Indien er geen gebruikers zonder ploeg zijn -->
                 <div *ngIf="usersZonderPloeg.length == 0">
@@ -127,8 +129,10 @@
                             Er zijn momenteel geen gebruikers zonder ploeg.
                         </p>
                     </div>
-                    <button type="button" class="btn btn-outline-secondary"
+                    <div class="modal-footer pb-0">
+                        <button type="button" class="btn btn-outline-secondary"
                         (click)="modal.dismiss('cancel click')">Annuleer</button>
+                    </div>
                 </div>
             </div>
         </ng-template>
@@ -142,10 +146,12 @@
                 <p>Bent u zeker dat u <b>{{selectedLid.naam}}</b> wilt kicken van de ploeg?</p>
 
                 <form #kickForm="ngForm" (ngSubmit)="kickLid()">
-                    <button type="button" ngbAutofocus class="btn btn-outline-secondary"
+                    <div class="modal-footer pb-0">
+                        <button type="button" ngbAutofocus class="btn btn-outline-secondary"
                         (click)="modal.dismiss('cancel click')">annuleer</button>
-                    <button type="submit" class="btn btn-danger float-right"
+                    <button type="submit" class="btn btn-danger"
                         (click)="modal.close('Ok click')">Kick</button>
+                    </div>
                 </form>
             </div>
         </ng-template>
@@ -163,10 +169,12 @@
                 </p>
 
                 <form #captainForm="ngForm" (ngSubmit)="setKapitein()">
-                    <button type="button" ngbAutofocus class="btn btn-outline-secondary"
+                    <div class="modal-footer pb-0">
+                        <button type="button" ngbAutofocus class="btn btn-outline-secondary"
                         (click)="modal.dismiss('cancel click')">annuleer</button>
-                    <button type="submit" class="btn btn-danger float-right"
+                    <button type="submit" class="btn btn-danger"
                         (click)="modal.close('Ok click')">Bevestig</button>
+                    </div>
                 </form>
             </div>
         </ng-template>
