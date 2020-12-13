@@ -24,7 +24,10 @@ export class PloegDetailsComponent implements OnInit {
 
   constructor(private _gebruikerService: GebruikerService, private modalService: NgbModal, private router: Router) {
     this._gebruikerService.getMijnPloeg().subscribe(
-      () => this.loadRest()
+      res =>{ 
+        this.ploeg = res
+        this.loadRest();
+      }
     );
   }
 
