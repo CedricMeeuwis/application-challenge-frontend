@@ -42,12 +42,24 @@
                                     {{wedstrijd.team1User1.ploeg.naam}}
                                 </ng-template>
                             </td>
-                            <td>{{wedstrijd.tafel.bedrijfsnaam}}</td>
                             <td>
-                                <div *ngIf="wedstrijd.matchContext.tournooi; else elseDiv3">
-                                    {{wedstrijd.matchContext.tournooi.naam}}
+                                <div *ngIf="wedstrijd.tafelID; else elseDiv6">
+                                    {{wedstrijd.tafel.bedrijfsnaam}}
                                 </div>
-                                <ng-template #elseDiv3>
+                                <ng-template #elseDiv6>
+                                    /
+                                </ng-template>
+                            </td>
+                            <td>
+                                <div *ngIf="wedstrijd.matchContextID; else elseDiv7">
+                                    <div *ngIf="wedstrijd.matchContext.tournooi; else elseDiv3">
+                                        {{wedstrijd.matchContext.tournooi.naam}}
+                                    </div>
+                                    <ng-template #elseDiv3>
+                                        /
+                                    </ng-template>
+                                </div>
+                                <ng-template #elseDiv7>
                                     /
                                 </ng-template>
                             </td>
@@ -123,16 +135,18 @@
                     </ng-template>
 
                 </div>
-                <div *ngIf="wedstrijd.matchContext.tournooi">
+                <div *ngIf="wedstrijd.matchContextID">
+                    <div *ngIf="wedstrijd.matchContext.tournooi">
+                        <hr>
+                        <p>Tournooi: {{wedstrijd.matchContext.tournooi.naam}}</p>
+                        <p>Niveau: {{wedstrijd.matchContext.tournooiNiveau}}</p>
+                        <p>Rangschikking: {{wedstrijd.matchContext.tournooiRangschikking}}</p>
+                    </div>
                     <hr>
-                    <p>Tournooi: {{wedstrijd.matchContext.tournooi.naam}}</p>
-                    <p>Niveau: {{wedstrijd.matchContext.tournooiNiveau}}</p>
-                    <p>Rangschikking: {{wedstrijd.matchContext.tournooiRangschikking}}</p>
+                    <p>Tafel: {{wedstrijd.tafel.naam}}</p>
+                    <p>bedrijf tafel: {{wedstrijd.tafel.bedrijfsnaam}}</p>
+                    <p>adres: {{wedstrijd.tafel.adres}}</p>
                 </div>
-                <hr>
-                <p>Tafel: {{wedstrijd.tafel.naam}}</p>
-                <p>bedrijf tafel: {{wedstrijd.tafel.bedrijfsnaam}}</p>
-                <p>adres: {{wedstrijd.tafel.adres}}</p>
             </div>
         </ng-template>
 
