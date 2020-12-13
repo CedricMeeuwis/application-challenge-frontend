@@ -43,6 +43,10 @@
 }
 .bootstrapCard{
 
+  .card{
+    width: 100%;
+  }
+
     .text-primary {
       color: $buttonColor !important;
     }
